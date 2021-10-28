@@ -31,7 +31,13 @@
         </div>
       </form>
     </div>
-
+    <blockquote *ngIf="classroomToShow==null" class="blockquote text-center mb-0 mt-5">
+      <p class="mb-0">Chú thích</p>
+      <footer class="blockquote-footer">
+        Tại đây sẽ hiển thị danh sách các
+        <cite title="Source Title">học sinh</cite> có trong <cite title="Source Title">lớp học</cite> đã chọn.
+      </footer>
+    </blockquote>
     <div *ngIf="classroomToShow != null">
       <!--TIÊU ĐỀ-->
       <div class="row mt-3 mb-3">
@@ -97,7 +103,8 @@
                   <td>{{student.studentMotherName}}</td>
                   <td style="text-align: right;">{{student.studentParentPhone}}</td>
                   <td class="text-center d-flex justify-content-center">
-                    <button class="btn p-0 m-1 btn-success " style=" width: 32px; height: 32px;"
+                    <button class="btn p-0 m-1 btn-success " style=" width: 32px; height: 32px;" data-toggle="tooltip"
+                            data-placement="top"
                             title="Xem chi tiết học sinh">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                            class="bi bi-binoculars mb-1" viewBox="0 0 16 16">
@@ -106,6 +113,7 @@
                       </svg>
                     </button>
                     <button class="btn p-0 m-1 btn-warning text-white" style=" width: 32px; height: 32px;"
+                            data-toggle="tooltip" data-placement="top"
                             title="Chỉnh sửa học sinh">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                            class="bi bi-pencil-square mb-1" viewBox="0 0 16 16">
@@ -116,6 +124,7 @@
                       </svg>
                     </button>
                     <button class="btn p-0 m-1" style="background-color:red; width: 32px; height: 32px;"
+                            data-toggle="tooltip" data-placement="top"
                             title="Xoá học sinh" (click)="deleteStudent(student.studentId, student.studentName)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                            class="bi bi-trash text-white mb-1" viewBox="0 0 16 16">
