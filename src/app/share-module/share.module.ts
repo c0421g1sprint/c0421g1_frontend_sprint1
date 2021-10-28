@@ -4,11 +4,20 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import {DialogDeleteComponent} from "./dialog-delete/dialog-delete.component";
+import {SnackbarComponent} from "./snackbar/snackbar.component";
+import {FooterComponent} from "./footer/footer.component";
+import {HeaderComponent} from "./header/header.component";
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    DialogDeleteComponent,
+    SnackbarComponent,
+    FooterComponent,
+    HeaderComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -23,7 +32,10 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    HeaderComponent,
+    FooterComponent,
+    DialogDeleteComponent
   ]
 })
 export class ShareModule { }
