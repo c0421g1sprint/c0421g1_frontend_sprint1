@@ -44,10 +44,9 @@
         <h1 style="display: inline-block">{{" " +classroomsName}}</h1>
       </div>
     </div>
-
       <div>
         <div class="row">
-          <button class="btn btn-warning" style="position: relative;left: 2%; color: white; width: auto">
+          <button class="btn btn-warning" style="position: relative;left: 1.8%; color: white; width: auto">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                  class="bi bi-person-plus mb-1" viewBox="0 0 16 16">
               <path
@@ -66,9 +65,8 @@
             Download PDF
           </button>
         </div>
-
         <div class="col-md-12 d-flex justify-content-center" id="dataSchedule">
-          <table class="table table-hover w-100 mt-2 mb-2">
+          <table class="table table-striped w-100 mt-2 mb-2">
             <thead style="background-color: #1BB1DC">
             <tr>
               <th>Tiết</th>
@@ -80,7 +78,6 @@
             </tr>
             </thead>
             <tbody>
-
             <tr *ngFor="let time of times">
               <td>{{time}}</td>
               <td *ngFor="let day of days">
@@ -96,9 +93,6 @@
           </table>
         </div>
       </div>
-
-
-    <div></div>
   </div>
   <div style="margin-top: 10px">
     <button id="back" class="btn" style="position: absolute; right: 28px">
