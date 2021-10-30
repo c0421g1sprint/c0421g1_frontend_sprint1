@@ -1,0 +1,103 @@
+<head>
+  <meta charset="utf-8">
+  <title>Tìm kiếm giáo viên</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid" style="margin: 0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <div class="d-flex">
+          <!--        <input class="form-control me-2" type="search" placeholder="Tìm kiếm giáo viên" aria-label="Search"&ensp>-->
+          <input [(ngModel)]="search" class="form-control" type="search"
+                 placeholder="Tìm kiếm giáo viên" aria-label="Search">
+          <button (click)="getSearchTeacher(0)" class="btn btn-primary" style="margin-left: 10px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" fill="currentColor"
+                 class="bi bi-search"
+                 viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <table class="table table-striped d-inline-block w-100">
+    <thead class="" style="background-color: #1bb1dc;margin: 0">
+    <tr>
+      <th style="width: 15% ">Số thứ tự</th>
+      <th style="width: 25%;">Họ tên giáo viên</th>
+      <th style="width:10%">Giới tính</th>
+      <th style="width: 10%;">Ngày sinh</th>
+      <th style="width: 20%;">Số điện thoại</th>
+      <th style="width: 20%;">Địa chỉ</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let element of listTeacher,index as i  ">
+      <td>{{getCode(element.teacherId, 2)}}</td>
+      <td>{{element.teacherName}}</td>
+      <td [ngSwitch]="element.teacherGender">
+        <span *ngSwitchCase="1">Nam</span>
+        <span *ngSwitchCase="0">Nữ</span>
+      </td>
+      <td>{{element.teacherDateOfBirth}}</td>
+      <td>{{element.teacherPhone}}</td>
+      <td>{{element.teacherAddress}}</td>
+    </tr>
+
+    </tbody>
+  </table>
+  <div style="margin-left: 530px">
+    <ul class="pagination ">
+      <!--      <li class="page-item ">-->
+      <!--        <a class="btn btn-primary mr-2" (click)="firstPage()">First</a>-->
+      <!--      </li>-->
+      <li class="page-item">
+        <button class="page-link" aria-label="Previous" (click)="firstPage()">
+          <span aria-hidden="true">&laquo;</span>
+        </button>
+      </li>
+      <!--      <li class="page-item "><a class="btn btn-primary mr-2" (click)="previousPage()">Previous</a>-->
+      <!--      </li>-->
+      <li class="page-item">
+        <button class="page-link" aria-label="Previous" (click)="previousPage()">
+          <span aria-hidden="true">&laquo;</span>
+        </button>
+        <!--      </li>-->
+        <!--      <li class="page-item"><a class="btn btn-primary mr-2" style="color: black">{{page + 1}}</a></li>-->
+      <li class="page-item">
+        <p class="page-link">{{page + 1}}/{{totalPage}}</p>
+      </li>
+      <!--      <li class="page-item"><p class="btn btn-primary mr-2" style="color: black">/</p></li>-->
+      <!--      <li class="page-item"><a class="btn btn-primary mr-2" style="color: black">{{totalPage}}</a></li>-->
+      <!--      <li class="page-item"><a class="btn btn-primary mr-2" style="color: black" (click)="nextPage()">Next</a></li>-->
+      <li class="page-item" (click)="nextPage()">
+        <button class="page-link" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </button>
+      </li>
+      <!--      <li class="page-item "><a class="btn btn-primary mr-2" style="color: black" (click)="lastPage()">Last</a></li>-->
+      <li class="page-item">
+        <button class="page-link" aria-label="Previous" (click)="lastPage()">
+          <span aria-hidden="true">&raquo;</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
