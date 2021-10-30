@@ -15,12 +15,12 @@
           <option selected value="null">--Chọn khối--</option>
           <option *ngFor="let grade of gradeList" [value]="grade.gradeId">{{grade.gradeName}}</option>
         </select>
-        <select class="form-control m-3" formControlName="classroom" [disabled]="classroomSelect.length == 0">
+        <select class="form-control m-3" formControlName="classroom" (change)="toggleButtonChoose()">
           <option selected value="null">--Chọn lớp--</option>
           <option *ngFor="let classroom of classroomSelect" [ngValue]="classroom">{{classroom.classroomName}}</option>
         </select>
         <div class="w-100">
-          <button class="btn m-3 float-right" style="color: white; background-color: #1BB1DC">
+          <button class="btn m-3 float-right" style="color: white; background-color: #1BB1DC" #buttonChoose disabled>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
                  viewBox="0 0 16 16">
               <path
@@ -31,6 +31,8 @@
         </div>
       </form>
     </div>
+
+    <!--BLOCKQUOTE-->
     <blockquote *ngIf="classroomToShow==null" class="blockquote text-center mb-0 mt-5">
       <p class="mb-0">Chú thích</p>
       <footer class="blockquote-footer">
@@ -38,6 +40,8 @@
         <cite title="Source Title">học sinh</cite> có trong <cite title="Source Title">lớp học</cite> đã chọn.
       </footer>
     </blockquote>
+
+    <!--DATA-->
     <div *ngIf="classroomToShow != null">
       <!--TIÊU ĐỀ-->
       <div class="row mt-3 mb-3">
@@ -103,17 +107,19 @@
                   <td>{{student.studentMotherName}}</td>
                   <td style="text-align: right;">{{student.studentParentPhone}}</td>
                   <td class="text-center d-flex justify-content-center">
+                    <!--BUTTON XEM-->
                     <button class="btn p-0 m-1 btn-success " style=" width: 32px; height: 32px;" data-toggle="tooltip"
-                            data-placement="top"
-                            title="Xem chi tiết học sinh">
+                            data-placement="top" title="Xem chi tiết học sinh"
+                            (click)="detailStudent(student.studentId)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                            class="bi bi-binoculars mb-1" viewBox="0 0 16 16">
                         <path
                           d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"/>
                       </svg>
                     </button>
+                    <!--BUTTON SỬA-->
                     <button class="btn p-0 m-1 btn-warning text-white" style=" width: 32px; height: 32px;"
-                            data-toggle="tooltip" data-placement="top"
+                            data-toggle="tooltip" data-placement="top" (click)="editStudent(student.studentId)"
                             title="Chỉnh sửa học sinh">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                            class="bi bi-pencil-square mb-1" viewBox="0 0 16 16">
@@ -123,6 +129,7 @@
                               d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                       </svg>
                     </button>
+                    <!--BUTTON XOÁ-->
                     <button class="btn p-0 m-1" style="background-color:red; width: 32px; height: 32px;"
                             data-toggle="tooltip" data-placement="top"
                             title="Xoá học sinh" (click)="deleteStudent(student.studentId, student.studentName)">
@@ -179,43 +186,18 @@
               </ul>
             </nav>
           </div>
-          <!-- Button quay lại -->
-          <button class="btn" style="position: absolute; right: 24px; background-color: #1bb1dc; color: white;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                 class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                    d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
-            </svg>
-            Trở về
-          </button>
         </div>
-
-        <!--        &lt;!&ndash;Phân trang&ndash;&gt;-->
-        <!--        <div class="mt-3">-->
-        <!--          <nav aria-label="Page navigation example">-->
-        <!--            <ul class="pagination d-flex justify-content-md-end justify-content-center">-->
-        <!--              <li class="page-item"><a class="page-link" (click)="firstPage()">Đầu</a></li>-->
-        <!--              <li class="page-item"><a class="page-link" (click)="previousPage()">Lùi</a></li>-->
-        <!--              <li class="page-item col-md-1 col-2  px-0">-->
-        <!--                <div class="input-group">-->
-        <!--                  <input type="number" min="1" [max]="totalPagination" class="form-control text-right rounded-0"-->
-        <!--                         placeholder="2" aria-label="Username"-->
-        <!--                         aria-describedby="basic-addon1" [value]="indexPagination + 1" #presentPage>-->
-        <!--                  <div class="input-group-prepend">-->
-        <!--                    <span class="input-group-text" id="basic-addon1">{{totalPagination}}</span>-->
-        <!--                  </div>-->
-        <!--                </div>-->
-        <!--              </li>-->
-        <!--              <li class="page-item">-->
-        <!--                <button class="btn btn-primary rounded-0" (click)="findPagination(presentPage.value - 1)">Đi</button>-->
-        <!--              </li>-->
-        <!--              <li class="page-item"><a class="page-link" (click)="nextPage()">Tiếp</a></li>-->
-        <!--              <li class="page-item"><a class="page-link" (click)="lastPage()">Cuối</a></li>-->
-        <!--            </ul>-->
-        <!--          </nav>-->
-        <!--        </div>-->
-
       </div>
     </div>
+    <!--BUTTON TRỞ VỀ-->
+    <button class="btn" style="position: absolute; right: 24px; background-color: #1bb1dc; color: white;"
+            routerLink="">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+           class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+              d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
+      </svg>
+      Trở về
+    </button>
   </div>
 </div>
