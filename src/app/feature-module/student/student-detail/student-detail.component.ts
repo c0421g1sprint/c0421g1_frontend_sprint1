@@ -15,7 +15,7 @@ export class StudentDetailComponent implements OnInit {
       this.activatedRouter.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
       console.log(id);
-      this.studentService.getStudentById(id).subscribe(next => {
+      this.studentService.findById(id).subscribe(next => {
         console.log(next);
         this.student = next;
       });

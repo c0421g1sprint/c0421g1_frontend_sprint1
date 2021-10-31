@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {IStudent} from "../../entity/IStudent";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
-  url = "http://localhost:8080/api/students"
+  url = "http://localhost:8080/api/students";
 
   constructor(private httpClient: HttpClient) {
   }
@@ -32,8 +33,19 @@ export class StudentService {
     return this.httpClient.patch(this.url + '/' + id, null);
   }
 
-  //HauPT - Lấy học sinh theo ID
-  getStudentById(id: number): Observable<any>{
+  //LamNT create
+  create(newStudent: IStudent): Observable<IStudent | any> {
+    return this.httpClient.post(this.url + '/add', newStudent);
+  }
+
+  // LamNT edit
+  edit(editStudent: IStudent): Observable<IStudent | any> {
+    return this.httpClient.patch(this.url + '/edit', editStudent);
+  }
+
+  //LamNT find by id
+  findById(id: number): Observable<IStudent | any> {
     return this.httpClient.get(this.url + '/detail/' + id);
   }
+
 }
