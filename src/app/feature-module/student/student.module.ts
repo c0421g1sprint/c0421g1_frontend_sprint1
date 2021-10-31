@@ -11,8 +11,13 @@ import { StudentEditComponent } from './student-edit/student-edit.component';
 
 @NgModule({
 
-
-  declarations: [StudentComponent, StudentListComponent, StudentCreateComponent, StudentEditComponent],
+  declarations: [
+    StudentComponent,
+    StudentListComponent,
+    StudentCreateComponent,
+    StudentEditComponent,
+    StudentSearchComponent
+  ],
 
   imports: [
     CommonModule,
