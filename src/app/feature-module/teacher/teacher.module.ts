@@ -5,12 +5,11 @@ import {TeacherRoutingModule} from './teacher-routing.module';
 import {ShareModule} from '../../share-module/share.module';
 import { ListTeacherComponent } from './list-teacher/list-teacher.component';
 import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
-
-
-
+import { DetailTeacherComponent } from './detail-teacher/detail-teacher.component';
+import { CreateTeacherComponent } from './create-teacher/create-teacher.component';
 
 @NgModule({
-  declarations: [TeacherComponent, ListTeacherComponent, EditTeacherComponent],
+  declarations: [TeacherComponent, ListTeacherComponent, EditTeacherComponent, DetailTeacherComponent, CreateTeacherComponent],
   imports: [
     CommonModule,
     TeacherRoutingModule,
