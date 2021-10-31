@@ -32,8 +32,27 @@ export class StudentService {
   deleteStudentById(id: number): Observable<any> {
     return this.httpClient.patch(this.url + '/' + id, null);
   }
+
   //NhatDV - tìm kiếm học sinh
   findSearch(studentName: any, studentStatus: any, index: number, size: number): Observable<IStudent|any> {
     return this.httpClient.get<any>(this.url + '/search?name=' + studentName + '&status=' + studentStatus + '&index=' + index + "&size=" + size);
   }
+
+
+  //LamNT create
+  create(newStudent: IStudent): Observable<IStudent | any> {
+    return this.httpClient.post(this.url + '/add', newStudent);
+  }
+
+  // LamNT edit
+  edit(editStudent: IStudent): Observable<IStudent | any> {
+    return this.httpClient.patch(this.url + '/edit', editStudent);
+  }
+
+  //LamNT find by id
+  findById(id: number): Observable<IStudent | any> {
+    return this.httpClient.get(this.url + '/detail/' + id);
+  }
+
+
 }

@@ -9,6 +9,7 @@ import {DialogDeleteComponent} from "../../../share-module/dialog-delete/dialog-
 import {StudentService} from "../../../core-module/student/student.service";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 import {of} from "rxjs";
+import {StudentCreateComponent} from "../student-create/student-create.component";
 
 @Component({
   selector: 'app-student-list',
@@ -205,5 +206,10 @@ export class StudentListComponent implements OnInit {
       }
     }
     this.snackbarService.showSnackbar("Không tìm thấy học sinh", "error");
+  }
+
+  //LamNT Open dialog create student
+  openDialogCreate() {
+    let dialog = this.dialog.open(StudentCreateComponent, {width: '1100px', autoFocus: false, maxHeight: '90vh'});
   }
 }
