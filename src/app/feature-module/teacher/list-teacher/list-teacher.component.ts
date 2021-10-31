@@ -7,6 +7,7 @@ import {DivisionService} from "../../../core-module/teacher/division.service";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogDeleteComponent} from "../../../share-module/dialog-delete/dialog-delete.component";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
+import {CreateTeacherComponent} from "../create-teacher/create-teacher.component";
 
 @Component({
   selector: 'app-list-teacher',
@@ -147,4 +148,7 @@ export class ListTeacherComponent implements OnInit {
     this.router.navigateByUrl("/teacher/create");
   }
 
+  openDialogCreate() {
+    let dialog = this.dialog.open(CreateTeacherComponent,{});
+  }
 }
