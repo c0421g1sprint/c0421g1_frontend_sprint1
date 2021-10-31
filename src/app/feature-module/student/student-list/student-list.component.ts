@@ -3,12 +3,13 @@ import {IStudent} from "../../../entity/IStudent";
 import {IClassroom} from "../../../entity/IClassroom";
 import {IGrade} from "../../../entity/IGrade";
 import {FormControl, FormGroup} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogDeleteComponent} from "../../../share-module/dialog-delete/dialog-delete.component";
 import {StudentService} from "../../../core-module/student/student.service";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 import {StudentCreateComponent} from "../student-create/student-create.component";
+import {ClassroomService} from "../../../core-module/classroom/classroom.service";
 
 @Component({
   selector: 'app-student-list',
@@ -35,12 +36,25 @@ export class StudentListComponent implements OnInit {
   });
 
   constructor(private studentService: StudentService,
+              private classroomService: ClassroomService,
               private dialog: MatDialog,
               private router: Router,
+              private activatedRoute: ActivatedRoute,
               private snackbarService: SnackbarService) {
   }
 
   ngOnInit(): void {
+    let idClassroom = Number.parseInt(this.activatedRoute.snapshot.paramMap.get("idClassroom"));
+    console.log("idclass " + idClassroom)
+    if (idClassroom != null || !Number.isNaN(idClassroom)) {
+      this.classroomService.findClassroomById(idClassroom).subscribe(n1 => {
+        this.classroomToShow = n1;
+        this.studentService.getStudentsByClassroomId(idClassroom, this.indexPagination, this.sizePagination).subscribe(n2 => {
+          this.studentListToShow = n2.content;
+          return;
+        })
+      });
+    }
     this.studentService.getAllClassroom().subscribe(next => {
       this.classroomList = next;
       for (let value of this.classroomList) {
@@ -65,11 +79,11 @@ export class StudentListComponent implements OnInit {
 
   //DungNM - lấy danh sách học sinh theo lớp
   getStudentsByClassroom() {
-    if (this.studentListForm.value.year == "null" || this.studentListForm.value.year == null){
+    if (this.studentListForm.value.year == "null" || this.studentListForm.value.year == null) {
       this.snackbarService.showSnackbar("Vui lòng chọn năm học", "error");
       return;
     }
-    if (this.studentListForm.value.grade == "null" || this.studentListForm.value.grade == null){
+    if (this.studentListForm.value.grade == "null" || this.studentListForm.value.grade == null) {
       this.snackbarService.showSnackbar("Vui lòng chọn khối", "error");
       return;
     }
@@ -79,8 +93,8 @@ export class StudentListComponent implements OnInit {
       this.snackbarService.showSnackbar("Vui lòng chọn lớp", "error");
       return;
     }
-    for(let value of this.classroomList){
-      if (value.classroomId == classroom.classroomId){
+    for (let value of this.classroomList) {
+      if (value.classroomId == classroom.classroomId) {
         this.studentService.getStudentsByClassroomId(classroom.classroomId, this.indexPagination, this.sizePagination).subscribe(next => {
           this.studentListToShow = next.content;
           this.classroomToShow = classroom;
@@ -115,6 +129,7 @@ export class StudentListComponent implements OnInit {
     }
     this.buttonChoose.nativeElement.disabled = true;
   }
+
   //DungNM - trang kế tiếp
   nextPage() {
     this.indexPagination = this.indexPagination + 1;
@@ -135,7 +150,7 @@ export class StudentListComponent implements OnInit {
 
   //DungNM - di chuyển tới trang được nhập vào
   findPagination(value: string) {
-    if (value == ""){
+    if (value == "") {
       this.snackbarService.showSnackbar("Vui lòng nhập trang cần di chuyển đến", "error");
       return;
     }
@@ -152,7 +167,7 @@ export class StudentListComponent implements OnInit {
 
   //DungNM - xoá học sinh theo id
   deleteStudent(studentId: number, name: string) {
-    let dialogRef =this.dialog.open(DialogDeleteComponent, {
+    let dialogRef = this.dialog.open(DialogDeleteComponent, {
       data: {
         id: studentId,
         name: name,
@@ -163,10 +178,10 @@ export class StudentListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(next => {
       if (next == 'yes') {
         let arrId: number[] = [];
-        for (let student of this.studentListToShow){
+        for (let student of this.studentListToShow) {
           arrId.push(student.studentId);
         }
-        if (!arrId.includes(studentId)){
+        if (!arrId.includes(studentId)) {
           this.snackbarService.showSnackbar("Không tìm thấy học sinh", "error");
           return;
         }
@@ -178,7 +193,7 @@ export class StudentListComponent implements OnInit {
             this.snackbarService.showSnackbar("Không tồn tại dữ liệu học sinh", "error");
             return;
           }
-          if (error.status == 0){
+          if (error.status == 0) {
             this.snackbarService.showSnackbar("Lỗi hệ thống. Vui lòng thử lại", "error");
             return;
           }
@@ -188,9 +203,11 @@ export class StudentListComponent implements OnInit {
   }
 
   detailStudent(studentId: number) {
-    for (let student of this.studentListToShow){
-      if (student.studentId == studentId){
-        alert("pending to navigate");
+    for (let student of this.studentListToShow) {
+      if (student.studentId == studentId) {
+        // this.router.navigateByUrl("students/detail/" + studentId);
+        this.router.navigate(['students/detail/' + studentId,
+          {"idClassroom": this.classroomToShow.classroomId}]);
         return;
       }
     }
@@ -198,8 +215,8 @@ export class StudentListComponent implements OnInit {
   }
 
   editStudent(studentId: number) {
-    for (let student of this.studentListToShow){
-      if (student.studentId == studentId){
+    for (let student of this.studentListToShow) {
+      if (student.studentId == studentId) {
         this.router.navigateByUrl("students/edit/" + studentId);
         return;
       }

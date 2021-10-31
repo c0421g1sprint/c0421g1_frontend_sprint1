@@ -7,6 +7,7 @@ import { StudentListComponent } from './student-list/student-list.component';
 import { StudentSearchComponent } from './student-search/student-search.component';
 import { StudentCreateComponent } from './student-create/student-create.component';
 import { StudentEditComponent } from './student-edit/student-edit.component';
+import {StudentDetailComponent} from "./student-detail/student-detail.component";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { StudentEditComponent } from './student-edit/student-edit.component';
     StudentListComponent,
     StudentCreateComponent,
     StudentEditComponent,
-    StudentSearchComponent
+    StudentSearchComponent,
+    StudentDetailComponent
   ],
 
   imports: [
