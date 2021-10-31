@@ -8,6 +8,10 @@ import {DialogDeleteComponent} from "./dialog-delete/dialog-delete.component";
 import {SnackbarComponent} from "./snackbar/snackbar.component";
 import {FooterComponent} from "./footer/footer.component";
 import {HeaderComponent} from "./header/header.component";
+import {HttpClientModule} from "@angular/common/http";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {RouterLink, RouterLinkActive, RouterModule} from "@angular/router";
+import {AppRoutingModule} from "../app-routing.module";
 
 
 
@@ -24,7 +28,11 @@ import {HeaderComponent} from "./header/header.component";
     FormsModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   exports: [
     CommonModule,
@@ -35,7 +43,11 @@ import {HeaderComponent} from "./header/header.component";
     MatButtonModule,
     HeaderComponent,
     FooterComponent,
-    DialogDeleteComponent
+    DialogDeleteComponent,
+    HttpClientModule,
+    RouterModule,
+    BrowserAnimationsModule,
+    AppRoutingModule
   ]
 })
 export class ShareModule { }
