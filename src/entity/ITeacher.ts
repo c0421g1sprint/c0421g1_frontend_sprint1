@@ -15,7 +15,8 @@ export interface ITeacher {
   teacherImage: string;
   deleteFlag: boolean;
   account: IAccount;
-  teacherDegree: IDegree;
-  teacherDivision: IDivision;
+
+  degree: IDegree;
+  division: IDivision;
   classroomList: IClassroom[];
 }

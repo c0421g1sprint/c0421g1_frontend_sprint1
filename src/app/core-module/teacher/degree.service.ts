@@ -8,12 +8,12 @@ import {IDegree} from "../../../entity/IDegree";
 })
 export class DegreeService {
 
-  private baseURL = 'http://localhost:8080/api/public/degree';
-  constructor(
-    private http: HttpClient
-  ) {}
 
-  findAll(): Observable<IDegree[]>{
-    return this.http.get<IDegree[]>(this.baseURL);
+  private baseURL = 'http://localhost:8080/api/teachers/listDegree';
+  constructor(private http: HttpClient) {
+  }
+
+  findAll(): Observable<IDegree[] | any>{
+    return this.http.get(this.baseURL);
   }
 }

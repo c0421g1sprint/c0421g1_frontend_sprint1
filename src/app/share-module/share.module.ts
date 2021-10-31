@@ -15,6 +15,7 @@ import {AppRoutingModule} from "../app-routing.module";
 
 
 
+
 @NgModule({
   declarations: [
     DialogDeleteComponent,
@@ -32,7 +33,9 @@ import {AppRoutingModule} from "../app-routing.module";
     RouterModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+
+
   ],
   exports: [
     CommonModule,
