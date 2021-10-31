@@ -12,6 +12,7 @@ const routes: Routes = [
       {path: 'edit/:id', component: EditTeacherComponent},
       {path: 'search', component: SearchTeacherComponent}
     ]},
+
 ];
 
 @NgModule({

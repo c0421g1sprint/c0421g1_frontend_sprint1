@@ -18,9 +18,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     TeacherRoutingModule,
     ShareModule,
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule
+
   ]
 })
 export class TeacherModule { }

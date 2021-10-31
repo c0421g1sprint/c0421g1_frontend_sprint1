@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchTeacherService} from "../../../core-module/teacher/search-teacher.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {ToastrService} from "ngx-toastr";
+import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
+
 
 @Component({
   selector: 'app-search-teacher',
@@ -13,12 +14,10 @@ export class SearchTeacherComponent implements OnInit {
   page = 0;
   totalPage: number;
 
-
-
   listTeacher;
   search = '';
 
-  constructor(private teacherService: SearchTeacherService, private toastrService: ToastrService,
+  constructor(private teacherService: SearchTeacherService,  private snackbarService: SnackbarService,
               private snackBar: MatSnackBar) {
   }
 
@@ -53,7 +52,7 @@ export class SearchTeacherComponent implements OnInit {
   getSearchTeacher(pageable) {
     this.teacherService.getAllTeacherBySearch(this.search, pageable).subscribe(data => {
       if (data == null) {
-        this.toastrService.warning('Thông tin bạn tìm kiếm hiện không có trong hệ thống ', 'Thông báo !');
+        this.snackbarService.showSnackbar("Không tìm thấy giáo viên cần tìm", "error");
         this.getListTeacher(this.search);
       } else {
         this.listTeacher = data.content;
@@ -76,7 +75,7 @@ export class SearchTeacherComponent implements OnInit {
       this.page = page;
     } else {
       if (page != -1) {
-        this.toastrService.warning('Request to enter the number of pages in the list', 'massage search page');
+        this.snackbarService.showSnackbar("Vui lòng nhập trang cần di chuyển đến", "error");
         this.getListTeacher(this.page);
       }
     }
@@ -107,7 +106,7 @@ export class SearchTeacherComponent implements OnInit {
 
   lastPage() {
     if (this.page == this.totalPage - 1) {
-      this.toastrService.info('You are on the last page', 'message last page');
+      this.snackbarService.showSnackbar("Vui lòng nhập trang hợp lệ", "error");
     } else {
       this.page = this.totalPage - 1;
       this.getListTeacher(this.page);
