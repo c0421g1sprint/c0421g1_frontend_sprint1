@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {IStudent} from "../../entity/IStudent";
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +30,10 @@ export class StudentService {
   //DungNM - xoá học sinh theo ID
   deleteStudentById(id: number): Observable<any> {
     return this.httpClient.patch(this.url + '/' + id, null);
+  }
+
+  //HauPT - Lấy học sinh theo ID
+  getStudentById(id: number): Observable<any>{
+    return this.httpClient.get(this.url + '/detail/' + id);
   }
 }

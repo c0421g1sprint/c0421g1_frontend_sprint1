@@ -4,11 +4,11 @@ import { StudentComponent } from './student.component';
 import {StudentRoutingModule} from './student-routing.module';
 import {ShareModule} from '../../share-module/share.module';
 import { StudentListComponent } from './student-list/student-list.component';
-
+import {StudentDetailComponent} from "./student-detail/student-detail.component";
 
 
 @NgModule({
-  declarations: [StudentComponent, StudentListComponent],
+  declarations: [StudentComponent, StudentListComponent,StudentDetailComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,
