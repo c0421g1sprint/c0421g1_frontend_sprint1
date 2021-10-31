@@ -1,0 +1,146 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 150px">
+  <a class="navbar-brand margin" routerLink="/">Trang chủ </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">Lịch dạy <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/listStudentByTeacher">Lớp chủ nhiệm</a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/xyz">Điểm</a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/xyz">Cá nhân</a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/xyz">Đăng xuất</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+<div *ngIf="students; else test">
+  <div class="container-fluid ">
+
+    <!--TIÊU ĐỀ-->
+    <div class="row mt-3 mb-3">
+      <div class="col-md-12 text-center">
+        <h1 style="color: #1BB1DC;">Danh sách học sinh lớp {{students[0].classroom.classroomName}}</h1>
+      </div>
+    </div>
+    <!--BẢNG DỮ LIỆU-->
+    <div>
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+          <table class="table table-striped w-100 mt-2 mb-2">
+            <thead class="te" style="background-color: #1bb1dc;">
+
+            <th scope="col">Số Thứ Tự</th>
+            <th scope="col">Họ và tên</th>
+            <th scope="col">Ngày sinh</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Số điện thoại </th>
+            <th scope="col">Dân tộc</th>
+
+            <th scope="col">Chi Tiết</th>
+
+            </thead>
+            <tbody>
+            <tr *ngFor="let student of students,let i=index">
+              <td>{{i + 1}}</td>
+              <td>{{student.studentName}}</td>
+
+
+              <td>{{student.studentDateOfBirth}}</td>
+              <td>{{student.studentAddress}}</td>
+              <td>{{student.studentParentPhone}}</td>
+              <td>{{student.studentEthnicity}}</td>
+
+
+              <td>
+                <a [routerLink]="['/teacher/detail',student.studentId]">
+                  <button type="button" class="btn" style="background-color: #9EDEED">
+                    View
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-binoculars mb-1" viewBox="0 0 16 16">
+                      <path
+                        d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"/>
+                    </svg>
+                  </button>
+                </a>
+              </td>
+
+            </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Phân trang -->
+
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="Pagination" class="d-flex justify-content-center">
+        <ul class="pagination">
+          <li class="page-item">
+            <a type="button" role="button" class="page-link" aria-label="Previous" (click)="previousPage()">
+              <span>&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <p class="page-link" value="aaaaa">
+              <span>
+                <span>{{responsePage.pageable['pageNumber'] + 1}}</span> /
+                <span>{{responsePage['totalPages']}}</span>
+              </span>
+            </p>
+          </li>
+          <li class="page-item">
+            <a class="page-link" aria-label="Next" (click)="nextPage()">
+              <span aria-disabled="true">&raquo;</span>
+            </a>
+          </li>
+          <li class="page-item ml-2">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Tới trang..." style="width: 100px; " #pageInput>
+              <div class="input-group-append">
+                <button class="btn input-group-text" style="background-color: #1BB1DC; color: white;"
+                        (click)="getPage(pageInput.value)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                       class="bi bi-arrow-right-square" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4.5 5.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<ng-template #test>
+  <h1 style="color: red;text-align: center">Giaó viên này chưa dạy lớp nào</h1>
+</ng-template>
+
+
+
+
+
