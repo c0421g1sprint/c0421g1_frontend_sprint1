@@ -6,6 +6,10 @@ import {AppComponent} from './app.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ShareModule} from "./share-module/share.module";
 import {StudentModule} from "./feature-module/student/student.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {Ng2SearchPipeModule} from "ng2-search-filter";
+import {NgxPaginationModule} from "ngx-pagination";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,7 +20,16 @@ import {StudentModule} from "./feature-module/student/student.module";
     BrowserModule,
     AppRoutingModule,
     ShareModule,
-    StudentModule
+    StudentModule,
+    // ToastrModule,
+    // ToastrModule.forRoot(),
+    // CoreModuleModule,
+    // FeatureModuleModule,
+    // ShareModuleModule,
+    BrowserAnimationsModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -32,4 +32,10 @@ export class StudentService {
   deleteStudentById(id: number): Observable<any> {
     return this.httpClient.patch(this.url + '/' + id, null);
   }
+
+  // diep search student 30/10
+
+  getAllStudentBySearch(inforStudent: any, pageable: any): Observable<any> {
+    return this.httpClient.get<any>(this.url+ '/searchstudent?inforStudent=' + inforStudent + '&page=' + pageable);
+  }
 }
