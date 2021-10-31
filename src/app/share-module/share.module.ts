@@ -11,6 +11,10 @@ import {HeaderComponent} from "./header/header.component";
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AngularFireModule} from "@angular/fire";
+import {environment} from "../../environments/environment";
+import {AngularFireStorageModule} from "@angular/fire/storage";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
 
 
 
@@ -30,7 +34,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatButtonModule,
     RouterModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
   ],
   exports: [
     CommonModule,
@@ -44,7 +51,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     DialogDeleteComponent,
     RouterModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
   ]
 })
 export class ShareModule { }

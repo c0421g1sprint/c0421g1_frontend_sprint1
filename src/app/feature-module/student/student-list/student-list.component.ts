@@ -8,7 +8,6 @@ import {MatDialog} from "@angular/material/dialog";
 import {DialogDeleteComponent} from "../../../share-module/dialog-delete/dialog-delete.component";
 import {StudentService} from "../../../core-module/student/student.service";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
-import {of} from "rxjs";
 import {StudentCreateComponent} from "../student-create/student-create.component";
 
 @Component({
@@ -201,7 +200,7 @@ export class StudentListComponent implements OnInit {
   editStudent(studentId: number) {
     for (let student of this.studentListToShow){
       if (student.studentId == studentId){
-        alert("pending to navigate");
+        this.router.navigateByUrl("students/edit/" + studentId);
         return;
       }
     }
@@ -210,6 +209,7 @@ export class StudentListComponent implements OnInit {
 
   //LamNT Open dialog create student
   openDialogCreate() {
-    let dialog = this.dialog.open(StudentCreateComponent, {width: '1100px', autoFocus: false, maxHeight: '90vh'});
+    let dialogCreate = this.dialog.open(StudentCreateComponent, {width: '1100px', autoFocus: false, maxHeight: '90vh'});
+
   }
 }

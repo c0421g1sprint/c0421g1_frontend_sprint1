@@ -120,6 +120,7 @@ export class StudentEditComponent implements OnInit {
                 verticalPosition: 'top',
                 horizontalPosition: 'end'
               });
+              this.router.navigateByUrl("/students");
             });
           }));
         })
