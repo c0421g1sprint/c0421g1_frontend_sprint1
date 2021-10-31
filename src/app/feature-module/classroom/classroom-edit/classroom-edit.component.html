@@ -1,0 +1,123 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>Chỉnh sửa thông tin lớp {{classroom.classroomName}}</h1>
+      <h2>Niên khoá:{{classroom.classroomSchoolYear}}</h2>
+    </div>
+    <div class="col-lg-4"></div>
+    <div class="col-lg-3">
+      <div>
+        <label>Chọn giáo viên chủ nhiệm:</label>
+        <select class="form-control" (change)="selectTeacher($event)">
+          <option value="" selected> -- Chọn giáo viên --</option>
+          <option *ngFor="let teacher of teacherList" [value]="teacher.teacherId">{{teacher.teacherName}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-lg-4"></div>
+    <div class="col-lg-12">
+      <h2>Danh sách học sinh lớp</h2>
+      <button class="btn btn-primary mb-2" (click)="openDialogCreate()">Thêm mới học sinh</button>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <td>Số thứ tự</td>
+          <td>Tên học sinh</td>
+          <td>Giới tính</td>
+          <td>Ngày sinh</td>
+          <td>Địa chỉ</td>
+          <td>Hình ảnh</td>
+          <td>Chức Năng</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let student of studentList| paginate: { itemsPerPage: 4, currentPage: page }, index as i">
+          <!--        // | paginate:{itemsPerPage : 5, currentPage :pageStudent}-->
+          <td>{{i + 1}}</td>
+          <td>{{student.studentName}}</td>
+          <td>
+            <p *ngIf="student.studentGender == 0; else gender">
+              Nam
+            </p>
+            <ng-template #gender>
+              Nữ
+            </ng-template>
+          </td>
+          <td>{{student.studentDateOfBirth}}</td>
+          <td>{{student.studentAddress}}</td>
+          <td>
+            <p *ngIf="student.studentImage === null; else block1">
+              Chưa có ảnh
+            </p>
+            <ng-template #block1>
+              {{student.studentImage}}
+            </ng-template>
+          </td>
+          <td>
+            <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Xoá học sinh"
+                    (click)="openDialog(classroom.classroomName,student)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                   fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                <path
+                  d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+              </svg>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="col-sm-12">
+        <!--phan trang 5-->
+        <pagination-template #p="paginationApi" (pageChange)="page = $event">
+          <div class="row">
+            <div class="col-lg-12">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <!--                trang truoc-->
+                  <li class="page-item" [class.disabled]="p.isFirstPage()">
+                    <button class="page-link" aria-label="Previous" *ngIf="!p.isFirstPage()" (click)="p.previous()"><span
+                      aria-hidden="true">&laquo;</span></button>
+                  </li>
+                  <!--                so trang tren tong so trang-->
+                  <li class="page-item">
+                    <p class="page-link">{{p.getCurrent()}}/{{p.getLastPage()}}</p>
+                  </li>
+                  <!--                trang sau-->
+                  <li class="page-item"  [class.disabled]="p.isLastPage()">
+                    <button class="page-link" aria-label="Next" *ngIf="!p.isLastPage()" (click)="p.next()"><span aria-hidden="true">&raquo;</span></button>
+                  </li>
+                  <li class="page-item ml-2">
+                    <!--                  o input nhap so trang-->
+                    <div class="input-group">
+                      <input type="number" min="1" class="form-control" placeholder="Tới trang..."
+                             style="width: 120px;" #presentPage>
+                      <div class="input-group-append">
+                        <!--                      lay gia tri o input roi chuyen den-->
+                        <button class="btn input-group-text" style="background-color: #1BB1DC; color: white;"
+                                [class.disabled]="presentPage.value <= p.getLastPage()"
+                                (click)="goToPage(+presentPage.value,p.getLastPage())">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                               class="bi bi-arrow-right-square" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4.5 5.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </pagination-template>
+      </div>
+
+      <button class="btn btn-primary" (click)="submitEdit()">Xác nhận sửa</button>
+      <button class="btn btn-primary" routerLink="/classroom">Quay lại</button>
+
+    </div>
+  </div>
+</div>
+

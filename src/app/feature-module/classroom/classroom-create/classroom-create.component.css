@@ -1,0 +1,35 @@
+h1 {
+  /*font-size: 30px;*/
+  color: #1BB1DC;
+  text-align: center;
+  padding-bottom: 25px;
+}
+i {
+  color: #1BB1DC;
+}
+button {
+  background-color: #1BB1DC !important;
+  color: white !important;
+  margin-left: 42%;
+}
+
+.cancel {
+  background-color: gold !important;
+}
+#tableInputClassName {
+  width: 50%;
+}
+
+.table th {
+  padding: 0;
+}
+body {
+  background-color: #eff9ff !important;
+}
+.phone {
+  text-align: center;
+}
+p {
+  margin-top: 6px;
+  font-weight: normal !important;
+}
