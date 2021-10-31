@@ -12,11 +12,13 @@
         </div>
         <nav class="main-nav float-right d-none d-lg-block">
           <ul>
-            <li class="active"><a href="#intro">Trang chủ</a></li>
-            <li><a href="#services">Tin tức</a></li>
-            <li><a href="#portfolio">Hình ảnh</a></li>
+            <li><a href="#">Trang chủ</a></li>
+            <li *ngIf="role.indexOf('ROLE_GUESS') != -1"><a href="#">Tin tức</a></li>
+            <li *ngIf="role.indexOf('ROLE_GUESS') != -1"><a href="#">Hình ảnh</a></li>
             <li><a href="#footer">Liên hệ</a></li>
-            <li><a href="#">Thời khóa biểu</a></li>
+            <li>
+              <a [routerLink]="['teacher','list']">Teacher</a>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" data-toggle="dropdown"
                  aria-haspopup="true" aria-expanded="false">
@@ -37,7 +39,19 @@
                 <a class="dropdown-item" href="#">Tìm kiếm giáo viên</a>
               </div>
             </li>
-            <li><a href="#">Đăng nhập</a></li>
+            <li *ngIf="this.username == null" >
+              <a [routerLink]="['/login']">Đăng nhập</a>
+            </li>
+            <li *ngIf="this.username" class="nav-item dropdown" >
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false">
+                Chào {{this.username}}
+              </a>
+              <div class="dropdown-menu" >
+                <a class="dropdown-item" (click)="getOut()" [routerLink]="['teacher','list']" > Đăng xuất </a>
+                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+              </div>
+            </li>
           </ul>
         </nav>
       </div>
