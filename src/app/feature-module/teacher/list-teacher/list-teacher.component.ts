@@ -121,7 +121,7 @@ export class ListTeacherComponent implements OnInit {
     if (value == null){
       this.snackBar.showSnackbar("Vui lòng nhập số trang cần tìm", 'error');
     }
-    if (Number(value)<this.responsePage.totalPages&&Number(value)>0&&Number(value)%1==0){
+    if (Number(value)<=this.responsePage.totalPages&&Number(value)>0&&Number(value)%1==0){
       this.pageObj['page'] = Number(value)-1
       console.log(this.pageObj['page'] )
       this.getAllAndSearchByKeywordAndDivision(this.pageObj);
