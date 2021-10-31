@@ -1,14 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {EditPasswordComponent} from "./edit-password/edit-password.component";
 
 
-const routes: Routes = [
-  {
-    path: 'account/editPass/:id',
-    component: EditPasswordComponent
-  },
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
