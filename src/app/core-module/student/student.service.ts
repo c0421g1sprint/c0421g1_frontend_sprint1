@@ -33,12 +33,6 @@ export class StudentService {
     return this.httpClient.patch(this.url + '/' + id, null);
   }
 
-  //NhatDV - tìm kiếm học sinh
-  findSearch(studentName: any, studentStatus: any, index: number, size: number): Observable<IStudent|any> {
-    return this.httpClient.get<any>(this.url + '/search?name=' + studentName + '&status=' + studentStatus + '&index=' + index + "&size=" + size);
-  }
-
-
   //LamNT create
   create(newStudent: IStudent): Observable<IStudent | any> {
     return this.httpClient.post(this.url + '/add', newStudent);
@@ -54,5 +48,8 @@ export class StudentService {
     return this.httpClient.get(this.url + '/detail/' + id);
   }
 
-
+  //NhatDV - tìm kiếm học sinh
+  findSearch(studentName: any, studentStatus: any, index: number, size: number): Observable<IStudent|any> {
+    return this.httpClient.get<any>(this.url + '/search?name=' + studentName + '&status=' + studentStatus + '&index=' + index + "&size=" + size);
+  }
 }
