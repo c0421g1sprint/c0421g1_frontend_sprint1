@@ -4,8 +4,6 @@ import { StudentComponent } from './student.component';
 import {StudentRoutingModule} from './student-routing.module';
 import {ShareModule} from '../../share-module/share.module';
 import { StudentCreateComponent } from './student-create/student-create.component';
-import {MatDialogModule} from "@angular/material/dialog";
-import {ReactiveFormsModule} from "@angular/forms";
 
 
 
