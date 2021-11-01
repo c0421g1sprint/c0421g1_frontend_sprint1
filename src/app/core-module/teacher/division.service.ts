@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {IDivision} from "../../entity/IDivision";
+import {IDivision} from "../../../entity/IDivision";
+
 
 @Injectable({
   providedIn: 'root'

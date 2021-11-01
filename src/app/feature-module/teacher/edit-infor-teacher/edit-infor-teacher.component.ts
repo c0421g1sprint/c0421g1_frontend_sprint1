@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ITeacher} from '../../../entity/ITeacher';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {TeacherService} from "../../../core-module/teacher/teacher.service";
+import {ITeacher} from "../../../../entity/ITeacher";
 import {DivisionService} from "../../../core-module/teacher/division.service";
+import {TeacherService} from "../../../core-module/teacher/teacher.service";
+
 
 @Component({
   selector: 'app-teacher-edit-infor',
@@ -37,7 +38,7 @@ export class EditInforTeacherComponent implements OnInit {
   }
 
   getTeacher(id: number) {
-    return this.teacherService.findById(id).subscribe(next => {
+    return this.teacherService.findByIdTeacher(id).subscribe(next => {
       this.editInforTeacher = next;
       console.log(next)
       this.editFormTeacher.patchValue({
@@ -45,7 +46,7 @@ export class EditInforTeacherComponent implements OnInit {
         teacherName: this.editInforTeacher.teacherName,
         teacherGender: this.editInforTeacher.teacherGender,
         teacherDateOfBirth: this.editInforTeacher.teacherDateOfBirth,
-        division: this.editInforTeacher.teacherDivision.divisionName,
+        division: this.editInforTeacher.division,
         teacherAddress: this.editInforTeacher.teacherAddress,
         teacherEmail: this.editInforTeacher.teacherEmail,
         teacherPhone: this.editInforTeacher.teacherPhone
