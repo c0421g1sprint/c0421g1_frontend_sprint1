@@ -8,9 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {DialogDeleteComponent} from "../../../share-module/dialog-delete/dialog-delete.component";
 import {StudentService} from "../../../core-module/student/student.service";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
-import {StudentCreateComponent} from "../student-create/student-create.component";
 import {ClassroomService} from "../../../core-module/classroom/classroom.service";
-import {stringify} from "querystring";
 
 @Component({
   selector: 'app-student-list',

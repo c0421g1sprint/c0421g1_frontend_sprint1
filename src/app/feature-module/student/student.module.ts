@@ -7,18 +7,12 @@ import { StudentListComponent } from './student-list/student-list.component';
 import { StudentSearchComponent } from './student-search/student-search.component';
 import { StudentCreateComponent } from './student-create/student-create.component';
 import { StudentEditComponent } from './student-edit/student-edit.component';
-
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-
 import {StudentDetailComponent} from "./student-detail/student-detail.component";
 
 
 
+
 @NgModule({
-
-
-
-
   declarations: [
     StudentComponent,
     StudentListComponent,
@@ -27,13 +21,10 @@ import {StudentDetailComponent} from "./student-detail/student-detail.component"
     StudentSearchComponent,
     StudentDetailComponent
   ],
-
-
   imports: [
     CommonModule,
     StudentRoutingModule,
     ShareModule,
-
   ]
 })
 export class StudentModule { }

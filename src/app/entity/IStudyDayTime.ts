@@ -2,8 +2,7 @@ import {IScheduleDetail} from "./IScheduleDetail";
 
 export interface IStudyDayTime {
   studyDayTimeId: number;
-  studyDay: string;
-  studyTime: string;
-
+  studyDayTimeStudyTime: string;
+  studyDayTimeStudyDay: string;
   scheduleDetailList: IScheduleDetail[];
 }

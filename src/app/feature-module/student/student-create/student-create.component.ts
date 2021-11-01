@@ -6,6 +6,7 @@ import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {filter, finalize} from 'rxjs/operators';
+import {ClassroomService} from "../../../core-module/classroom/classroom.service";
 
 @Component({
   selector: 'app-student-create',
@@ -79,6 +80,7 @@ export class StudentCreateComponent implements OnInit {
   constructor(private studentService: StudentService,
               private router: Router,
               private snackBar: MatSnackBar,
+              private classroomService: ClassroomService,
               private storage: AngularFireStorage) {
   }
 
@@ -136,7 +138,8 @@ export class StudentCreateComponent implements OnInit {
           fileRef.getDownloadURL().subscribe((url => {
             this.createForm.value.studentImage = url;
             console.log(url);
-            this.studentService.create(value).subscribe(() => {
+            this.studentService.create(value).subscribe(id => {
+              this.classroomService.changeStudentId(id);
               setTimeout(() => {
                 this.showSpinner = false;
                 this.snackBar.open('Tạo mới học sinh thành công', null, {duration: 3000});

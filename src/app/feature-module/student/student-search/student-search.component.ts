@@ -19,25 +19,27 @@ export class StudentSearchComponent implements OnInit {
   totalPagination: number;                 //tổng số trang
   @ViewChild('presentPage') pageInput: ElementRef;     //trang nhập vào để di chuyển tới đó
 
-  constructor(private studentService: StudentService, private  snackbarService: SnackbarService) { }
+  constructor(private studentService: StudentService, private  snackbarService: SnackbarService) {
+  }
 
   ngOnInit(): void {
     this.getSearch();
   }
 
   getSearch() {
-    this.studentName=this.studentName.trim()
-    if (this.studentName!=null&&this.studentName!=""){
-      this.indexPagination=0;
+    this.studentName = this.studentName.trim()
+    if (this.studentName != null && this.studentName != "") {
+      this.indexPagination = 0;
     }
+    console.log(this.indexPagination)
     this.studentService.findSearch(this.studentName, this.studentStatus, this.indexPagination,
       this.sizePagination).subscribe(data => {
       this.students = data;
       this.totalPagination = data.totalPages;
       console.log(data)
-    },error => {
-        console.log('no data');
-        this.snackbarService.showSnackbar('Học sinh cần tìm không tồn tại', "error")
+    }, error => {
+      console.log('no data');
+      this.snackbarService.showSnackbar('Học sinh cần tìm không tồn tại', "error")
     });
   }
 
@@ -49,7 +51,7 @@ export class StudentSearchComponent implements OnInit {
     this.getSearch();
   }
 
-   // trang trước
+  // trang trước
   previousPage() {
     this.indexPagination = this.indexPagination - 1;
     if (this.indexPagination < 0) {
@@ -60,7 +62,7 @@ export class StudentSearchComponent implements OnInit {
 
   // DungNM - di chuyển tới trang được nhập vào
   findPagination(value: string) {
-    if (value == ""){
+    if (value == "") {
       this.snackbarService.showSnackbar("Vui lòng nhập trang cần di chuyển đến", "error");
       return;
     }
