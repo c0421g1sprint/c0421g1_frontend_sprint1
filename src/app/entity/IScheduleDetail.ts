@@ -8,6 +8,6 @@ export interface IScheduleDetail {
 
   subject: ISubject;
   studyDayTime: IStudyDayTime;
-  classGrade: IClassroom;
+  classroom: IClassroom;
   schedule: ISchedule;
 }

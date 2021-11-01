@@ -17,14 +17,12 @@ import {environment} from "../../environments/environment";
 import {AngularFireModule} from "@angular/fire";
 
 
-
 @NgModule({
   declarations: [
     DialogDeleteComponent,
     SnackbarComponent,
     FooterComponent,
     HeaderComponent,
-
   ],
   exports: [
     FooterComponent,
@@ -53,7 +51,6 @@ import {AngularFireModule} from "@angular/fire";
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-
   ]
 })
 export class ShareModule { }

@@ -13,6 +13,7 @@
         <nav class="main-nav float-right d-none d-lg-block">
           <ul>
             <li><a href="#">Trang chủ</a></li>
+            <li><a [routerLink]="['/schedule/list']">Thời khóa biểu</a></li>
             <li *ngIf="role.indexOf('ROLE_ADMIN') != -1"><a [routerLink]="['classroom']" >Classroom</a></li>
             <li *ngIf="role.indexOf('ROLE_ADMIN') != -1"><a href="#">Navbar ADMIN</a></li>
             <li><a href="#footer">Liên hệ</a></li>

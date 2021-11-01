@@ -1,3 +1,4 @@
+
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
@@ -8,6 +9,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ClassroomModule} from "./feature-module/classroom/classroom.module";
 import {StudentModule} from "./feature-module/student/student.module";
 import {AccountModule} from "./feature-module/account/account.module";
+import {ScheduleModule} from "./feature-module/schedule/schedule.module";
+
 
 @NgModule({
   declarations: [
@@ -16,13 +19,15 @@ import {AccountModule} from "./feature-module/account/account.module";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AccountModule,
-    ShareModule,
     ClassroomModule,
     StudentModule,
-    BrowserAnimationsModule,
+    ScheduleModule,
+    ShareModule
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
