@@ -1,3 +1,4 @@
+
 import {IGrade} from "./IGrade";
 import {ITeacher} from "./ITeacher";
 import {IStudent} from "./IStudent";
@@ -13,4 +14,5 @@ export interface IClassroom {
   grade: IGrade;
   students: IStudent[];
   schedule: ISchedule;
+
 }

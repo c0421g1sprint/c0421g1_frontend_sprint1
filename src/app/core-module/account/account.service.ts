@@ -4,7 +4,6 @@ import {HttpClient} from "@angular/common/http";
 import {IEditPasswordAccountDto} from "../../feature-module/account/entity/IEditPassAccount";
 import {IEditAccount} from "../../feature-module/account/entity/iedit-account";
 
-
 @Injectable({
   providedIn: 'root'
 })

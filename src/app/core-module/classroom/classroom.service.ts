@@ -19,6 +19,7 @@ export class ClassroomService {
   //HaNTT, 27/20/2021 - 1:40 AM  (truyền classNane từ component Nhập tên lớp --> cponent inputInfo)
   private classNameService = new BehaviorSubject('');
   currentClassName = this.classNameService.asObservable();
+
   changeClassName(name: string) {
     this.classNameService.next(name);
   }
@@ -27,6 +28,7 @@ export class ClassroomService {
   list: IStudent[] = [];
   private studentCheckedList = new BehaviorSubject(this.list);
   currentStudentCheckedList = this.studentCheckedList.asObservable();
+
   changeStudentCheckedList(studentList: IStudent[]) {
     this.studentCheckedList.next(studentList);
   }
@@ -35,6 +37,7 @@ export class ClassroomService {
   newStudentId: number;
   private studentIdService = new BehaviorSubject(this.newStudentId);
   currentStudentId = this.studentIdService.asObservable();
+
   changeStudentId(id: number) {
     this.studentIdService.next(id);
   }

@@ -1,28 +1,27 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {IStudent} from '../../../entity/IStudent';
-import {StudentService} from "../../../core-module/student/student.service";
-import {Router} from '@angular/router';
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {StudentService} from "../../../core-module/student/student.service";
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {filter, finalize} from 'rxjs/operators';
-import {ClassroomService} from "../../../core-module/classroom/classroom.service";
+import * as url from 'url';
+import {finalize} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-student-create',
-  templateUrl: './student-create.component.html',
-  styleUrls: ['./student-create.component.css']
+  selector: 'app-student-edit',
+  templateUrl: './student-edit.component.html',
+  styleUrls: ['./student-edit.component.css']
 })
-export class StudentCreateComponent implements OnInit {
+export class StudentEditComponent implements OnInit {
 
-  imgSrc: string = '/assets/img/img_placeholder.png';
-  selectedImage: any = null;
-  isSubmitted: boolean = false;
-  newStudent: IStudent;
+  student: IStudent;
+  id: number;
   showSpinner = false;
 
-  createForm: FormGroup = new FormGroup({
-    id: new FormControl(''),
+  editForm = new FormGroup({
+    studentId: new FormControl(''),
     studentName: new FormControl('', [Validators.required,
       Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/),
       Validators.minLength(5), Validators.maxLength(50),
@@ -61,7 +60,9 @@ export class StudentCreateComponent implements OnInit {
       // }),
     ]),
     studentReligion: new FormControl('',
-      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/))
+      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/)),
+    studentStatus: new FormControl(''),
+    deleteFlag: new FormControl('')
   });
 
   public customPatternValid(config: any): ValidatorFn {
@@ -77,16 +78,67 @@ export class StudentCreateComponent implements OnInit {
     };
   }
 
+  private selectedImage: any;
+
   constructor(private studentService: StudentService,
               private router: Router,
+              private activatedRoute: ActivatedRoute,
               private snackBar: MatSnackBar,
-              private classroomService: ClassroomService,
               private storage: AngularFireStorage) {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      this.id = +paramMap.get('id');
+      this.getStudent(this.id);
+    });
   }
 
+  getStudent(index: number) {
+    return this.studentService.findById(index).subscribe(item => {
+      this.student = item;
+      this.imgSrc = this.student.studentImage;
+      console.log(this.student);
+      this.editForm.setValue(item);
+    });
+  }
+
+  edit(editForm) {
+    const value = this.editForm.value;
+    console.log(value);
+    if (this.editForm.valid) {
+      this.showSpinner = true;
+      var filePath = `images/${editForm.value.studentName}_${editForm.value.id}`;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url => {
+            this.editForm.value.studentImage = url;
+            console.log(url);
+            this.studentService.edit(value).subscribe(() => {
+              setTimeout(() => {
+                this.showSpinner = false;
+                this.snackBar.open('Sửa thông tin học sinh thành công', null, {
+                  duration: 3000,
+                  verticalPosition: 'top',
+                  horizontalPosition: 'end'
+                });
+              })
+              this.router.navigate(['students', {
+                "idClassroom": this.student.classroom.classroomId
+              }]);
+            });
+          }));
+        })
+      ).subscribe();
+    } else {
+      this.snackBar.open('Biễu mẫu sai, vui lòng nhập lại', null, {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'end'
+      });
+    }
+  }
 
   validationMessage = {
     studentName: [
@@ -124,36 +176,7 @@ export class StudentCreateComponent implements OnInit {
       {type: 'pattern', message: 'Tôn giáo không được chứa ký tự đặc biệt và số.'}
     ]
   };
-
-  createStudent(createForm) {
-    const value = this.createForm.value;
-    console.log(value);
-    console.log(createForm);
-    if (this.createForm.valid) {
-      this.showSpinner = true;
-      var filePath = `images/${createForm.value.studentName}_${createForm.value.id}`;
-      const fileRef = this.storage.ref(filePath);
-      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe((url => {
-            this.createForm.value.studentImage = url;
-            console.log(url);
-            this.studentService.create(value).subscribe(id => {
-              this.classroomService.changeStudentId(id);
-              setTimeout(() => {
-                this.showSpinner = false;
-                this.snackBar.open('Tạo mới học sinh thành công', null, {duration: 3000});
-              });
-            });
-          }));
-        })
-      ).subscribe();
-    } else {
-      const dateOfBirth = new Date(createForm.value.studentDateOfBirth);
-      console.log(dateOfBirth);
-      this.snackBar.open('Biễu mẫu sai, vui lòng nhập chính xác', null, {duration: 3000});
-    }
-  }
+  imgSrc: any;
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action);
@@ -169,10 +192,16 @@ export class StudentCreateComponent implements OnInit {
       this.imgSrc = '/assets/img/img_placeholder.png';
       this.selectedImage = null;
     }
-  }
-
-  get formControl() {
-    return this.createForm['controls'];
+    let reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.editForm.patchValue({
+          studentImage: reader.result
+        });
+      };
+    }
   }
 
   check6(check: AbstractControl) {
@@ -188,7 +217,7 @@ export class StudentCreateComponent implements OnInit {
     return null;
   }
 
-  resetForm() {
-    this.createForm.reset();
+  get formControl() {
+    return this.editForm['controls'];
   }
 }

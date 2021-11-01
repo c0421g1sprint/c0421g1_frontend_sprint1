@@ -11,7 +11,6 @@ import {StudentModule} from "./feature-module/student/student.module";
 import {AccountModule} from "./feature-module/account/account.module";
 import {ScheduleModule} from "./feature-module/schedule/schedule.module";
 
-
 @NgModule({
   declarations: [
     AppComponent,

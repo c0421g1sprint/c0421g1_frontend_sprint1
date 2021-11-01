@@ -4,6 +4,8 @@ import {IScheduleDetail} from "./IScheduleDetail";
 export interface ISchedule {
   scheduleId: number;
 
-  classGrade: IClassroom;
+
+  classroom: IClassroom;
+
   scheduleDetailList: IScheduleDetail[];
 }

@@ -8,7 +8,6 @@ import {EditPasswordComponent} from "./edit-password/edit-password.component";
 import {ForgetComponent} from "./forget/forget.component";
 
 
-
 @NgModule({
   declarations: [AccountComponent,EditPasswordComponent, ForgetComponent],
   imports: [

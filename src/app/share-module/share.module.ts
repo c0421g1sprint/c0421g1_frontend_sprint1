@@ -9,12 +9,16 @@ import {MatButtonModule} from '@angular/material/button';
 import {DialogDeleteComponent} from "./dialog-delete/dialog-delete.component";
 import {SnackbarComponent} from "./snackbar/snackbar.component";
 import {FooterComponent} from "./footer/footer.component";
-import {HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
-import {AngularFireDatabaseModule} from "@angular/fire/database";
-import {AngularFireStorageModule} from "@angular/fire/storage";
-import {environment} from "../../environments/environment";
+import {HttpClientModule} from "@angular/common/http";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AngularFireModule} from "@angular/fire";
+import {environment} from "../../environments/environment";
+import {AngularFireStorageModule} from "@angular/fire/storage";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+
+
 
 
 @NgModule({
@@ -33,11 +37,12 @@ import {AngularFireModule} from "@angular/fire";
     MatSnackBarModule,
     MatDialogModule,
     MatButtonModule,
-    HttpClientModule,
     RouterModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    AngularFireModule
+    MatProgressSpinnerModule
   ],
   imports: [
     CommonModule,
@@ -46,10 +51,11 @@ import {AngularFireModule} from "@angular/fire";
     MatSnackBarModule,
     MatDialogModule,
     MatButtonModule,
-    HttpClientModule,
-    RouterModule,
+    MatProgressSpinnerModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    HttpClientModule,
+    RouterModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
   ]
 })
