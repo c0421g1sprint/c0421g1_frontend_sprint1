@@ -111,6 +111,9 @@ export class StudentListComponent implements OnInit {
       this.snackbarService.showSnackbar("Vui lòng chọn lớp", "error");
       return;
     }
+    if (classroom != this.classroomToShow){
+      this.indexPagination = 0;
+    }
     for (let value of this.classroomList) {
       if (value.classroomId == classroom.classroomId) {
         this.studentService.getStudentsByClassroomId(classroom.classroomId, this.indexPagination, this.sizePagination).subscribe(next => {
@@ -176,7 +179,7 @@ export class StudentListComponent implements OnInit {
       return;
     }
     let index = Number.parseInt(value) - 1;
-    if (isNaN(index) || index >= this.totalPagination || index < 0 || value.charCodeAt(0)) {
+    if (isNaN(index) || index >= this.totalPagination || index < 0) {
       this.snackbarService.showSnackbar("Vui lòng nhập trang hợp lệ", "error");
       this.pageInput.nativeElement.focus();
     } else {
