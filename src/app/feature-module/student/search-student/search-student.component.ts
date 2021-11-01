@@ -108,7 +108,7 @@ export class SearchStudentComponent implements OnInit {
 
   lastPage() {
     if (this.page == this.totalPage - 1) {
-      this.snackbarService.showSnackbar("Vui lòng nhập trang hợp lệ", "error");
+      this.snackbarService.showSnackbar("Bạn đang ở trang cuối", "error");
     } else {
       this.page = this.totalPage - 1;
       this.getListStudent(this.page);
