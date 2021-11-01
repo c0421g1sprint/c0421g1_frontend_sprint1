@@ -12,6 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {RouterLink, RouterLinkActive, RouterModule} from "@angular/router";
 import {AppRoutingModule} from "../app-routing.module";
+import {AngularFireStorage} from "@angular/fire/storage";
 
 
 
@@ -33,8 +34,7 @@ import {AppRoutingModule} from "../app-routing.module";
     RouterModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-
+    AppRoutingModule
 
   ],
   exports: [
