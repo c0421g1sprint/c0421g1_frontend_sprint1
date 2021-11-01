@@ -15,7 +15,7 @@ export class StudentSearchComponent implements OnInit {
   students;
   search = '';
   indexPagination: number = 0;             //vị trí trang hiện tại
-  sizePagination: number = 3;              //số record trong mỗi trang
+  sizePagination: number = 10;              //số record trong mỗi trang
   totalPagination: number;                 //tổng số trang
   @ViewChild('presentPage') pageInput: ElementRef;     //trang nhập vào để di chuyển tới đó
 
