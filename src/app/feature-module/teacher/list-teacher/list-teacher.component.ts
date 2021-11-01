@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ITeacher} from "../../../../entity/ITeacher";
-import {IDivision} from "../../../../entity/IDivision";
+import {ITeacher} from "../../../entity/ITeacher";
+import {IDivision} from "../../../entity/IDivision";
 import {TeacherService} from "../../../core-module/teacher/teacher.service";
 import {Router} from "@angular/router";
 import {DivisionService} from "../../../core-module/teacher/division.service";
@@ -149,7 +149,11 @@ export class ListTeacherComponent implements OnInit {
   }
 
   openDialogCreate() {
-    let dialog = this.dialog.open(CreateTeacherComponent,{});
+    let dialog = this.dialog.open(CreateTeacherComponent,{
+      // maxHeight:'250px',
+      // backdropClass:'red',
+      maxWidth: '650px',
+    });
   }
 
   movePageCreateAccount() {

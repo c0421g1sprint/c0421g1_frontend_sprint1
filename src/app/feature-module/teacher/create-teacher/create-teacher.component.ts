@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {IDegree} from "../../../../entity/IDegree";
-import {IDivision} from "../../../../entity/IDivision";
+import {IDegree} from "../../../entity/IDegree";
+import {IDivision} from "../../../entity/IDivision";
 import {Observable} from "rxjs";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {TeacherService} from "../../../core-module/teacher/teacher.service";
@@ -9,9 +9,10 @@ import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AngularFireStorage} from "@angular/fire/storage";
 import {DivisionService} from "../../../core-module/teacher/division.service";
-import {ITeacher} from "../../../../entity/ITeacher";
+import {ITeacher} from "../../../entity/ITeacher";
 import {finalize} from "rxjs/operators";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
+import {ListTeacherComponent} from "../list-teacher/list-teacher.component";
 
 @Component({
   selector: 'app-create-teacher',
@@ -32,14 +33,14 @@ export class CreateTeacherComponent implements OnInit {
 
 
   teacherForm: FormGroup = new FormGroup({
-    teacherName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30), Validators.pattern('^[a-z]+$')]),
+    teacherName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]),
     teacherGender: new FormControl('', [Validators.required]),
     teacherDateOfBirth: new FormControl('', [Validators.required, Validators.pattern('^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$')]),
     teacherUniversity: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]),
     teacherAddress: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
     teacherEmail: new FormControl('', [Validators.required, Validators.email]),
     teacherPhone: new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}')]),
-    teacherImage: new FormControl('', [Validators.required]),
+    teacherImage: new FormControl(''),
     degree: new FormControl('', [Validators.required]),
     division: new FormControl('', [Validators.required]),
 
@@ -50,9 +51,11 @@ export class CreateTeacherComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.teacherForm.reset();
     this.getAllDegree();
     this.getAllDivision();
+
   }
 
   getAllDegree() {
@@ -88,9 +91,15 @@ export class CreateTeacherComponent implements OnInit {
 
     this.teacherService.saveTeacher(teachers).subscribe(data => {
       console.log(data);
+
+      // this.teacherForm.reset();
+
+
+      window.location.reload();
+
+
       this.snackBar.showSnackbar('Thêm mới thành công', 'success');
-      this.teacherForm.reset();
-    },error => {
+    }, error => {
       this.snackBar.showSnackbar('Thêm mới thất bại', 'error');
     });
 
@@ -135,16 +144,4 @@ export class CreateTeacherComponent implements OnInit {
       this.selectedImage = null;
     }
   }
-
-  // getAge(DOB) {
-  //   var today = new Date();
-  //   var birthDate = new Date(DOB);
-  //   var age = today.getFullYear() - birthDate.getFullYear();
-  //   var m = today.getMonth() - birthDate.getMonth();
-  //   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-  //     age--;
-  //   }
-  //   return age;
-  // }
-
 }
