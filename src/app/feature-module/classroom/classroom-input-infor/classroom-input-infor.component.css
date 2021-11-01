@@ -1,0 +1,58 @@
+h1 {
+  color: #1BB1DC;
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+#buttonGroup button {
+  background-color: #1BB1DC !important;
+  color: white !important;
+}
+
+#tableClassInfo {
+  width: 50%;
+}
+
+#tableClassInfo thead th {
+  align-items: center;
+  padding: 0;
+}
+
+#tableContentThead {
+  background-color: #1BB1DC;
+}
+
+#tableContent {
+  max-width: 100% !important;
+}
+
+body {
+  background-color: #eff9ff !important;
+}
+
+.phone {
+  text-align: center;
+}
+
+h5, h6 {
+  text-align: center;
+  color: red;
+}
+
+p {
+  margin-bottom: 5px;
+  color: red;
+  text-align: center;
+}
+
+.container-fluid {
+  padding: 0 15px 0 15px;
+  /*border-color: #000;;*/
+}
+
+ul {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 42%;
+}
+

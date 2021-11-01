@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {IClassroom} from "../../entity/IClassroom";
@@ -77,12 +78,12 @@ export class ClassroomService {
   }
 
   //DanhNT Coding
-  deleteStudentFromClass(student:IStudent[]):Observable<IStudent | any>{
-    return this.httpClient.patch(this.api_classroom+"/delete",student);
+  deleteStudentFromClass(student: IStudent[]): Observable<IStudent | any> {
+    return this.httpClient.patch(this.api_classroom + "/delete", student);
   }
 
   //DanhNT coding
-  getListStudentByClassroom(classroomId : number): Observable<IStudent[] | any>{
-    return this.httpClient.get(this.api_classroom+"/get-student-classroom/"+classroomId);
+  getListStudentByClassroom(classroomId: number): Observable<IStudent[] | any> {
+    return this.httpClient.get(this.api_classroom + "/get-student-classroom/" + classroomId);
   }
 }
