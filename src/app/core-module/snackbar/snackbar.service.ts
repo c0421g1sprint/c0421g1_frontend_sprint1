@@ -17,6 +17,7 @@ export class SnackbarService {
         status: status == 'error' ? 'Error' : 'Success'
       },
       duration: 2000,
+      // verticalPosition: "top",
       panelClass: status
     })
   }

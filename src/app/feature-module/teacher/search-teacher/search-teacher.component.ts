@@ -17,8 +17,7 @@ export class SearchTeacherComponent implements OnInit {
   listTeacher;
   search = '';
 
-  constructor(private teacherService: SearchTeacherService,  private snackbarService: SnackbarService,
-              private snackBar: MatSnackBar) {
+  constructor(private teacherService: SearchTeacherService,  private snackbarService: SnackbarService) {
   }
 
   ngOnInit(): void {
@@ -50,16 +49,26 @@ export class SearchTeacherComponent implements OnInit {
   }
 
   getSearchTeacher(pageable) {
+    // this.teacherService.getAllTeacherBySearch(this.search, pageable).subscribe(data => {
+    //   if (data == null) {
+    //     this.snackbarService.showSnackbar("Không tìm thấy giáo viên cần tìm", "error");
+    //     this.getListTeacher(this.search);
+    //   } else {
+    //     this.listTeacher = data.content;
+    //     console.log(this.listTeacher);
+    //     this.page = 0;
+    //   }
+    // });
     this.teacherService.getAllTeacherBySearch(this.search, pageable).subscribe(data => {
-      if (data == null) {
-        this.snackbarService.showSnackbar("Không tìm thấy giáo viên cần tìm", "error");
-        this.getListTeacher(this.search);
-      } else {
         this.listTeacher = data.content;
+        this.totalPage = data.totalPages;
         console.log(this.listTeacher);
         this.page = 0;
-      }
-    });
+      },
+      error => {
+      console.log("error " + error + " etgsdgsfgdgdsg" );
+        this.snackbarService.showSnackbar("Không tìm thấy giáo viên cần tìm", "error");
+      });
   }
 
   getCode(id: number, size: number): string {
