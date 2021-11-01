@@ -6,4 +6,10 @@ export interface ISchedule {
 
   classroom: IClassroom;
   scheduleDetailList: IScheduleDetail[];
+
+  // scheduleId: number;
+  //
+  // classGrade: IClassGrade;
+  // scheduleDetailList: IScheduleDetail[];
+
 }

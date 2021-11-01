@@ -10,4 +10,11 @@ export interface IScheduleDetail {
   studyDayTime: IStudyDayTime;
   classGrade: IClassroom;
   schedule: ISchedule;
+
+  // scheduleDetailId: number;
+  //
+  // subject: ISubject;
+  // studyDayTime: IStudyDayTime;
+  // classGrade: IClassGrade;
+  // schedule: ISchedule;
 }

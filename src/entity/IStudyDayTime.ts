@@ -6,4 +6,10 @@ export interface IStudyDayTime {
   studyTime: string;
 
   scheduleDetailList: IScheduleDetail[];
+
+  // studyDayTimeId: number;
+  // studyDayTimeStudyTime: string;
+  // studyDayTimeStudyDay: string;
+  //
+  // scheduleDetails: IScheduleDetail[];
 }

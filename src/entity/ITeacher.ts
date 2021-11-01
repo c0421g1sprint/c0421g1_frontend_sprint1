@@ -18,4 +18,37 @@ export interface ITeacher {
   teacherDegree: IDegree;
   teacherDivision: IDivision;
   classroomList: IClassroom[];
+
+
+  // teacherId: number;
+  // teacherName: string;
+  // teacherGender: number;
+  // teacherDateOfBirth: string;
+  // teacherUniversity: string;
+  // teacherAddress: string;
+  // teacherEmail: string;
+  // teacherPhone: string;
+  // teacherImage: string;
+  // deleteFlag: boolean;
+  // account: IAccount;
+  // teacherDegree: IDegree;
+  // teacherDivision: IDivision;
+  // classroomList: IClassroom[];
+
+
+  // teacherId: number;
+  // teacherName: string;
+  // teacherGender: number;
+  // teacherDateOfBirth: string;
+  // teacherUniversity: string;
+  // teacherAddress: string;
+  // teacherEmail: string;
+  // teacherPhone: string;
+  // teacherImage: string;
+  // deleteFlag: boolean;
+  //
+  // account: IAccount;
+  // teacherDegree: IDegree;
+  // teacherDivision: IDivision;
+  // classGradeList: IClassGrade[];
 }

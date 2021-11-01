@@ -1,4 +1,5 @@
 import {IClassroom} from "./IClassroom";
+import {IMark} from "./IMark";
 
 export interface IStudent {
   studentId: number;
@@ -15,4 +16,20 @@ export interface IStudent {
   deleteFlag: boolean;
   studentReligion: string;
   classroom: IClassroom;
+
+  // studentId: number;
+  // studentName: string;
+  // studentGender: number;
+  // studentFatherName: string;
+  // studentMotherName: string;
+  // studentDateOfBirth: string;
+  // studentEthnicity: string;
+  // studentAddress: string;
+  // studentImage: string;
+  // studentStatus: string;
+  // studentParentPhone: string;
+  // deleteFlag: boolean;
+  //
+  // markList: IMark[];
+  // classGrade: IClassGrade;
 }
