@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {ITeacher} from "../../../../entity/ITeacher";
+import {ITeacher} from "../../../entity/ITeacher";
 import {TeacherService} from "../../../core-module/teacher/teacher.service";
 import {DivisionService} from "../../../core-module/teacher/division.service";
 

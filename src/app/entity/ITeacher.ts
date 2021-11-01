@@ -18,5 +18,5 @@ export interface ITeacher {
 
   degree: IDegree;
   division: IDivision;
-  classroomList: IClassroom[];
+  classroomList: IClassroom;
 }

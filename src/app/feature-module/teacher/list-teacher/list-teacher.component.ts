@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ITeacher} from "../../../../entity/ITeacher";
-import {IDivision} from "../../../../entity/IDivision";
+import {ITeacher} from "../../../entity/ITeacher";
+import {IDivision} from "../../../entity/IDivision";
 import {TeacherService} from "../../../core-module/teacher/teacher.service";
 import {Router} from "@angular/router";
 import {DivisionService} from "../../../core-module/teacher/division.service";
@@ -122,7 +122,7 @@ export class ListTeacherComponent implements OnInit {
     if (value == null){
       this.snackBar.showSnackbar("Vui lòng nhập số trang cần tìm", 'error');
     }
-    if (Number(value)<this.responsePage.totalPages&&Number(value)>0&&Number(value)%1==0){
+    if (Number(value)<=this.responsePage.totalPages&&Number(value)>0&&Number(value)%1==0){
       this.pageObj['page'] = Number(value)-1
       console.log(this.pageObj['page'] )
       this.getAllAndSearchByKeywordAndDivision(this.pageObj);
@@ -149,6 +149,10 @@ export class ListTeacherComponent implements OnInit {
   }
 
   openDialogCreate() {
-    let dialog = this.dialog.open(CreateTeacherComponent,{});
+    let dialog = this.dialog.open(CreateTeacherComponent,{
+      // maxHeight:'250px',
+      // backdropClass:'red',
+      maxWidth: '650px',
+    });
   }
 }

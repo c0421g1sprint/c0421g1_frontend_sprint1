@@ -1,3 +1,4 @@
+<div class="container">
 <form [formGroup]="teacherForm" (ngSubmit)="update()">
   <div class="container-fluid" style="padding-top: 10px; padding-bottom: 20px">
     <div class="row">
@@ -18,10 +19,10 @@
               class="validate">Tên
               không được để trống</small>
 
-            <small
-              *ngIf="teacherForm.controls.teacherName.hasError('pattern') && teacherForm.controls.teacherName.touched "
-              class="validate">Tên
-              không cho phép nhập số</small><br>
+<!--            <small-->
+<!--              *ngIf="teacherForm.controls.teacherName.hasError('pattern') && teacherForm.controls.teacherName.touched "-->
+<!--              class="validate">Tên-->
+<!--              không cho phép nhập số</small><br>-->
 
             <small
               *ngIf="teacherForm.controls.teacherName.hasError('minlength') && teacherForm.controls.teacherName.touched "
@@ -35,7 +36,6 @@
               không được quá 30 kí tự</small>
 
 
-
             <div>
             </div>
           </div>
@@ -43,17 +43,18 @@
             <label for="" style="color: #1BB1DC" class="font-weight-bold">Ngày
               Sinh<span
                 style="color: red">*</span> :</label>
-            <input  type="text" class="form-control" id="date" formControlName="teacherDateOfBirth">
+            <input type="date" class="form-control" id="date" formControlName="teacherDateOfBirth">
             <small
               *ngIf="teacherForm.controls.teacherDateOfBirth.hasError('required') && teacherForm.controls.teacherDateOfBirth.touched "
               class="validate">
               ngày sinh
               không được để trống</small>
-            <small
-              *ngIf="teacherForm.controls.teacherDateOfBirth.hasError('pattern') && teacherForm.controls.teacherDateOfBirth.touched "
-              class="validate">Ngày
-              sinh không đúng định dạng
-            </small>
+
+            <!--            <small-->
+            <!--              *ngIf="teacherForm.controls.teacherDateOfBirth.hasError('pattern') && teacherForm.controls.teacherDateOfBirth.touched "-->
+            <!--              class="validate">Ngày-->
+            <!--              sinh không đúng định dạng-->
+            <!--            </small>-->
 
           </div>
         </div>
@@ -140,9 +141,8 @@
               <span style="color: red">*</span> :</label>
 
 
-            <select  class="form-control"  formControlName="degree">
-              <option *ngFor="let objDegre of degreeList" [ngValue]="objDegre" >{{objDegre.degreeName}}</option>
-
+            <select class="form-control" formControlName="degree">
+              <option *ngFor="let objDegre of degreeList" [ngValue]="objDegre.degreeId">{{objDegre.degreeName}}</option>
             </select>
 
             <small
@@ -163,7 +163,6 @@
             <select name="" id="" formControlName="teacherGender" class="form-control">
               <option value="0">Nữ</option>
               <option value="1">Nam</option>
-              <option value="2">LGBT</option>
             </select>
             <small
               *ngIf="teacherForm.controls.teacherGender.hasError('required') && teacherForm.controls.teacherGender.touched"
@@ -180,7 +179,7 @@
 
             <select name="" id="degree" class="form-control" formControlName="division">
 
-              <option *ngFor="let objDivi of divisionList" [ngValue]="objDivi"
+              <option *ngFor="let objDivi of divisionList" [ngValue]="objDivi.divisionId"
               >{{objDivi.divisionName}}</option>
             </select>
 
@@ -204,9 +203,22 @@
                      #fileUploader
                      (change)="onFileSelected($event)"
                      name="image"
-                     autocomplete="off" (change)="showPreview($event)" >
+                     autocomplete="off" (change)="showPreview($event)" class="form-control-file">
             </div>
-            <img [src]="teacher.teacherImage" (click)="fileUploader.click()" alt="" width="auto" height="250px" >
+            <img [src]="teacher.teacherImage" (click)="fileUploader.click()" alt="" width="auto" height="250px">
+
+<!--            test2-->
+<!--            <img class="card-img-top" [src]="teacherForm.value.teacherImage" alt="teacher Image"-->
+<!--                 (click)="fileUploader.click()" width="auto" height="250px">-->
+<!--            <input type="file" accept="image/*" #fileUploader class="form-control-file"-->
+<!--                   id="file" name="image"-->
+<!--                   (change)="showPreview($event)">-->
+
+<!--            <img class="card-img-top" [src]="teacherForm.value.teacherImage" alt="teacher Image"-->
+<!--                 (click)="fileUploader.click()" width="auto" height="250px">-->
+<!--            <input type="file" accept="image/*" #fileUploader class="form-control-file"-->
+<!--                   id="file" name="image"-->
+<!--                   (change)="showPreview($event)">-->
 
 
           </div>
@@ -216,7 +228,7 @@
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger" data-dismiss="modal">
+    <button type="button" class="btn btn-danger" data-dismiss="modal" routerLink="/teacher/list">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
            fill="currentColor"
            class="bi bi-x-circle" viewBox="0 0 16 16">
@@ -233,7 +245,7 @@
         <path
           d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414l-3.879-3.879zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
       </svg>
-      Xoá biểu mẫu
+      Nhập lại
     </button>
     <button type="submit" class="btn btn-info">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -243,7 +255,8 @@
         <path
           d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
       </svg>
-      Cập nhập cán bộ cán bộ
+      Cập nhật
     </button>
   </div>
 </form>
+</div>
