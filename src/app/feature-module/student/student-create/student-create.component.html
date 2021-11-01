@@ -10,7 +10,6 @@
       </button>
     </div>
   </div>
-</div>
 <form [formGroup]="createForm" (ngSubmit)="createStudent(createForm)">
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -228,6 +227,7 @@
       <img [src]="imgSrc" width="auto" height="150px" (click)="fileUploader.click()">
     </div>
   </div>
+  <mat-spinner *ngIf="showSpinner" [diameter]="30" style="display: inline-block"></mat-spinner>
   <button mat-dialog-close="true" class="btn btn-warning float-right mb-2" data-dismiss="modal">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
          fill="currentColor"
@@ -249,7 +249,7 @@
     </svg>
     Xoá biểu mẫu
   </button>
-  <button type="submit" class="btn btn-success float-right mb-2">
+  <button type="submit" class="btn btn-success float-right mb-2" mat-dialog-close="yes">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
          fill="currentColor"
          class="bi bi-plus-circle" viewBox="0 0 16 16" style="margin-bottom: 5px">
@@ -260,3 +260,4 @@
     Thêm học sinh mới
   </button>
 </form>
+</div>

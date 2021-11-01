@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Route, Router} from '@angular/router';
 import {IStudent} from '../../../entity/IStudent';
 import {StudentService} from "../../../core-module/student/student.service";
 
@@ -11,15 +11,21 @@ import {StudentService} from "../../../core-module/student/student.service";
 export class StudentDetailComponent implements OnInit {
   student: IStudent;
   constructor(private activatedRouter: ActivatedRoute,
-              private studentService: StudentService) {
+              private studentService: StudentService,
+              private router: Router) {
       this.activatedRouter.paramMap.subscribe((paramMap: ParamMap) => {
       const id = +paramMap.get('id');
-      console.log(id);
       this.studentService.findById(id).subscribe(next => {
-        console.log(next);
         this.student = next;
       });
   });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+
+  quayLai() {
+    this.router.navigate(['students', {
+      "idClassroom": this.student.classroom.classroomId
+    }]);
+  }
 }

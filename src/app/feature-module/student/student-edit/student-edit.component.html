@@ -19,12 +19,12 @@
             <div>
               <div *ngFor="let valid of validationMessage.studentName">
                 <small style="color: red"
-                       *ngIf="editForm.get('studentName').hasError(valid.type) && editForm.get('studentName').dirty">
+                       *ngIf="editForm.get('studentName').hasError(valid.type) && editForm.get('studentName').untouched">
                   {{valid.message}}
                 </small>
               </div>
               <div
-                *ngIf="!editForm.controls.studentName.valid && (editForm.controls.studentName.dirty || editForm.controls.studentName.touched)">
+                *ngIf="!editForm.controls.studentName.valid && (editForm.controls.studentName.untouched || editForm.controls.studentName.touched)">
                 <small style="color: red" *ngIf="editForm.controls.studentName.errors.invalidMsg">
                   {{editForm.controls.studentName.errors.invalidMsg}}
                 </small>
@@ -69,12 +69,12 @@
             <div>
               <div *ngFor="let valid of validationMessage.studentFatherName">
                 <small style="color: red"
-                       *ngIf="editForm.get('studentFatherName').hasError(valid.type) && editForm.get('studentFatherName').dirty">
+                       *ngIf="editForm.get('studentFatherName').hasError(valid.type) && editForm.get('studentFatherName').untouched">
                   {{valid.message}}
                 </small>
               </div>
               <div
-                *ngIf="!editForm.controls.studentFatherName.valid && (editForm.controls.studentFatherName.dirty || editForm.controls.studentFatherName.touched)">
+                *ngIf="!editForm.controls.studentFatherName.valid && (editForm.controls.studentFatherName.untouched || editForm.controls.studentFatherName.touched)">
                 <small style="color: red" *ngIf="editForm.controls.studentFatherName.errors.invalidMsg">
                   {{editForm.controls.studentFatherName.errors.invalidMsg}}
                 </small>
@@ -97,12 +97,12 @@
             <div>
               <div *ngFor="let valid of validationMessage.studentMotherName">
                 <small style="color: red"
-                       *ngIf="editForm.get('studentMotherName').hasError(valid.type) && editForm.get('studentMotherName').dirty">
+                       *ngIf="editForm.get('studentMotherName').hasError(valid.type) && editForm.get('studentMotherName').untouched">
                   {{valid.message}}
                 </small>
               </div>
               <div
-                *ngIf="!editForm.controls.studentMotherName.valid && (editForm.controls.studentFatherName.dirty || editForm.controls.studentMotherName.touched)">
+                *ngIf="!editForm.controls.studentMotherName.valid && (editForm.controls.studentFatherName.untouched || editForm.controls.studentMotherName.touched)">
                 <small style="color: red" *ngIf="editForm.controls.studentMotherName.errors.invalidMsg">
                   {{editForm.controls.studentMotherName.errors.invalidMsg}}
                 </small>
@@ -127,12 +127,12 @@
             <div>
               <div *ngFor="let valid of validationMessage.studentParentPhone">
                 <small style="color: red"
-                       *ngIf="editForm.get('studentParentPhone').hasError(valid.type) && editForm.get('studentParentPhone').dirty">
+                       *ngIf="editForm.get('studentParentPhone').hasError(valid.type) && editForm.get('studentParentPhone').untouched">
                   {{valid.message}}
                 </small>
               </div>
               <div
-                *ngIf="!editForm.controls.studentParentPhone.valid && (editForm.controls.studentParentPhone.dirty || editForm.controls.studentParentPhone.touched)">
+                *ngIf="!editForm.controls.studentParentPhone.valid && (editForm.controls.studentParentPhone.untouched || editForm.controls.studentParentPhone.touched)">
                 <small style="color: red" *ngIf="editForm.controls.studentParentPhone.errors.invalidMsg">
                   {{editForm.controls.studentParentPhone.errors.invalidMsg}}
                 </small>
@@ -144,7 +144,7 @@
             <input type="text" class="form-control" id="religion" formControlName="studentReligion">
             <div *ngFor="let valid of validationMessage.studentReligion">
               <small style="color: red"
-                     *ngIf="editForm.get('studentReligion').hasError(valid.type) && editForm.get('studentReligion').dirty">
+                     *ngIf="editForm.get('studentReligion').hasError(valid.type) && editForm.get('studentReligion').untouched">
                 {{valid.message}}
               </small>
             </div>
@@ -157,7 +157,7 @@
             <input type="text" class="form-control" id="address" formControlName="studentAddress">
             <div *ngFor="let valid of validationMessage.studentAddress">
               <small style="color: red"
-                     *ngIf="editForm.get('studentAddress').hasError(valid.type) && editForm.get('studentAddress').dirty">
+                     *ngIf="editForm.get('studentAddress').hasError(valid.type) && editForm.get('studentAddress').untouched">
                 {{valid.message}}
               </small>
             </div>
@@ -168,7 +168,7 @@
             <input type="text" class="form-control" id="ethnicity" formControlName="studentEthnicity">
             <div *ngFor="let valid of validationMessage.studentEthnicity">
               <small style="color: red"
-                     *ngIf="editForm.get('studentEthnicity').hasError(valid.type) && editForm.get('studentEthnicity').dirty">
+                     *ngIf="editForm.get('studentEthnicity').hasError(valid.type) && editForm.get('studentEthnicity').untouched">
                 {{valid.message}}
               </small>
             </div>
@@ -202,7 +202,7 @@
             </div>
             <div *ngFor="let valid of validationMessage.studentGender">
               <small style="color: red"
-                     *ngIf="editForm.get('studentGender').hasError(valid.type) && editForm.get('studentGender').dirty">
+                     *ngIf="editForm.get('studentGender').hasError(valid.type) && editForm.get('studentGender').untouched">
                 {{valid.message}}
               </small>
             </div>
@@ -222,6 +222,7 @@
           </div>
         </div>
         <div align="right">
+          <mat-spinner *ngIf="showSpinner" [diameter]="30" style="display: inline-block"></mat-spinner>
           <button type="button" class="btn btn-warning mr-2" data-dismiss="modal" style="color: white">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                  fill="currentColor"

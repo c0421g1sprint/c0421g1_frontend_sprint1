@@ -17,7 +17,8 @@
         </select>
         <select class="form-control m-3" formControlName="classroom" (change)="toggleButtonChoose()">
           <option selected value="null">--Chọn lớp--</option>
-          <option *ngFor="let classroom of classroomSelect" [ngValue]="classroom">{{classroom.classroomName}}</option>
+          <option *ngFor="let classroom of classroomSelect" [ngValue]="classroom"
+          [selected]="classroom.classroomId == classroomToShow?.classroomId">{{classroom.classroomName}}</option>
         </select>
         <div class="w-100">
           <button class="btn m-3 float-right" style="color: white; background-color: #1BB1DC" #buttonChoose disabled>
@@ -67,7 +68,8 @@
       <!--BẢNG DỮ LIỆU-->
       <div>
         <div class="row">
-          <button class="btn mb-1" style="position: relative;left: 16px;  color: white; background-color: #1BB1DC;" mat-raised-button (click)="openDialogCreate()">
+          <button class="btn mb-1" style="position: relative;left: 16px;  color: white; background-color: #1BB1DC;"
+                   (click)="openDialogCreate()">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                  class="bi bi-person-plus mb-1" viewBox="0 0 16 16">
               <path
@@ -95,17 +97,17 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let student of studentListToShow; index as i ">
-                  <td class="text-center">{{i + 1 + indexPagination * sizePagination}}</td>
-                  <td>{{student.studentName}}</td>
-                  <td>{{student.studentDateOfBirth}}</td>
-                  <td
+                  <td class="text-center" style="vertical-align: middle">{{i + 1 + indexPagination * sizePagination}}</td>
+                  <td style="vertical-align: middle">{{student.studentName}}</td>
+                  <td style="vertical-align: middle">{{student.studentDateOfBirth | date: 'dd/MM/yyyy'}}</td>
+                  <td style="vertical-align: middle"
                     [style.color]="student.studentGender == 1 ? '#156d8b' : (student.studentGender == 0 ? 'red' : '#17A2B8')">
                     {{student.studentGender == 1 ? 'Nam' : (student.studentGender == 0 ? 'Nữ' : 'Khác')}}
                   </td>
-                  <td>{{student.studentAddress}}</td>
-                  <td>{{student.studentFatherName}}</td>
-                  <td>{{student.studentMotherName}}</td>
-                  <td style="text-align: right;">{{student.studentParentPhone}}</td>
+                  <td style="vertical-align: middle">{{student.studentAddress}}</td>
+                  <td style="vertical-align: middle">{{student.studentFatherName}}</td>
+                  <td style="vertical-align: middle">{{student.studentMotherName}}</td>
+                  <td style="text-align: right; vertical-align: middle">{{student.studentParentPhone}}</td>
                   <td class="text-center d-flex justify-content-center">
                     <!--BUTTON XEM-->
                     <button class="btn p-0 m-1 btn-success " style=" width: 32px; height: 32px;" data-toggle="tooltip"
@@ -170,7 +172,7 @@
                 <li class="page-item ml-2">
                   <div class="input-group">
                     <input type="number" min="1" class="form-control" placeholder="Tới trang..." id="presentPage"
-                           style="width: 100px;" #presentPage>
+                           style="width: 100px;" #presentPage onkeydown="return event.keyCode !== 69">
                     <div class="input-group-append">
                       <button class="btn input-group-text" style="background-color: #1BB1DC; color: white;"
                               (click)="findPagination(presentPage.value)">

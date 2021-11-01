@@ -47,5 +47,9 @@ export class StudentService {
   findById(id: number): Observable<IStudent | any> {
     return this.httpClient.get(this.url + '/detail/' + id);
   }
+  //NhatDV - tìm kiếm học sinh
+  findSearch(studentName: any, studentStatus: any, index: number, size: number): Observable<IStudent|any> {
+    return this.httpClient.get<any>(this.url + '/search?name=' + studentName + '&status=' + studentStatus + '&index=' + index + "&size=" + size);
+  }
 
 }

@@ -18,6 +18,7 @@ export class StudentEditComponent implements OnInit {
 
   student: IStudent;
   id: number;
+  showSpinner = false;
 
   editForm = new FormGroup({
     studentId: new FormControl(''),
@@ -106,6 +107,7 @@ export class StudentEditComponent implements OnInit {
     const value = this.editForm.value;
     console.log(value);
     if (this.editForm.valid) {
+      this.showSpinner = true;
       var filePath = `images/${editForm.value.studentName}_${editForm.value.id}`;
       const fileRef = this.storage.ref(filePath);
       this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
@@ -114,12 +116,15 @@ export class StudentEditComponent implements OnInit {
             this.editForm.value.studentImage = url;
             console.log(url);
             this.studentService.edit(value).subscribe(() => {
-              // this.ngOnInit();
-              this.snackBar.open('Sửa thông tin học sinh thành công', null, {
-                duration: 3000,
-                verticalPosition: 'top',
-                horizontalPosition: 'end'
-              });
+              setTimeout(() => {
+                this.showSpinner = false;
+                this.snackBar.open('Sửa thông tin học sinh thành công', null, {
+                  duration: 3000,
+                  verticalPosition: 'top',
+                  horizontalPosition: 'end'
+                });
+              })
+              this.router.navigateByUrl("/students");
             });
           }));
         })
