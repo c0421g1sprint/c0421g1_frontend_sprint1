@@ -155,4 +155,11 @@ export class ListTeacherComponent implements OnInit {
       maxWidth: '650px',
     });
   }
+
+  movePageCreateAccount() {
+    this.router.navigateByUrl("/teacher/account/create")
+  }
+  movePageDetailAccount() {
+    this.router.navigateByUrl("/teacher/detail/create")
+  }
 }
