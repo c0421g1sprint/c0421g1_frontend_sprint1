@@ -26,15 +26,18 @@ export class StudentSearchComponent implements OnInit {
   }
 
   getSearch() {
-    this.studentService.findSearch(this.studentName, this.studentStatus, this.indexPagination, this.sizePagination).subscribe(data => {
-      if (data !== null) {
-        this.students = data;
-        this.totalPagination = data.totalPages;
-
-      }else {
+    this.studentName=this.studentName.trim()
+    if (this.studentName!=null&&this.studentName!=""){
+      this.indexPagination=0;
+    }
+    this.studentService.findSearch(this.studentName, this.studentStatus, this.indexPagination,
+      this.sizePagination).subscribe(data => {
+      this.students = data;
+      this.totalPagination = data.totalPages;
+      console.log(data)
+    },error => {
         console.log('no data');
         this.snackbarService.showSnackbar('Học sinh cần tìm không tồn tại', "error")
-      }
     });
   }
 
@@ -46,7 +49,7 @@ export class StudentSearchComponent implements OnInit {
     this.getSearch();
   }
 
-  //DungNM - trang trước
+   // trang trước
   previousPage() {
     this.indexPagination = this.indexPagination - 1;
     if (this.indexPagination < 0) {
@@ -55,7 +58,7 @@ export class StudentSearchComponent implements OnInit {
     this.getSearch();
   }
 
-  //DungNM - di chuyển tới trang được nhập vào
+  // DungNM - di chuyển tới trang được nhập vào
   findPagination(value: string) {
     if (value == ""){
       this.snackbarService.showSnackbar("Vui lòng nhập trang cần di chuyển đến", "error");
