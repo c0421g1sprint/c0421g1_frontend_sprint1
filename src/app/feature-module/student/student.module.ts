@@ -7,17 +7,19 @@ import { StudentListComponent } from './student-list/student-list.component';
 import { StudentSearchComponent } from './student-search/student-search.component';
 import { StudentCreateComponent } from './student-create/student-create.component';
 import { StudentEditComponent } from './student-edit/student-edit.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
 
 
-  declarations: [StudentComponent, StudentListComponent, StudentCreateComponent, StudentEditComponent],
+  declarations: [StudentComponent, StudentListComponent, StudentCreateComponent, StudentEditComponent, StudentSearchComponent],
 
   imports: [
     CommonModule,
     StudentRoutingModule,
-    ShareModule
+    ShareModule,
+
   ]
 })
 export class StudentModule { }
