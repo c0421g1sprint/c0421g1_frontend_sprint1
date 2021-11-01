@@ -11,6 +11,8 @@ import {HeaderComponent} from "./header/header.component";
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {Ng2SearchPipeModule} from "ng2-search-filter";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 
@@ -30,7 +32,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatButtonModule,
     RouterModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
   ],
   exports: [
     CommonModule,
@@ -44,7 +48,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     DialogDeleteComponent,
     RouterModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
   ]
 })
 export class ShareModule { }

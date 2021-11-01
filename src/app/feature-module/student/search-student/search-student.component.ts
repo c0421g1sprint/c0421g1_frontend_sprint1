@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StudentService} from "../../../core-module/student/student.service";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -16,12 +16,11 @@ export class SearchStudentComponent implements OnInit {
   totalPage: number;
 
 
-
   listStudent;
   inforStudent = '';
 
   constructor(private studentService: StudentService,
-              private snackBar: MatSnackBar,  private snackbarService: SnackbarService) {
+              private snackBar: MatSnackBar, private snackbarService: SnackbarService) {
   }
 
   ngOnInit(): void {
@@ -46,7 +45,7 @@ export class SearchStudentComponent implements OnInit {
     this.inforStudent = this.inforStudent.replace('H', '');
     this.inforStudent = this.inforStudent.replace('S-', '');
     this.inforStudent = this.inforStudent.replace('S', '');
-    if (this.inforStudent== '') {
+    if (this.inforStudent == '') {
       this.getListStudent(pageable);
     }
     this.getSearchStudent(pageable);
@@ -54,16 +53,14 @@ export class SearchStudentComponent implements OnInit {
 
   getSearchStudent(pageable) {
     this.studentService.getAllStudentBySearch(this.inforStudent, pageable).subscribe(data => {
-      if (data !== null) {
         this.listStudent = data.content;
         this.totalPage = data.totalPages;
         console.log(this.listStudent);
         this.page = 0;
-      } else {
-        console.log(status);
+      },
+      error => {
         this.snackbarService.showSnackbar("Không tìm thấy học sinh", "error");
-      }
-    });
+      });
   }
 
   getCode(id: number, size: number): string {

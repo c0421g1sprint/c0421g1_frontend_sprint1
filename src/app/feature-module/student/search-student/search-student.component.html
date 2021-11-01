@@ -1,10 +1,10 @@
 
 <div class="container-fluid" style="margin: 0" >
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <div class="container-fluid" style="margin: 0 auto">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <div class="d-flex">
+        <div class="d-flex" style="float: right">
           <!--        <input class="form-control me-2" type="search" placeholder="Tìm kiếm giáo viên" aria-label="Search"&ensp>-->
           <input [(ngModel)]="inforStudent" class="form-control" type="search"
                  placeholder="Tìm kiếm học sinh" aria-label="Search">
@@ -20,23 +20,23 @@
       </div>
     </div>
   </nav>
-  <table class="table table-striped d-inline-block w-100">
+  <table class="table table-striped w-75" style="margin: 0 auto">
     <thead class="" style="background-color: #1bb1dc;margin: 0">
     <tr>
       <th style="width: 15% ">Số thứ tự</th>
-      <th style="width: 25%;">Họ tên học sinh</th>
+      <th style="width: 15%;">Họ tên học sinh</th>
       <th style="width:10%">Lớp</th>
       <th style="width: 10%;">Ngày sinh</th>
-      <th style="width: 20%;">Học lực</th>
+<!--      <th style="width: 20%;">Học lực</th>-->
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let element of listStudent ">
       <td>{{getCode(element.studentId, 2)}}</td>
       <td>{{element.studentName}}</td>
-      <td>{{element.classroomId}}</td>
+      <td>{{element.classroom.classroomName}}</td>
       <td>{{element.studentDateOfBirth}}</td>
-      <td>{{element.markId}}</td>
+<!--      <td>{{element.mark.markPointNumber1}}</td>-->
     </tr>
 
     </tbody>
