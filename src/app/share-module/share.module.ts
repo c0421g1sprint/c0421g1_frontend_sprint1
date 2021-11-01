@@ -36,10 +36,12 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     RouterModule,
     HttpClientModule,
     BrowserAnimationsModule,
+
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     MatProgressSpinnerModule
+
   ],
   exports: [
     CommonModule,
