@@ -139,7 +139,6 @@ export class StudentCreateComponent implements OnInit {
             this.studentService.create(value).subscribe(() => {
               setTimeout(() => {
                 this.showSpinner = false;
-                this.ngOnInit();
                 this.snackBar.open('Tạo mới học sinh thành công', null, {duration: 3000});
               });
             });
