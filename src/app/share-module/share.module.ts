@@ -1,16 +1,20 @@
 
 import {HeaderComponent} from "./header/header.component";
-import {SnackbarComponent} from "./snackbar/snackbar.component";
-import {MatDialogModule} from "@angular/material/dialog";
-import {FooterComponent} from "./footer/footer.component";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatButtonModule} from "@angular/material/button";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 import {DialogDeleteComponent} from "./dialog-delete/dialog-delete.component";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {SnackbarComponent} from "./snackbar/snackbar.component";
+import {FooterComponent} from "./footer/footer.component";
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {AngularFireStorageModule} from "@angular/fire/storage";
+import {environment} from "../../environments/environment";
+import {AngularFireModule} from "@angular/fire";
 
 
 
@@ -31,7 +35,11 @@ import {RouterModule} from "@angular/router";
     MatSnackBarModule,
     MatDialogModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    AngularFireModule
   ],
   imports: [
     CommonModule,
@@ -41,10 +49,13 @@ import {RouterModule} from "@angular/router";
     MatDialogModule,
     MatButtonModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+
   ]
 })
 export class ShareModule { }
-
 
 

@@ -53,7 +53,7 @@ export class AccountComponent implements OnInit {
           this.storageService.saveUsernameSession(next.username);
           console.log(next);
           this.snackBar.showSnackbar("Chào mừng đến với website C0421G1", "success");
-          this.router.navigateByUrl("teacher/list");
+          this.router.navigateByUrl("classroom");
           this.linkService.reloadComponent();
         },
         error => {

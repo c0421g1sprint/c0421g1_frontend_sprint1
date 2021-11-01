@@ -13,7 +13,7 @@
         <nav class="main-nav float-right d-none d-lg-block">
           <ul>
             <li><a href="#">Trang chủ</a></li>
-            <li *ngIf="role.indexOf('ROLE_ADMIN') != -1"><a href="#">Navbar ADMIN</a></li>
+            <li *ngIf="role.indexOf('ROLE_ADMIN') != -1"><a [routerLink]="['classroom']" >Classroom</a></li>
             <li *ngIf="role.indexOf('ROLE_ADMIN') != -1"><a href="#">Navbar ADMIN</a></li>
             <li><a href="#footer">Liên hệ</a></li>
             <li>
@@ -27,6 +27,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                 <a class="dropdown-item" href="#">Quản lý học sinh</a>
                 <a class="dropdown-item" href="#">Quản lý giáo viên</a>
+                <a class="dropdown-item" routerLink="/classroom">Quản lý lớp</a>
               </div>
             </li>
             <li class="nav-item dropdown">

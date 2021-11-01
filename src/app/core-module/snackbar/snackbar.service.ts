@@ -9,7 +9,7 @@ export class SnackbarService {
 
   constructor(private snackBar: MatSnackBar) {
   }
-​
+
   showSnackbar(message: string, status: 'error' | 'success'){
     this.snackBar.openFromComponent(SnackbarComponent, {
       data: {
