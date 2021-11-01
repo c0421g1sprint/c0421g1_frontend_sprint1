@@ -151,4 +151,11 @@ export class ListTeacherComponent implements OnInit {
   openDialogCreate() {
     let dialog = this.dialog.open(CreateTeacherComponent,{});
   }
+
+  movePageCreateAccount() {
+    this.router.navigateByUrl("/teacher/account/create")
+  }
+  movePageDetailAccount() {
+    this.router.navigateByUrl("/teacher/detail/create")
+  }
 }
