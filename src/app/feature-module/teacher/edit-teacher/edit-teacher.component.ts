@@ -5,12 +5,13 @@ import {ITeacher} from "../../../entity/ITeacher";
 import {TeacherService} from "../../../core-module/teacher/teacher.service";
 import {DegreeService} from "../../../core-module/teacher/degree.service";
 import {DivisionService} from "../../../core-module/teacher/division.service";
-import {AngularFireStorage} from "@angular/fire/storage";
+
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable, Subscription} from "rxjs";
 import {IDivision} from "../../../entity/IDivision";
 import {IDegree} from "../../../entity/IDegree";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
+import {AngularFireStorage} from "@angular/fire/storage";
 
 @Component({
   selector: 'app-edit-teacher',
