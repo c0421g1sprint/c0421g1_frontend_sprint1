@@ -3,11 +3,12 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light" >
     <div class="container-fluid" style="margin: 0 auto">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+        <form [formGroup]="searchForm">
         <div class="d-flex" style="float: right">
+
           <!--        <input class="form-control me-2" type="search" placeholder="Tìm kiếm giáo viên" aria-label="Search"&ensp>-->
-          <input [(ngModel)]="inforStudent" class="form-control" type="search"
-                 placeholder="Tìm kiếm học sinh" aria-label="Search">
+          <input [(ngModel)]="inforStudent" class="form-control" type="search" formControlName="searchInput"
+                 placeholder="Tìm kiếm học sinh" aria-label="Search" style="margin-left: 132px">
           <button (click)="getSearchStudent(0)" class="btn btn-primary" style="margin-left: 10px">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" fill="currentColor"
                  class="bi bi-search"
@@ -16,33 +17,76 @@
                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
             </svg>
           </button>
+
         </div>
+          <div *ngFor="let message of validationMessage.searchInput" style="margin-left: 130px">
+            <span style="color: red" *ngIf="searchForm.get('searchInput').hasError(message.type) && searchForm.get('searchInput').dirty">{{message.message}}</span>
+          </div>
+        </form>
+<!--        <div class="d-flex" style="float: right">-->
+<!--          &lt;!&ndash;        <input class="form-control me-2" type="search" placeholder="Tìm kiếm giáo viên" aria-label="Search"&ensp>&ndash;&gt;-->
+<!--          <input [(ngModel)]="studentId" class="form-control" type="search"-->
+<!--                 placeholder="Tìm kiếm mã học sinh" aria-label="Search" style="margin-left: 132px">-->
+<!--          <button (click)="getSearchStudent(0)" class="btn btn-primary" style="margin-left: 10px">-->
+<!--            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" fill="currentColor"-->
+<!--                 class="bi bi-search"-->
+<!--                 viewBox="0 0 16 16">-->
+<!--              <path-->
+<!--                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>-->
+<!--            </svg>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--        <div class="search row d-flex justify-content-xl-end justify-content-center mb-4 text-center">-->
+<!--          <div class="col-xl-2 col-md-3">-->
+<!--            <label for="vaccineType">Mã Bệnh Nhân</label>-->
+<!--            <input (keydown.enter)="getSearchStudent(0)" [(ngModel)]="inforStudent" id="vaccineType" class="form-control" type="text"-->
+<!--                   placeholder="Mã Bệnh Nhân">-->
+<!--          </div>-->
+<!--          <div class="col-xl-2 col-md-3">-->
+<!--            <label for="provider">Họ Và Tên</label>-->
+<!--            <input (keydown.enter)="getSearchStudent(0)" [(ngModel)]="studentId" id="provider" class="form-control" type="text"-->
+<!--                   placeholder="Họ Và Tên">-->
+<!--          </div>-->
+<!--          <div class="col-xl-2 col-4 mt-xl-4 mt-md-3 mt-2 d-xl-flex justify-content-xl-end">-->
+<!--            <button (click)="getSearchStudent(0)" class="btn btn-success mt-2"><i class="fa fa-search"></i> Tìm kiếm</button>-->
+<!--          </div>-->
+<!--        </div>-->
+
       </div>
     </div>
   </nav>
   <table class="table table-striped w-75" style="margin: 0 auto">
     <thead class="" style="background-color: #1bb1dc;margin: 0">
-    <tr>
-      <th style="width: 15% ">Số thứ tự</th>
+    <tr style="text-align: center">
+      <th style="width: 15% ">Mã học sinh</th>
       <th style="width: 15%;">Họ tên học sinh</th>
       <th style="width:10%">Lớp</th>
-      <th style="width: 10%;">Ngày sinh</th>
+      <th style="width: 15%;">Ngày sinh</th>
 <!--      <th style="width: 20%;">Học lực</th>-->
     </tr>
     </thead>
-    <tbody>
+    <tbody style="text-align: center">
     <tr *ngFor="let element of listStudent ">
       <td>{{getCode(element.studentId, 2)}}</td>
       <td>{{element.studentName}}</td>
       <td>{{element.classroom.classroomName}}</td>
       <td>{{element.studentDateOfBirth}}</td>
-<!--      <td>{{element.mark.markPointNumber1}}</td>-->
+<!--      <td>-->
+<!--      <span *ngIf="(element.marks.markPointNumber1*0.2 + element.marks.markPointNumber2*0.2 + element.marks.markPointNumber3*0.6)>5; else elseBlock">Giỏi</span>-->
+<!--&lt;!&ndash;      <td>{{element.mark.markPointNumber1}}</td>&ndash;&gt;-->
+<!--        <ng-template #elseBlock>-->
+<!--          <span *ngIf="(element.marks.markPointNumber1*0.2 + element.marks.markPointNumber2*0.2 + element.marks.markPointNumber3*0.6)>3; else elseBlock2">Khá</span>-->
+<!--        </ng-template>-->
+<!--        <ng-template #elseBlock2>-->
+<!--          <span>Trung bình</span>-->
+<!--        </ng-template>-->
+<!--      </td>-->
     </tr>
 
     </tbody>
   </table>
   <div style="margin-left: 530px">
-    <ul class="pagination ">
+    <ul class="pagination " style="margin: 10px">
       <!--      <li class="page-item ">-->
       <!--        <a class="btn btn-primary mr-2" (click)="firstPage()">First</a>-->
       <!--      </li>-->

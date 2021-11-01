@@ -4,6 +4,7 @@ import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-search-student',
@@ -14,25 +15,42 @@ export class SearchStudentComponent implements OnInit {
 
   page = 0;
   totalPage: number;
+  // flagSearch: number;
+  searchForm: FormGroup;
 
 
   listStudent;
   inforStudent = '';
-
+  studentId = '';
+  // searchForm = new FormGroup({
+  // search : new FormControl(Validators.maxLength(50)),
+  //   deleteFlag: new FormControl('')
+  //
+  // })
   constructor(private studentService: StudentService,
               private snackBar: MatSnackBar, private snackbarService: SnackbarService) {
+      this.searchForm = new FormGroup({
+        searchInput: new FormControl('', Validators.maxLength(10))
+      })
   }
 
   ngOnInit(): void {
     this.getListStudent(0);
     // console.log(this.getListStudent(0));
   }
-
+//
+  validationMessage = {
+    searchInput: [
+      {type: 'maxlength', message: 'Nội dung tìm kiếm quá dài!'},
+    ]
+  };
 
   getListStudent(pageable) {
     this.inforStudent = '';
-    this.studentService.getAllStudentBySearch(this.inforStudent, pageable).subscribe(data => {
+    this.studentId= '';
+    this.studentService.getAllStudentBySearch(this.inforStudent, this.studentId, pageable).subscribe(data => {
       this.listStudent = data.content;
+
       this.totalPage = data.totalPages;
       console.log(this.totalPage);
       console.log(this.listStudent);
@@ -52,13 +70,16 @@ export class SearchStudentComponent implements OnInit {
   }
 
   getSearchStudent(pageable) {
-    this.studentService.getAllStudentBySearch(this.inforStudent, pageable).subscribe(data => {
+    this.studentService.getAllStudentBySearch(this.inforStudent, this.studentId, pageable).subscribe(data => {
+        console.log(data)
         this.listStudent = data.content;
+
         this.totalPage = data.totalPages;
         console.log(this.listStudent);
         this.page = 0;
       },
       error => {
+        console.log("snack bar lỗi")
         this.snackbarService.showSnackbar("Không tìm thấy học sinh", "error");
       });
   }

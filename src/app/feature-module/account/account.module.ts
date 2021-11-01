@@ -5,7 +5,6 @@ import {AccountRoutingModule} from './account-routing.module';
 import {ShareModule} from '../../share-module/share.module';
 
 
-
 @NgModule({
   declarations: [AccountComponent],
   imports: [

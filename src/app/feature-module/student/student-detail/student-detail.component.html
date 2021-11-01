@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="card">
+    <div style=" background-color: #1BB1DC ; color: white" class="card-header ">
+      <h3 class="text-center"> Thông tin học viên </h3>
+    </div>
+    <div style="background-color: #f5f8fd" class="card-body">
+      <div class="row">
+        <div class="col-2">
+          <div class="card">
+            <img [src]="student?.studentImage" class="img-fluid">
+          </div>
+        </div>
+        <div class="col-10">
+          <div class="card">
+            <div class="card-body">
+              <table class="table-borderless" width="100%">
+                <tr>
+                  <th>Mã số</th>
+                  <td>:</td>
+                  <td>{{student?.studentId}}</td>
+                </tr>
+                <tr>
+                  <th>Họ và tên</th>
+                  <td>:</td>
+                  <td>{{student?.studentName}}</td>
+                </tr>
+                <tr>
+                  <th>Giới tính</th>
+                  <td>:</td>
+                  <div [ngSwitch]="student.studentGender">
+                    <td *ngSwitchCase="1">Nam</td>
+                    <td *ngSwitchCase="0">Nữ</td>
+                  </div>
+                </tr>
+                <tr>
+                  <th>Họ và tên cha</th>
+                  <td>:</td>
+                  <td>{{student?.studentFatherName}}</td>
+                </tr>
+                <tr>
+                  <th>Họ và tên mẹ</th>
+                  <td>:</td>
+                  <td>{{student?.studentMotherName}}</td>
+                </tr>
+                <tr>
+                  <th>Ngày sinh</th>
+                  <td>:</td>
+                  <td>{{student?.studentDateOfBirth}}</td>
+                </tr>
+                <tr>
+                  <th>Dân tộc</th>
+                  <td> :</td>
+                  <td>{{student?.studentEthnicity}}</td>
+                </tr>
+                <tr>
+                  <th>Địa chỉ</th>
+                  <td>:</td>
+                  <td>{{student?.studentAddress}}</td>
+                </tr>
+                <tr>
+                  <th>Số điện thoại bố mẹ</th>
+                  <td>:</td>
+                  <td>{{student?.studentParentPhone}}</td>
+                </tr>
+                <tr>
+                  <th>Tình trạng</th>
+                  <td>:</td>
+                  <td>{{student?.studentStatus}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background-color: #f5f8fd" class="card-footer" (click)="quayLai()">
+      <a style="background-color: #1bb1dc; color: white" class="btn btn-primary btn-lg btn-block"  role="button">Quay lại</a>
+    </div>
+  </div>
+</div>
+

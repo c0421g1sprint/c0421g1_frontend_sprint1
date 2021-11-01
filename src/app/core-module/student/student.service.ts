@@ -7,7 +7,7 @@ import {IStudent} from "../../entity/IStudent";
   providedIn: 'root'
 })
 export class StudentService {
-  url = "http://localhost:8080/api/students"
+  url = "http://localhost:8080/api/students";
 
   constructor(private httpClient: HttpClient) {
   }
@@ -33,9 +33,28 @@ export class StudentService {
     return this.httpClient.patch(this.url + '/' + id, null);
   }
 
-  // diep search student 30/10
+  //LamNT create
+  create(newStudent: IStudent): Observable<IStudent | any> {
+    return this.httpClient.post(this.url + '/add', newStudent);
+  }
 
-  getAllStudentBySearch(inforStudent: any, pageable: any): Observable<any> {
-    return this.httpClient.get<any>(this.url+ '/searchstudent?inforStudent=' + inforStudent + '&page=' + pageable);
+  // LamNT edit
+  edit(editStudent: IStudent): Observable<IStudent | any> {
+    return this.httpClient.patch(this.url + '/edit', editStudent);
+  }
+
+  //LamNT find by id
+  findById(id: number): Observable<IStudent | any> {
+    return this.httpClient.get(this.url + '/detail/' + id);
+  }
+
+  //NhatDV - tìm kiếm học sinh
+  findSearch(studentName: any, studentStatus: any, index: number, size: number): Observable<IStudent|any> {
+    return this.httpClient.get<any>(this.url + '/search?name=' + studentName + '&status=' + studentStatus + '&index=' + index + "&size=" + size);
+  }
+
+  // diep search student 30/10
+  getAllStudentBySearch(inforStudent: any, studentId: any, pageable: any): Observable<any> {
+    return this.httpClient.get<any>(this.url + '/searchstudent?inforStudent=' + inforStudent + '&studentId=' + studentId + '&page=' + pageable);
   }
 }

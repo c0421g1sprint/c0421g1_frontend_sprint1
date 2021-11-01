@@ -5,11 +5,26 @@ import {StudentRoutingModule} from './student-routing.module';
 import {ShareModule} from '../../share-module/share.module';
 import { StudentListComponent } from './student-list/student-list.component';
 import { SearchStudentComponent } from './search-student/search-student.component';
+import {StudentCreateComponent} from "./student-create/student-create.component";
+import {StudentEditComponent} from "./student-edit/student-edit.component";
+import {StudentSearchComponent} from "./student-search/student-search.component";
+import {StudentDetailComponent} from "./student-detail/student-detail.component";
+
 
 
 
 @NgModule({
-  declarations: [StudentComponent, StudentListComponent, SearchStudentComponent],
+
+  declarations: [
+    StudentComponent,
+    StudentListComponent,
+    StudentCreateComponent,
+    StudentEditComponent,
+    StudentSearchComponent,
+    StudentDetailComponent,
+    SearchStudentComponent
+  ],
+
   imports: [
     CommonModule,
     StudentRoutingModule,

@@ -13,7 +13,11 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {NgxPaginationModule} from "ngx-pagination";
+import {AngularFireModule} from "@angular/fire";
 
+import {environment} from "../../environments/environment";
+import {AngularFireStorageModule} from "@angular/fire/storage";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
 
 
 @NgModule({
@@ -35,6 +39,9 @@ import {NgxPaginationModule} from "ngx-pagination";
     BrowserAnimationsModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
   ],
   exports: [
     CommonModule,
@@ -51,6 +58,9 @@ import {NgxPaginationModule} from "ngx-pagination";
     BrowserAnimationsModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
+    AngularFireModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
   ]
 })
 export class ShareModule { }
