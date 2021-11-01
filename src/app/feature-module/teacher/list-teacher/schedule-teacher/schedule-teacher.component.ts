@@ -13,6 +13,9 @@ export class ScheduleTeacherComponent implements OnInit {
   scheduleDetails: IScheduleDetail[];
   message: string;
 
+
+  times = ['Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu'];
+  days =  ['Tiết 1','Tiết 2', 'Tiết 3', 'Tiết 4', 'Tiết 5'];
   constructor(private scheduleDetailService: ScheduleTeacherService,
               private router: Router,
   ) { }
@@ -34,7 +37,5 @@ export class ScheduleTeacherComponent implements OnInit {
         this.message='No data found';
       }
     });
-    console.log(this.scheduleDetails);
   }
-
 }
