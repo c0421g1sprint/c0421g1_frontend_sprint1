@@ -1,21 +1,20 @@
 <div class="container">
-  <div class="card">
-    <div style=" background-color: #1BB1DC ; color: white" class="card-header ">
-      <h3 class="text-center"> Thông tin học viên </h3>
-    </div>
+  <div class="row justify-content-center">
+  <div class="card " style="width: 60%">
+      <h3 style=" background-color: #1BB1DC ; color: white" class=" card-header text-center "> Thông tin học viên </h3>
     <div style="background-color: #f5f8fd" class="card-body">
       <div class="row">
-        <div class="col-2">
+        <div class="col-3">
           <div class="card">
             <img [src]="student?.studentImage" class="img-fluid">
           </div>
         </div>
-        <div class="col-10">
+        <div class="col-9">
           <div class="card">
             <div class="card-body">
-              <table class="table-borderless" width="100%">
+              <table class="table-borderless table-hover" width="100%">
                 <tr>
-                  <th>Mã số</th>
+                  <th style="width: 40%">Mã số</th>
                   <td>:</td>
                   <td>{{student?.studentId}}</td>
                 </tr>
@@ -73,9 +72,12 @@
         </div>
       </div>
     </div>
-    <div style="background-color: #f5f8fd" class="card-footer">
-      <a routerLink="/students" style="background-color: #1bb1dc; color: white" class="btn btn-primary btn-lg btn-block"  role="button">Quay lại</a>
+    <div style="background-color: #f5f8fd" class="card-footer text-center">
+      <a routerLink="/students" style="background-color: #1bb1dc; color: white" class="btn btn-primary "  role="button"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
+      </svg> Quay lại</a>
     </div>
+  </div>
   </div>
 </div>
 
