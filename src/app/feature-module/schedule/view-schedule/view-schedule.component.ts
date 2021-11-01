@@ -3,7 +3,6 @@ import {IGrade} from "../../../entity/IGrade";
 import { IClassroom } from 'src/app/entity/IClassroom';
 import {IScheduleDetail} from "../../../entity/IScheduleDetail";
 import {ScheduleDetailService} from "../../../core-module/schedule/schedule-detail.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
