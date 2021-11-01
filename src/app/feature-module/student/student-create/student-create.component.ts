@@ -18,6 +18,7 @@ export class StudentCreateComponent implements OnInit {
   selectedImage: any = null;
   isSubmitted: boolean = false;
   newStudent: IStudent;
+  showSpinner = false;
 
   createForm: FormGroup = new FormGroup({
     id: new FormControl(''),
@@ -127,6 +128,7 @@ export class StudentCreateComponent implements OnInit {
     console.log(value);
     console.log(createForm);
     if (this.createForm.valid) {
+      this.showSpinner = true;
       var filePath = `images/${createForm.value.studentName}_${createForm.value.id}`;
       const fileRef = this.storage.ref(filePath);
       this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
@@ -135,8 +137,10 @@ export class StudentCreateComponent implements OnInit {
             this.createForm.value.studentImage = url;
             console.log(url);
             this.studentService.create(value).subscribe(() => {
-              this.ngOnInit();
-              this.snackBar.open('Tạo mới học sinh thành công', null, {duration: 3000});
+              setTimeout(() => {
+                this.showSpinner = false;
+                this.snackBar.open('Tạo mới học sinh thành công', null, {duration: 3000});
+              });
             });
           }));
         })

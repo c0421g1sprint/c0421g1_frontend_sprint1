@@ -11,6 +11,11 @@ import {HeaderComponent} from "./header/header.component";
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AngularFireModule} from "@angular/fire";
+import {environment} from "../../environments/environment";
+import {AngularFireStorageModule} from "@angular/fire/storage";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 
@@ -31,6 +36,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     RouterModule,
     HttpClientModule,
     BrowserAnimationsModule,
+
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    MatProgressSpinnerModule
+
   ],
   exports: [
     CommonModule,
@@ -44,7 +55,11 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     DialogDeleteComponent,
     RouterModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    MatProgressSpinnerModule
   ]
 })
 export class ShareModule { }

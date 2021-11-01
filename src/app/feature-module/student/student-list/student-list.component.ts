@@ -3,13 +3,14 @@ import {IStudent} from "../../../entity/IStudent";
 import {IClassroom} from "../../../entity/IClassroom";
 import {IGrade} from "../../../entity/IGrade";
 import {FormControl, FormGroup} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogDeleteComponent} from "../../../share-module/dialog-delete/dialog-delete.component";
 import {StudentService} from "../../../core-module/student/student.service";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
-import {of} from "rxjs";
 import {StudentCreateComponent} from "../student-create/student-create.component";
+import {ClassroomService} from "../../../core-module/classroom/classroom.service";
+import {stringify} from "querystring";
 
 @Component({
   selector: 'app-student-list',
@@ -24,7 +25,7 @@ export class StudentListComponent implements OnInit {
   classroomSelect: IClassroom[] = [];    //danh sách lớp dropdown khi chọn năm + khối
   classroomToShow: IClassroom | undefined; //lớp đã chọn để show
   indexPagination: number = 0;             //vị trí trang hiện tại
-  sizePagination: number = 8;              //số record trong mỗi trang
+  sizePagination: number = 10;              //số record trong mỗi trang
   totalPagination: number;                 //tổng số trang
   @ViewChild('presentPage') pageInput: ElementRef;     //trang nhập vào để di chuyển tới đó
   @ViewChild('buttonChoose') buttonChoose: ElementRef;     //button chọn để tìm danh sách
@@ -36,12 +37,43 @@ export class StudentListComponent implements OnInit {
   });
 
   constructor(private studentService: StudentService,
+              private classroomService: ClassroomService,
               private dialog: MatDialog,
               private router: Router,
+              private activatedRoute: ActivatedRoute,
               private snackbarService: SnackbarService) {
   }
 
   ngOnInit(): void {
+    let idClassroom = Number.parseInt(this.activatedRoute.snapshot.paramMap.get("idClassroom"));
+    //id của màn hình edit + detail truyền qua
+    if (idClassroom != null && idClassroom.toString() != "null" && !Number.isNaN(idClassroom)) {
+      this.studentService.getAllClassroom().subscribe(n2 => {
+        this.classroomList = n2;
+        for (let value of this.classroomList) {
+          if (value.classroomId == idClassroom) {
+            this.classroomToShow = value;
+            this.classroomSelect = this.classroomList.filter(value => {
+              return value.grade.gradeId == this.classroomToShow.grade.gradeId
+                && value.classroomSchoolYear == this.classroomToShow.classroomSchoolYear;
+            })
+            console.log("select classroom")
+            console.log(this.classroomSelect)
+            this.studentService.getStudentsByClassroomId(idClassroom, 0, this.sizePagination).subscribe(n3 => {
+              this.studentListToShow = n3.content;
+              this.indexPagination = 0;
+              this.totalPagination = n3.totalPages;
+              this.studentListForm.setValue({
+                "year": this.classroomToShow.classroomSchoolYear,
+                "grade": this.classroomToShow.grade.gradeId,
+                "classroom": this.classroomToShow.classroomId
+              });
+              return;
+            })
+          }
+        }
+      })
+    }
     this.studentService.getAllClassroom().subscribe(next => {
       this.classroomList = next;
       for (let value of this.classroomList) {
@@ -52,7 +84,6 @@ export class StudentListComponent implements OnInit {
       }
       this.yearSchoolList = this.yearSchoolList.sort();
     }, error => {
-      console.log(status);
       this.snackbarService.showSnackbar("Không tìm thấy dữ liệu lớp", "error");
     });
 
@@ -66,11 +97,11 @@ export class StudentListComponent implements OnInit {
 
   //DungNM - lấy danh sách học sinh theo lớp
   getStudentsByClassroom() {
-    if (this.studentListForm.value.year == "null" || this.studentListForm.value.year == null){
+    if (this.studentListForm.value.year == "null" || this.studentListForm.value.year == null) {
       this.snackbarService.showSnackbar("Vui lòng chọn năm học", "error");
       return;
     }
-    if (this.studentListForm.value.grade == "null" || this.studentListForm.value.grade == null){
+    if (this.studentListForm.value.grade == "null" || this.studentListForm.value.grade == null) {
       this.snackbarService.showSnackbar("Vui lòng chọn khối", "error");
       return;
     }
@@ -80,15 +111,18 @@ export class StudentListComponent implements OnInit {
       this.snackbarService.showSnackbar("Vui lòng chọn lớp", "error");
       return;
     }
-    for(let value of this.classroomList){
-      if (value.classroomId == classroom.classroomId){
+    if (classroom != this.classroomToShow){
+      this.indexPagination = 0;
+    }
+    for (let value of this.classroomList) {
+      if (value.classroomId == classroom.classroomId) {
         this.studentService.getStudentsByClassroomId(classroom.classroomId, this.indexPagination, this.sizePagination).subscribe(next => {
           this.studentListToShow = next.content;
           this.classroomToShow = classroom;
           this.totalPagination = next.totalPages;
         }, error => {
           this.studentListForm.controls.classroom.reset(this.classroomToShow);
-          this.snackbarService.showSnackbar("Danh sách lớp rỗng", "error")
+          this.snackbarService.showSnackbar("Danh sách học sinh rỗng", "error")
         })
         return;
       }
@@ -104,11 +138,13 @@ export class StudentListComponent implements OnInit {
       this.classroomSelect = [];
       return;
     }
+    this.buttonChoose.nativeElement.disabled = true;
     this.classroomSelect = this.classroomList.filter(value => {
       return value.grade.gradeId == grade && value.classroomSchoolYear == year;
     })
   }
 
+  //DungNM - disable/enalbe nút chọn
   toggleButtonChoose() {
     if (this.studentListForm.value.classroom != "null") {
       this.buttonChoose.nativeElement.disabled = false;
@@ -116,6 +152,7 @@ export class StudentListComponent implements OnInit {
     }
     this.buttonChoose.nativeElement.disabled = true;
   }
+
   //DungNM - trang kế tiếp
   nextPage() {
     this.indexPagination = this.indexPagination + 1;
@@ -136,14 +173,15 @@ export class StudentListComponent implements OnInit {
 
   //DungNM - di chuyển tới trang được nhập vào
   findPagination(value: string) {
-    if (value == ""){
+    if (value == "") {
       this.snackbarService.showSnackbar("Vui lòng nhập trang cần di chuyển đến", "error");
+      this.pageInput.nativeElement.focus();
       return;
     }
     let index = Number.parseInt(value) - 1;
-
     if (isNaN(index) || index >= this.totalPagination || index < 0) {
       this.snackbarService.showSnackbar("Vui lòng nhập trang hợp lệ", "error");
+      this.pageInput.nativeElement.focus();
     } else {
       this.indexPagination = index;
     }
@@ -153,7 +191,7 @@ export class StudentListComponent implements OnInit {
 
   //DungNM - xoá học sinh theo id
   deleteStudent(studentId: number, name: string) {
-    let dialogRef =this.dialog.open(DialogDeleteComponent, {
+    let dialogRef = this.dialog.open(DialogDeleteComponent, {
       data: {
         id: studentId,
         name: name,
@@ -164,10 +202,10 @@ export class StudentListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(next => {
       if (next == 'yes') {
         let arrId: number[] = [];
-        for (let student of this.studentListToShow){
+        for (let student of this.studentListToShow) {
           arrId.push(student.studentId);
         }
-        if (!arrId.includes(studentId)){
+        if (!arrId.includes(studentId)) {
           this.snackbarService.showSnackbar("Không tìm thấy học sinh", "error");
           return;
         }
@@ -179,7 +217,7 @@ export class StudentListComponent implements OnInit {
             this.snackbarService.showSnackbar("Không tồn tại dữ liệu học sinh", "error");
             return;
           }
-          if (error.status == 0){
+          if (error.status == 0) {
             this.snackbarService.showSnackbar("Lỗi hệ thống. Vui lòng thử lại", "error");
             return;
           }
@@ -188,20 +226,22 @@ export class StudentListComponent implements OnInit {
     });
   }
 
+  //DungNM - chuyển sang trang xem chi tiết học sinh
   detailStudent(studentId: number) {
-    for (let student of this.studentListToShow){
-      if (student.studentId == studentId){
-        alert("pending to navigate");
+    for (let student of this.studentListToShow) {
+      if (student.studentId == studentId) {
+        this.router.navigate(['students/detail/' + studentId,
+          {"idClassroom": this.classroomToShow.classroomId}]);
         return;
       }
     }
     this.snackbarService.showSnackbar("Không tìm thấy học sinh", "error");
   }
-
+  //DungNM - chuyển sang trang chỉnh sửa học sinh
   editStudent(studentId: number) {
-    for (let student of this.studentListToShow){
-      if (student.studentId == studentId){
-        alert("pending to navigate");
+    for (let student of this.studentListToShow) {
+      if (student.studentId == studentId) {
+        this.router.navigateByUrl("students/edit/" + studentId);
         return;
       }
     }
@@ -210,6 +250,6 @@ export class StudentListComponent implements OnInit {
 
   //LamNT Open dialog create student
   openDialogCreate() {
-    let dialog = this.dialog.open(StudentCreateComponent, {width: '1100px', autoFocus: false, maxHeight: '90vh'});
+    this.dialog.open(StudentCreateComponent, {width: '1100px', autoFocus: false, maxHeight: '90vh'});
   }
 }

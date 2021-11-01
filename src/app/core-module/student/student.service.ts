@@ -7,7 +7,7 @@ import {IStudent} from "../../entity/IStudent";
   providedIn: 'root'
 })
 export class StudentService {
-  url = "http://localhost:8080/api/students"
+  url = "http://localhost:8080/api/students";
 
   constructor(private httpClient: HttpClient) {
   }
