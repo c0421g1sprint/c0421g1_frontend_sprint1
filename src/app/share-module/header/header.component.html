@@ -48,7 +48,8 @@
                 Chào {{this.username}}
               </a>
               <div class="dropdown-menu" >
-                <a class="dropdown-item" (click)="getOut()" [routerLink]="['teacher','list']" > Đăng xuất </a>
+                <a class="dropdown-item" (click)="getOut()"  > Đăng xuất </a>
+                <a class="dropdown-item" [routerLink]="['account','editPass', this.username]">Đổi mật khẩu</a>
                 <a class="dropdown-item" href="#">Thông tin cá nhân</a>
               </div>
             </li>
