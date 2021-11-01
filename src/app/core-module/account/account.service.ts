@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {IEditPasswordAccountDto} from '../../entity/IEditPassAccount';
-import {IEditAccount} from '../../entity/iedit-account';
+import {IEditPasswordAccountDto} from "../../feature-module/account/entity/IEditPassAccount";
+import {IEditAccount} from "../../feature-module/account/entity/iedit-account";
+
 
 @Injectable({
   providedIn: 'root'

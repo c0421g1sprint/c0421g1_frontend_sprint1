@@ -3,7 +3,7 @@ export interface IEditAccount {
   accountUsername: string;
   accountPassword: string;
   email: string;
-  activated_flag: boolean;
-  lock_flag: boolean;
-  delete_flag: boolean;
+  is_active: boolean;
+  is_not_block: boolean;
+  is_delete: boolean;
 }

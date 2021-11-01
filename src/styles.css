@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.error.mat-snack-bar-container{
+  min-width: 250px;
+  background-color: #eff9ff;
+  color: red;
+}
+
+.success.mat-snack-bar-container{
+  min-width: 250px;
+  background-color: #35a028;
+  color: springgreen;
+}
