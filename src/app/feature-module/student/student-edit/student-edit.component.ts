@@ -124,7 +124,9 @@ export class StudentEditComponent implements OnInit {
                   horizontalPosition: 'end'
                 });
               })
-              this.router.navigateByUrl("/students");
+              this.router.navigate(['students', {
+                "idClassroom": this.student.classroom.classroomId
+              }]);
             });
           }));
         })

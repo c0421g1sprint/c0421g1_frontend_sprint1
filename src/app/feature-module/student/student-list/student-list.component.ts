@@ -45,35 +45,6 @@ export class StudentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let idClassroom = Number.parseInt(this.activatedRoute.snapshot.paramMap.get("idClassroom"));
-    //id của màn hình edit + detail truyền qua
-    if (idClassroom != null && idClassroom.toString() != "null" && !Number.isNaN(idClassroom)) {
-      this.studentService.getAllClassroom().subscribe(n2 => {
-        this.classroomList = n2;
-        for (let value of this.classroomList) {
-          if (value.classroomId == idClassroom) {
-            this.classroomToShow = value;
-            this.classroomSelect = this.classroomList.filter(value => {
-              return value.grade.gradeId == this.classroomToShow.grade.gradeId
-                && value.classroomSchoolYear == this.classroomToShow.classroomSchoolYear;
-            })
-            console.log("select classroom")
-            console.log(this.classroomSelect)
-            this.studentService.getStudentsByClassroomId(idClassroom, 0, this.sizePagination).subscribe(n3 => {
-              this.studentListToShow = n3.content;
-              this.indexPagination = 0;
-              this.totalPagination = n3.totalPages;
-              this.studentListForm.setValue({
-                "year": this.classroomToShow.classroomSchoolYear,
-                "grade": this.classroomToShow.grade.gradeId,
-                "classroom": this.classroomToShow.classroomId
-              });
-              return;
-            })
-          }
-        }
-      })
-    }
     this.studentService.getAllClassroom().subscribe(next => {
       this.classroomList = next;
       for (let value of this.classroomList) {
@@ -83,16 +54,41 @@ export class StudentListComponent implements OnInit {
         }
       }
       this.yearSchoolList = this.yearSchoolList.sort();
+
+      //id của màn hình edit + detail truyền qua
+      let idClassroom = Number.parseInt(this.activatedRoute.snapshot.paramMap.get("idClassroom"));
+      if (idClassroom != null && idClassroom.toString() != "null" && !Number.isNaN(idClassroom)) {
+        for (let value of this.classroomList) {
+          if (value.classroomId == idClassroom) {
+            this.classroomToShow = value;
+            this.classroomSelect = this.classroomList.filter(value => {
+              return value.grade.gradeId == this.classroomToShow.grade.gradeId
+                && value.classroomSchoolYear == this.classroomToShow.classroomSchoolYear;
+            })
+            this.studentService.getStudentsByClassroomId(idClassroom, 0, this.sizePagination).subscribe(n3 => {
+              this.studentListToShow = n3.content;
+              console.log(this.studentListToShow)
+              this.indexPagination = 0;
+              this.totalPagination = n3.totalPages;
+              this.studentListForm.patchValue({
+                "year": this.classroomToShow.classroomSchoolYear,
+                "grade": this.classroomToShow.grade.gradeId,
+                "classroom": this.classroomToShow
+              });
+              return;
+            })
+          }
+        }
+      }
     }, error => {
       this.snackbarService.showSnackbar("Không tìm thấy dữ liệu lớp", "error");
     });
-
     this.studentService.getAllGrade().subscribe(next => {
       this.gradeList = next;
     }, error => {
       this.snackbarService.showSnackbar("Không tìm thấy dữ liệu khối", "error");
-
     })
+
   }
 
   //DungNM - lấy danh sách học sinh theo lớp
@@ -111,7 +107,7 @@ export class StudentListComponent implements OnInit {
       this.snackbarService.showSnackbar("Vui lòng chọn lớp", "error");
       return;
     }
-    if (classroom != this.classroomToShow){
+    if (classroom != this.classroomToShow) {
       this.indexPagination = 0;
     }
     for (let value of this.classroomList) {
@@ -237,11 +233,13 @@ export class StudentListComponent implements OnInit {
     }
     this.snackbarService.showSnackbar("Không tìm thấy học sinh", "error");
   }
+
   //DungNM - chuyển sang trang chỉnh sửa học sinh
   editStudent(studentId: number) {
     for (let student of this.studentListToShow) {
       if (student.studentId == studentId) {
-        this.router.navigateByUrl("students/edit/" + studentId);
+        this.router.navigate(['students/edit/' + studentId,
+          {"idClassroom": this.classroomToShow.classroomId}]);
         return;
       }
     }
