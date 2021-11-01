@@ -27,6 +27,6 @@ export class HeaderComponent implements OnInit {
   getOut() {
     window.sessionStorage.clear();
     this.username = this.storage.getUsernameFromSession();
-    // this.role = [];
+   this.router.navigateByUrl("");
   }
 }

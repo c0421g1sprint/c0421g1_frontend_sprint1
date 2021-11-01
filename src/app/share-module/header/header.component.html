@@ -13,8 +13,8 @@
         <nav class="main-nav float-right d-none d-lg-block">
           <ul>
             <li><a href="#">Trang chủ</a></li>
-            <li *ngIf="role.indexOf('ROLE_GUESS') != -1"><a href="#">Tin tức</a></li>
-            <li *ngIf="role.indexOf('ROLE_GUESS') != -1"><a href="#">Hình ảnh</a></li>
+            <li *ngIf="role.indexOf('ROLE_ADMIN') != -1"><a href="#">Navbar ADMIN</a></li>
+            <li *ngIf="role.indexOf('ROLE_ADMIN') != -1"><a href="#">Navbar ADMIN</a></li>
             <li><a href="#footer">Liên hệ</a></li>
             <li>
               <a [routerLink]="['teacher','list']">Teacher</a>

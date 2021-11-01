@@ -40,7 +40,6 @@ export class AccountComponent implements OnInit {
 //Kiet login 26/10: Luu mat khau va tai khoan luc dang nhap
   onLogin() {
     if (this.saveInfo){
-      console.log("ádnasd")
       this.storageService.saveUsernameLocal(this.loginForm.get('username').value);
       this.storageService.savePasswordLocal(this.loginForm.get('password').value)
     }else {
@@ -52,10 +51,10 @@ export class AccountComponent implements OnInit {
           this.storageService.saveTokenSession(next.token);
           this.storageService.saveRolesSession(next.roles);
           this.storageService.saveUsernameSession(next.username);
-          console.log(this.storageService.getRole());
+          console.log(next);
+          this.snackBar.showSnackbar("Chào mừng đến với website C0421G1", "success");
           this.router.navigateByUrl("teacher/list");
           this.linkService.reloadComponent();
-
         },
         error => {
          this.snackBar.showSnackbar("Wrong password or username", "error")
@@ -71,14 +70,14 @@ export class AccountComponent implements OnInit {
 
   validationMessage = {
     username:[
-      {type: "required", message: "Bắt buộc nhập"},
-      {type: "minlength", message: "Tên đăng nhập tối thiểu 6 ký tự"},
-      {type: "maxlength", message: "Tên đăng nhập không vượt quá 30 ký tự"}
+      {type: "required", message: "Bắt buộc nhập."},
+      {type: "minlength", message: "Tên đăng nhập tối thiểu 6 ký tự."},
+      {type: "maxlength", message: "Tên đăng nhập không vượt quá 30 ký tự."}
     ],
     password: [
-      {type: "required", message: "Bắt buộc nhập"},
-      {type: "minlength", message: "Mật khẩu tối thiểu 6 ký tự"},
-      {type: "maxlength", message: "Mật khẩu  không vượt quá 30 ký tự"}
+      {type: "required", message: "Bắt buộc nhập."},
+      {type: "minlength", message: "Mật khẩu tối thiểu 6 ký tự."},
+      {type: "maxlength", message: "Mật khẩu  không vượt quá 30 ký tự."}
     ],
   }
 
