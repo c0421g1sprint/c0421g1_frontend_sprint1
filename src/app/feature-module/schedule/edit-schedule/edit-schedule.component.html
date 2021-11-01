@@ -13,7 +13,7 @@
         <button class="btn btn-primary" [routerLink]="['/schedule/list']">Quay về</button>
       </div>
       <div>
-        <table class="table table-striped" *ngIf="scheduleDetail != null; else emptyScheduleDetail">
+        <table class="table table-striped">
           <thead>
           <tr>
             <th></th>
@@ -37,9 +37,6 @@
           </tr>
           </tbody>
         </table>
-       <ng-template #emptyScheduleDetail>
-         <h2 style="color: red">Hiện không có thời khóa biểu của lớp này</h2>
-       </ng-template>
         <div *ngIf="errorMessage != '' " align="center">
           <h3 style="color: red">{{errorMessage}}</h3>
         </div>

@@ -47,8 +47,9 @@ export class EditScheduleComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.idClass = Number(paramMap.get('id'));
+      this.getSubject();
     });
-    this.getSubject();
+
   }
 
   //QuanTA service new repository 31/10
@@ -112,9 +113,12 @@ export class EditScheduleComponent implements OnInit {
     dialogRef.afterClosed().subscribe(next => {
       console.log(next);
       if (next == 'true') {
-        this.scheduleService.updateSchedule(this.scheduleSubject).subscribe(next => this.ngOnInit());
-        this.snackBar.open("Cập nhật thời khóa biểu thành công", null, {duration: 3000,horizontalPosition: "center",verticalPosition: "top"})
+        this.scheduleService.updateSchedule(this.scheduleSubject).subscribe(next => {
+          this.snackBar.open("Cập nhật thời khóa biểu thành công", null, {duration: 3000,horizontalPosition: "center",verticalPosition: "top"});
+      });
       }
+    },error => {
+      this.snackBar.open("Cập nhật thời khóa biểu thất bại",null,{duration: 3000,horizontalPosition: "center",verticalPosition: "top"})
     });
   }
 
