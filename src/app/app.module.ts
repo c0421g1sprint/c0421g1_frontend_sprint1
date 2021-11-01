@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {ShareModule} from "./share-module/share.module";
 import {TeacherModule} from "./feature-module/teacher/teacher.module";
+import {environment} from "../environments/environment";
+import {AngularFireStorageModule} from "@angular/fire/storage";
+import {AngularFireModule} from "@angular/fire";
 
 @NgModule({
   declarations: [
@@ -16,7 +19,9 @@ import {TeacherModule} from "./feature-module/teacher/teacher.module";
         BrowserModule,
         AppRoutingModule,
         ShareModule,
-        TeacherModule
+        TeacherModule,
+      AngularFireStorageModule,
+      AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
     ],
   providers: [],
   bootstrap: [AppComponent]

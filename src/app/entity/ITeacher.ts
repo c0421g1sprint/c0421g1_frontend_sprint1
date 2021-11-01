@@ -33,11 +33,18 @@ export interface ITeacher {
   deleteFlag: boolean;
 
   account: IAccount;
+
   teacherDegree: IDegree;
   teacherDivision: IDivision;
   classGradeList: IGrade[];
 
 
 
+
+
+
+  degree: IDegree;
+  division: IDivision;
+  classroomList: IClassroom;
 
 }

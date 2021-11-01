@@ -1,1 +1,262 @@
-<p>edit-teacher works!</p>
+<div class="container">
+<form [formGroup]="teacherForm" (ngSubmit)="update()">
+  <div class="container-fluid" style="padding-top: 10px; padding-bottom: 20px">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-row">
+
+          <input type="hidden" formControlName="teacherId" id="teacherId">
+
+          <div class="form-group col-md-6">
+            <label for="teacherName" style="color: #1BB1DC" class="font-weight-bold">
+              Tên Giáo Viên<span
+              style="color: red">*</span> :
+            </label>
+            <input type="text" class="form-control" id="teacherName" formControlName="teacherName">
+
+            <small
+              *ngIf="teacherForm.controls.teacherName.hasError('required') && teacherForm.controls.teacherName.touched "
+              class="validate">Tên
+              không được để trống</small>
+
+<!--            <small-->
+<!--              *ngIf="teacherForm.controls.teacherName.hasError('pattern') && teacherForm.controls.teacherName.touched "-->
+<!--              class="validate">Tên-->
+<!--              không cho phép nhập số</small><br>-->
+
+            <small
+              *ngIf="teacherForm.controls.teacherName.hasError('minlength') && teacherForm.controls.teacherName.touched "
+              class="validate">Tên
+              không được ít hơn 5 kí tự</small>
+
+
+            <small
+              *ngIf="teacherForm.controls.teacherName.hasError('maxlength') && teacherForm.controls.teacherName.touched "
+              class="validate">Tên
+              không được quá 30 kí tự</small>
+
+
+            <div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="" style="color: #1BB1DC" class="font-weight-bold">Ngày
+              Sinh<span
+                style="color: red">*</span> :</label>
+            <input type="date" class="form-control" id="date" formControlName="teacherDateOfBirth">
+            <small
+              *ngIf="teacherForm.controls.teacherDateOfBirth.hasError('required') && teacherForm.controls.teacherDateOfBirth.touched "
+              class="validate">
+              ngày sinh
+              không được để trống</small>
+
+            <!--            <small-->
+            <!--              *ngIf="teacherForm.controls.teacherDateOfBirth.hasError('pattern') && teacherForm.controls.teacherDateOfBirth.touched "-->
+            <!--              class="validate">Ngày-->
+            <!--              sinh không đúng định dạng-->
+            <!--            </small>-->
+
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="diachi" style="color: #1BB1DC" class="font-weight-bold">Địa
+              Chỉ<span
+                style="color: red">*</span> :
+            </label>
+            <input type="text" class="form-control" id="diachi" formControlName="teacherAddress">
+            <small
+              *ngIf="teacherForm.controls.teacherAddress.hasError('required') && teacherForm.controls.teacherAddress.touched"
+              class="validate">
+              Địa chỉ không được để trống</small>
+
+            <small
+              *ngIf="teacherForm.controls.teacherAddress.hasError('minlength') && teacherForm.controls.teacherAddress.touched"
+              class="validate">
+              Địa chỉ không được ít hơn 5 kí tự</small><br/>
+
+            <small
+              *ngIf="teacherForm.controls.teacherAddress.hasError('maxlength') && teacherForm.controls.teacherAddress.touched"
+              class="validate">
+              Địa chỉ không được quá 50 kí tự</small><br/>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="email" style="color: #1BB1DC" class="font-weight-bold">Email<span
+              style="color: red">*</span> :
+            </label>
+            <input type="text" class="form-control" id="email" formControlName="teacherEmail">
+
+            <small
+              *ngIf="teacherForm.controls.teacherEmail.hasError('required') && teacherForm.controls.teacherEmail.touched"
+              class="validate">
+              Email không được để trống</small>
+            <small
+              *ngIf="teacherForm.controls.teacherEmail.hasError('email') && teacherForm.controls.teacherEmail.touched"
+              class="validate">
+              Email không đúng định dạng</small>
+
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="univercity" style="color: #1BB1DC" class="font-weight-bold">
+              Đại Học<span
+              style="color: red">*</span> : </label>
+            <select name="" id="univercity" class="form-control" formControlName="teacherUniversity">
+              <option value="0" disabled>Chọn Trường Đại học . . .</option>
+              <option value="Trường sư phạm Đà Nẵng">Trường sư phạm Đà Nẵng</option>
+              <option value="Trường sư phạm Huế">Trường sư phạm Huế</option>
+            </select>
+          </div>
+
+          <small
+            *ngIf="teacherForm.controls.teacherUniversity.hasError('required') && teacherForm.controls.teacherUniversity.touched"
+            class="validate">
+            Trường Đại học không được để trống</small><br/>
+
+          <div class="form-group col-md-6">
+            <label for="religion" style="color: #1BB1DC" class="font-weight-bold">
+              Số Điện Thoại<span
+              style="color: red">*</span> : </label>
+            <input type="text" class="form-control" id="religion" formControlName="teacherPhone">
+
+
+            <small
+              *ngIf="teacherForm.controls.teacherPhone.hasError('required') && teacherForm.controls.teacherPhone.touched"
+              class="validate">
+              Số điện thoại không được để trống</small>
+
+            <small
+              *ngIf="teacherForm.controls.teacherPhone.hasError('pattern') && teacherForm.controls.teacherPhone.touched"
+              class="validate">
+              Số điện thoại không đúng định dạng</small>
+
+
+          </div>
+
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="degree" class="form-label font-weight-bold" style="color: #1BB1DC">Bằng Cấp
+              <span style="color: red">*</span> :</label>
+
+
+            <select class="form-control" formControlName="degree">
+              <option *ngFor="let objDegre of degreeList" [ngValue]="objDegre.degreeId">{{objDegre.degreeName}}</option>
+            </select>
+
+            <small
+              *ngIf="teacherForm.controls.degree.hasError('required') && teacherForm.controls.degree.touched"
+              class="validate">
+              Phòng Ban không được để trống</small><br/>
+
+
+          </div>
+
+          <div class="form-group col-md-6">
+            <label style="padding-right: 10px; color: #1BB1DC"
+                   class="font-weight-bold">Giới Tính<span
+              style="color: red">*</span> :</label>
+            <br/>
+
+
+            <select name="" id="" formControlName="teacherGender" class="form-control">
+              <option value="0">Nữ</option>
+              <option value="1">Nam</option>
+            </select>
+            <small
+              *ngIf="teacherForm.controls.teacherGender.hasError('required') && teacherForm.controls.teacherGender.touched"
+              class="validate">
+              Giới tính không được để trống</small><br/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label style="padding-right: 10px; color: #1BB1DC"
+                   class="font-weight-bold">Phòng Ban<span
+              style="color: red">*</span> :</label>
+
+
+            <select name="" id="degree" class="form-control" formControlName="division">
+
+              <option *ngFor="let objDivi of divisionList" [ngValue]="objDivi.divisionId"
+              >{{objDivi.divisionName}}</option>
+            </select>
+
+            <small
+              *ngIf="teacherForm.controls.division.hasError('required') && teacherForm.controls.division.touched"
+              class="validate">
+              Phòng Ban không được để trống</small><br/>
+
+
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="file" style="color: #1BB1DC"
+                   class="font-weight-bold">Ảnh Cán Bộ<span
+              style="color: red">*</span> : </label>
+
+
+            <div class="form-group col-12">
+              <input type="file"
+                     id="file"
+                     #fileUploader
+                     (change)="onFileSelected($event)"
+                     name="image"
+                     autocomplete="off" (change)="showPreview($event)" class="form-control-file">
+            </div>
+            <img [src]="teacher.teacherImage" (click)="fileUploader.click()" alt="" width="auto" height="250px">
+
+<!--            test2-->
+<!--            <img class="card-img-top" [src]="teacherForm.value.teacherImage" alt="teacher Image"-->
+<!--                 (click)="fileUploader.click()" width="auto" height="250px">-->
+<!--            <input type="file" accept="image/*" #fileUploader class="form-control-file"-->
+<!--                   id="file" name="image"-->
+<!--                   (change)="showPreview($event)">-->
+
+<!--            <img class="card-img-top" [src]="teacherForm.value.teacherImage" alt="teacher Image"-->
+<!--                 (click)="fileUploader.click()" width="auto" height="250px">-->
+<!--            <input type="file" accept="image/*" #fileUploader class="form-control-file"-->
+<!--                   id="file" name="image"-->
+<!--                   (change)="showPreview($event)">-->
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal" routerLink="/teacher/list">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+           fill="currentColor"
+           class="bi bi-x-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path
+          d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
+      Huỷ
+    </button>
+    <button type="reset" class="btn btn-warning">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+           fill="currentColor"
+           class="bi bi-eraser" viewBox="0 0 16 16">
+        <path
+          d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414l-3.879-3.879zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+      </svg>
+      Nhập lại
+    </button>
+    <button type="submit" class="btn btn-info">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+           fill="currentColor"
+           class="bi bi-plus-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+      </svg>
+      Cập nhật
+    </button>
+  </div>
+</form>
+</div>
