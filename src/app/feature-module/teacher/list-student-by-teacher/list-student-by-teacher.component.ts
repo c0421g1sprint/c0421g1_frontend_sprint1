@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {IStudent} from "../../../../../entity/IStudent";
-import {ListStudentByTeacherService} from "../../../../core-module/student/studentByTeacher/list-student-by-teacher.service";
+import {IStudent} from "../../../../entity/IStudent";
+import {ListStudentByTeacherService} from "../../../core-module/student/studentByTeacher/list-student-by-teacher.service";
 
 
 @Component({

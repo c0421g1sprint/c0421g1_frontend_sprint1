@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {StudentDetailInListService} from "../../../../core-module/student/studentDetailInList/student-detail-in-list.service";
-import {IStudent} from "../../../../../entity/IStudent";
+import {StudentDetailInListService} from "../../../core-module/student/studentDetailInList/student-detail-in-list.service";
+import {IStudent} from "../../../../entity/IStudent";
 
 @Component({
   selector: 'app-student-detail-in-list',

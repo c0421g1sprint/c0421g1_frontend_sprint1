@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {ITeacher} from "../../../../entity/ITeacher";
-import {IDivision} from "../../../../entity/IDivision";
+import {ITeacher} from "../../../entity/ITeacher";
+import {IDivision} from "../../../entity/IDivision";
 import {TeacherService} from "../../../core-module/teacher/teacher.service";
 import {Router} from "@angular/router";
 import {DivisionService} from "../../../core-module/teacher/division.service";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogDeleteComponent} from "../../../share-module/dialog-delete/dialog-delete.component";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
+import {CreateTeacherComponent} from "../create-teacher/create-teacher.component";
 
 @Component({
   selector: 'app-list-teacher',
@@ -121,7 +122,7 @@ export class ListTeacherComponent implements OnInit {
     if (value == null){
       this.snackBar.showSnackbar("Vui lòng nhập số trang cần tìm", 'error');
     }
-    if (Number(value)<this.responsePage.totalPages&&Number(value)>0&&Number(value)%1==0){
+    if (Number(value)<=this.responsePage.totalPages&&Number(value)>0&&Number(value)%1==0){
       this.pageObj['page'] = Number(value)-1
       console.log(this.pageObj['page'] )
       this.getAllAndSearchByKeywordAndDivision(this.pageObj);
@@ -147,4 +148,18 @@ export class ListTeacherComponent implements OnInit {
     this.router.navigateByUrl("/teacher/create");
   }
 
+  openDialogCreate() {
+    let dialog = this.dialog.open(CreateTeacherComponent,{
+      // maxHeight:'250px',
+      // backdropClass:'red',
+      maxWidth: '650px',
+    });
+  }
+
+  movePageCreateAccount() {
+    this.router.navigateByUrl("/teacher/account/create")
+  }
+  movePageDetailAccount() {
+    this.router.navigateByUrl("/teacher/detail/create")
+  }
 }
