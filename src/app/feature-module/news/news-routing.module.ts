@@ -8,7 +8,7 @@ import {NewsReadComponent} from "./news-read/news-read.component";
 
 
 const routes: Routes = [
-  {path: 'news', component: NewsComponent,
+  {path: '', component: NewsComponent,
   children: [
     {path: '', component: HomepageBodyComponent},
     {path: 'list', component: NewsListComponent},
