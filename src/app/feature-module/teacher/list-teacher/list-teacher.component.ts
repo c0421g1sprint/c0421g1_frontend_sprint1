@@ -92,7 +92,7 @@ export class ListTeacherComponent implements OnInit {
       }
     });
     dialog.afterClosed().subscribe(nextClose => {
-      if (nextClose == `true`) {
+      if (nextClose == `yes`) {
         this.teacherService.delete(id,this.teacher).subscribe(data => {
           console.log(data);
           this.snackBar.showSnackbar("Xoá giáo viên " + name + " thành công", "success");
@@ -148,6 +148,8 @@ export class ListTeacherComponent implements OnInit {
     this.router.navigateByUrl("/teacher/create");
   }
 
+
+  //BaoHG
   openDialogCreate() {
     let dialog = this.dialog.open(CreateTeacherComponent,{
       // maxHeight:'250px',

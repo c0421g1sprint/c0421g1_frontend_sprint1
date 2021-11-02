@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IStudent} from "../../../../entity/IStudent";
 import {ListStudentByTeacherService} from "../../../core-module/student/studentByTeacher/list-student-by-teacher.service";
+import {StorageService} from "../../../core-module/account/storage.service";
 
 
 @Component({
@@ -16,7 +17,7 @@ export class ListStudentByTeacherComponent implements OnInit {
 
   students: IStudent[];
 
-  constructor(private studentService: ListStudentByTeacherService) {
+  constructor(private studentService: ListStudentByTeacherService, private storageService: StorageService) {
   }
 
   ngOnInit(): void {
@@ -24,15 +25,17 @@ export class ListStudentByTeacherComponent implements OnInit {
   }
 
   listStudent(page: any) {
-    this.studentService.getListStudentByIdTeacher(1, page).subscribe(value => {
-      this.responsePage = value;
-      this.students = value.content;
-      this.totalElement = value.totalElement;
-      console.log(value.content);
-      console.log(this.students[0]);
-      console.log(this.students[0].classroom.classroomName);
-    });
-    console.log(this.students);
+    if (this.storageService.getToken()) {
+      this.studentService.getListStudentByIdTeacher( this.storageService.getUsernameFromSession(), page).subscribe(value => {
+        this.responsePage = value;
+        this.students = value.content;
+        this.totalElement = value.totalElement;
+        console.log(value.content);
+        console.log(this.students[0]);
+        console.log(this.students[0].classroom.classroomName);
+      });
+      console.log(this.students);
+    }
   }
 
 
@@ -53,7 +56,7 @@ export class ListStudentByTeacherComponent implements OnInit {
 
   getPage(value: number) {
 
-    this.page = Number(value-1)
+    this.page = Number(value - 1)
     this.listStudent(this.page);
   }
 

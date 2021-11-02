@@ -1,9 +1,24 @@
 
-import {RouterModule, Routes} from "@angular/router";
-import {NgModule} from "@angular/core";
-import {ListStudentByTeacherComponent} from "../teacher/list-student-by-teacher/list-student-by-teacher.component";
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {StudentListComponent} from "./student-list/student-list.component";
+import {StudentSearchComponent} from "./student-search/student-search.component";
+import {StudentComponent} from "./student.component";
+import {StudentEditComponent} from "./student-edit/student-edit.component";
+import {StudentDetailComponent} from "./student-detail/student-detail.component";
+
 
 const routes: Routes = [
+
+  {
+    path: "students", component: StudentComponent,
+    children: [
+      {path: "", component: StudentListComponent},
+      {path: "search", component: StudentSearchComponent},
+      {path: "edit/:id", component: StudentEditComponent},
+      {path: "detail/:id", component: StudentDetailComponent}
+    ],
+  },
 
 ];
 
@@ -11,4 +26,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class StudentRoutingModule { }
+export class StudentRoutingModule {
+}

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {ScheduleTeacherService} from "../../../core-module/teacher/scheduleTeacher/schedule-teacher.service";
 import {IScheduleDetail} from "../../../entity/IScheduleDetail";
+import {StorageService} from "../../../core-module/account/storage.service";
 
 @Component({
   selector: 'app-schedule-teacher',
@@ -15,28 +16,30 @@ export class ScheduleTeacherComponent implements OnInit {
   message: string;
 
 
-  times = ['Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu'];
-  days =  ['Tiết 1','Tiết 2', 'Tiết 3', 'Tiết 4', 'Tiết 5'];
+  days = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu'];
+  times =  ['Tiết 1','Tiết 2', 'Tiết 3', 'Tiết 4', 'Tiết 5'];
   constructor(private scheduleDetailService: ScheduleTeacherService,
-              private router: Router,
-  ) { }
+              private router: Router, private store: StorageService) { }
 
   ngOnInit(): void {
     this.listScheduleDetail();
   }
 
   listScheduleDetail() {
-    this.scheduleDetailService.getScheduleDetail(1).subscribe(value => {
-      this.scheduleDetails = value;
-      console.log(value);
-    }
-    ,
+    if (this.store.getToken()){
+      console.log(this.store.getUsernameFromSession() +"ajciahwfawfn");
+      this.scheduleDetailService.getScheduleDetail(this.store.getUsernameFromSession()).subscribe(value => {
+          this.scheduleDetails = value;
+          console.log(value);
+        }
+        ,
         error => {
-      if( error.status == "404"){
-        this.message='No data found ';
-      }else {
-        this.message='No data found';
-      }
-    });
+          if( error.status == "404"){
+            this.message='No data found ';
+          }else {
+            this.message='No data found';
+          }
+        })
+    }
   }
 }

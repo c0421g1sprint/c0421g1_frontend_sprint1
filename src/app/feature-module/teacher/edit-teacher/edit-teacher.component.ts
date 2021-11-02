@@ -6,7 +6,7 @@ import {TeacherService} from "../../../core-module/teacher/teacher.service";
 import {DegreeService} from "../../../core-module/teacher/degree.service";
 import {DivisionService} from "../../../core-module/teacher/division.service";
 
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable, Subscription} from "rxjs";
 import {IDivision} from "../../../entity/IDivision";
 import {IDegree} from "../../../entity/IDegree";
@@ -38,11 +38,11 @@ export class EditTeacherComponent implements OnInit {
     teacherId: new FormControl(''),
     teacherName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]),
     teacherGender: new FormControl('', [Validators.required]),
-    teacherDateOfBirth: new FormControl('', [Validators.required]),
+    teacherDateOfBirth: new FormControl('', [Validators.required, this.check18]),
     teacherUniversity: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]),
     teacherAddress: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
     teacherEmail: new FormControl('', [Validators.required, Validators.email]),
-    teacherPhone: new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}')]),
+    teacherPhone: new FormControl('', [Validators.required, Validators.pattern('(84|0[3|5|7|8|9])+([0-9]{8})\\b')]),
     teacherImage: new FormControl(''),
     degree: new FormControl('', [Validators.required]),
     division: new FormControl('', [Validators.required]),
@@ -112,36 +112,21 @@ export class EditTeacherComponent implements OnInit {
     });
   }
 
-  // update(): void {
-  //   for (let degree of this.degreeList){
-  //     if (degree.degreeId == this.teacherForm.value.degree){
-  //       this.teacherForm.value.degree = degree;
-  //       console.log(this.teacherForm);
-  //     }
-  //   }
-  //
-  //   for (let division of this.divisionList){
-  //     if (division.divisionId == this.teacherForm.value.division){
-  //       this.teacherForm.value.division = division;
-  //       console.log(this.teacherForm);
-  //     }
-  //   }
-  //
-  //   if (this.teacherForm.valid){
-  //     this.teacherService.update(this.teacherForm.value).subscribe(updateData => {
-  //       console.log(updateData);
-  //
-  //       this.router.navigateByUrl('teacher/list');
-  //
-  //     }, error => {
-  //       console.log(error.message);
-  //       console.log(this.teacherForm.value);
-  //       this.snackBar.showSnackbar("Cập nhập thất bại","error")
-  //     });
-  //   }else {
-  //     this.snackBar.showSnackbar("Cập nhập thất bại","error");
-  //   }
-  // }
+  check18(check: AbstractControl) {
+    let birthday = new Date(check.value);
+    let age = Date.now() - birthday.getTime() - 86400000;
+    const ageDate = new Date(age);
+    age = ageDate.getUTCFullYear() - 1970;
+
+    console.log(age);
+    if (age < 18) {
+      return {'invalidAge': true};
+    } else if (age > 100) {
+      return {'overAge': true};
+    }
+    return null;
+  }
+
 
 
   update(): void {
@@ -220,4 +205,13 @@ export class EditTeacherComponent implements OnInit {
       this.selectedImage = null;
     }
   }
+
+  validationMessage = {
+    teacherDateOfBirth: [
+      {type: 'required', message: 'Ngày sinh không được để trống.'},
+      {type: 'invalidAge', message: 'Tuổi của học sinh phải lớn hơn 18 tuổi.'},
+      {type: 'overAge', message: 'Tuổi không được lớn hơn 100 tuổi '}
+    ]
+  }
+
 }

@@ -1,16 +1,9 @@
 import {IScheduleDetail} from "./IScheduleDetail";
 
 export interface IStudyDayTime {
-  // studyDayTimeId: number;
-  // studyDay: string;
-  // studyTime: string;
-  //
-  // scheduleDetailList: IScheduleDetail[];
 
-
-  studyDayTimeId: string;
-  studyDayTimeStudyDay: string;
+  studyDayTimeId: number;
   studyDayTimeStudyTime: string;
-
+  studyDayTimeStudyDay: string;
   scheduleDetailList: IScheduleDetail[];
 }

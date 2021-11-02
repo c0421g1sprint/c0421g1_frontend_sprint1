@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AccountComponent} from "./account.component";
-import {DetailAccountComponent} from "./detail-account/detail-account.component";
-import {CreateAccountComponent} from "./create-account/create-account.component";
+import {EditPasswordComponent} from "./edit-password/edit-password.component";
+import {AccountComponent} from './account.component';
+import {ForgetComponent} from "./forget/forget.component";
 
-
-const routes: Routes = [{path: 'account', component: AccountComponent,
-  children: [
-    {path: 'detail/:accountId', component: DetailAccountComponent},
-    {path: 'create', component: CreateAccountComponent},
-  ]},];
+const routes: Routes = [
+  {path: "login", component: AccountComponent},
+  {path: "forget", component: ForgetComponent},
+  {path: 'account/editPass/:accountUsername', component: EditPasswordComponent},
+  ]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

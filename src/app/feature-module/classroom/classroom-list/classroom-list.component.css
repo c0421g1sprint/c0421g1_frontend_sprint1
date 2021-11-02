@@ -1,0 +1,27 @@
+.thead {
+  color: #1BB1DC;
+}
+.bg-color {
+  background-color: #1BB1DC;
+}
+
+table{
+  min-width: 1000px;
+}
+
+.action-list{
+  width: 200px;
+  align-items: center;
+}
+
+.display-teacher{
+  width: 300px;
+}
+
+.display-year{
+  width: 200px;
+}
+
+.for-number{
+  padding-left: 45px;
+}

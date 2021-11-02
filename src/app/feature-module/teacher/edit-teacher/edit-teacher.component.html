@@ -49,6 +49,15 @@
               class="validate">
               ngày sinh
               không được để trống</small>
+            <div *ngFor = "let valid of validationMessage.teacherDateOfBirth">
+              <small style = "color: red"
+                     *ngIf = "teacherForm.get('teacherDateOfBirth').hasError(valid.type) &&
+          (teacherForm.get('teacherDateOfBirth').touched || teacherForm.get('teacherDateOfBirth').dirty)">
+                {{valid.message}}
+              </small>
+
+            </div>
+
 
             <!--            <small-->
             <!--              *ngIf="teacherForm.controls.teacherDateOfBirth.hasError('pattern') && teacherForm.controls.teacherDateOfBirth.touched "-->

@@ -5,20 +5,6 @@ import {IClassroom} from "./IClassroom";
 import {IGrade} from "./IGrade";
 
 export interface ITeacher {
-  // teacherId: number;
-  // teacherName: string;
-  // teacherGender: number;
-  // teacherDateOfBirth: string;
-  // teacherUniversity: string;
-  // teacherAddress: string;
-  // teacherEmail: string;
-  // teacherPhone: string;
-  // teacherImage: string;
-  // deleteFlag: boolean;
-  // account: IAccount;
-  // teacherDegree: IDegree;
-  // teacherDivision: IDivision;
-  // classroomList: IClassroom[];
 
 
   teacherId: number;
@@ -46,5 +32,4 @@ export interface ITeacher {
   degree: IDegree;
   division: IDivision;
   classroomList: IClassroom;
-
 }

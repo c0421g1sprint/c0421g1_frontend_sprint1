@@ -7,12 +7,12 @@ import {Observable} from "rxjs";
 })
 export class ListStudentByTeacherService {
 
-  private API = 'http://localhost:8080/api/teachers/list';
+  private API = 'http://localhost:8080/api/teachers/listStudentByTeacher';
 
   constructor(public httpClient: HttpClient) {
   }
 
-  getListStudentByIdTeacher(id: any, page: any): Observable<any>{
-    return this.httpClient.get<any>(this.API +  '/' + id + '?page=' + page);
+  getListStudentByIdTeacher(nameTeacher: string, page: number): Observable<any>{
+    return this.httpClient.get<any>(this.API +  '/?userName=' + nameTeacher + '&page=' + page);
   }
 }

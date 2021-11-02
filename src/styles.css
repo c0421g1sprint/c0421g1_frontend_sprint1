@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Baloo Paaji 2", sans-serif;
+}
+
 .error.mat-snack-bar-container{
   min-width: 250px;
   background-color: red;
@@ -10,3 +14,9 @@
   background-color: #35a028;
   color: white;
 }
+
+.mat-dialog-container {
+  background-color: white !important;
+  color: black !important;
+}
+

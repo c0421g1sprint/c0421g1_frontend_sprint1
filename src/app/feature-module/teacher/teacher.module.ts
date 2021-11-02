@@ -14,6 +14,7 @@ import {ScheduleTeacherComponent} from "./schedule-teacher/schedule-teacher.comp
 
 
 
+
 @NgModule({
   declarations: [TeacherComponent, ListTeacherComponent, EditTeacherComponent, DetailTeacherComponent,
     CreateTeacherComponent,EditInforTeacherComponent,
