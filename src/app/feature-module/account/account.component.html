@@ -1,1 +1,60 @@
-<p>account works!</p>
+<div class = "container-fluid">
+  <div class = "row justify-content-center align-items-center main">
+    <div class = "col-2 col-lg-2 col-md-2 col-sm-2 dashboard-2">
+      <div>
+        <img src = "https://th.bing.com/th/id/OIP.O__p5LwF3AkSYep5XGinOQHaE3?w=248&h=180&c=7&r=0&o=5&dpr=1.12&pid=1.7"
+             style = "border-radius: 50%; width: 75%" alt = "">
+        <p>Da Nang Technology University </p>
+      </div>
+      <div>
+        <img src = "https://th.bing.com/th?id=OIF.0RVJ%2bYaR76BmaLiI6X36yg&pid=ImgDet&rs=1"
+             style = "border-radius: 50%; width: 75%" alt = "">
+        <p>Ban Giám Hiệu</p>
+      </div>
+      <div>
+        <img src = "https://i.ytimg.com/vi/vj-pEI_53U0/maxresdefault.jpg"
+             style = "border-radius: 50%; width: 75%" alt = "">
+        <p>Hoạt động của trường</p>
+      </div>
+    </div>
+    <div class = "col-4 col-lg-3 col-md-4 col-sm-4 form">
+      <div>
+        <img src = "/assets/img/img_kiet/avatar-svgrepo-com.svg" width = "30%" alt = "AVT">
+        <h3>Đăng nhập</h3>
+        <form [formGroup] = "loginForm" (ngSubmit) = "onLogin()">
+          <div>
+            <input type = "text" placeholder = "Nhập tên đăng nhập" formControlName = "username">
+          </div>
+          <div class = "errors">
+            <ng-container *ngFor = "let errors of validationMessage.username">
+              <ng-template
+                [ngIf] = "loginForm.get('username').hasError(errors.type) && loginForm.get('username').dirty">
+                <p>{{errors.message}}</p>
+              </ng-template>
+            </ng-container>
+          </div>
+          <div>
+            <input type = "password" placeholder = "Nhập mật khẩu" formControlName = "password">
+          </div>
+          <div class = "errors">
+            <ng-container *ngFor = "let errors of validationMessage.password">
+              <ng-template
+                [ngIf] = "loginForm.get('password').hasError(errors.type) && loginForm.get('password').dirty">
+                <p>{{errors.message}}</p>
+              </ng-template>
+            </ng-container>
+          </div>
+          <div>
+            <input type = "checkbox" [checked] = "saveInfo" (change) = "rememberMe($event.target.checked)"> Ghi nhớ đăng
+            nhập
+          </div>
+          <input type = "submit" value = "Đăng nhập">
+          <div style = "text-align: center">
+            <a href = "#">Trở về</a> ||
+            <a [routerLink]="['/forget']">Quên mật khẩu?</a> <br>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

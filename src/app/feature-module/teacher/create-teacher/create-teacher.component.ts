@@ -35,15 +35,16 @@ export class CreateTeacherComponent implements OnInit {
   teacherForm: FormGroup = new FormGroup({
     teacherName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]),
     teacherGender: new FormControl('', [Validators.required]),
-    teacherDateOfBirth: new FormControl('', [Validators.required,this.check18]),
+    teacherDateOfBirth: new FormControl('', [Validators.required, this.check18, Validators.pattern('^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$')]),
+
     teacherUniversity: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]),
     teacherAddress: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
     teacherEmail: new FormControl('', [Validators.required, Validators.email]),
     teacherPhone: new FormControl('', [Validators.required, Validators.pattern('(84|0[3|5|7|8|9])+([0-9]{8})\\b')]),
     teacherImage: new FormControl(''),
+
     degree: new FormControl('', [Validators.required]),
     division: new FormControl('', [Validators.required]),
-
   });
 
   constructor(private teacherService: TeacherService, private degreeService: DegreeService,
@@ -91,12 +92,8 @@ export class CreateTeacherComponent implements OnInit {
 
     this.teacherService.saveTeacher(teachers).subscribe(data => {
       console.log(data);
-
-      // this.teacherForm.reset();
-
-
       window.location.reload();
-
+    console.log(this.teacherForm.value);
 
       this.snackBar.showSnackbar('Thêm mới thành công', 'success');
     }, error => {
@@ -167,5 +164,4 @@ export class CreateTeacherComponent implements OnInit {
     }
     return null;
   }
-
 }

@@ -1,0 +1,16 @@
+.align-center {
+  margin-left: 190px;
+}
+.cancel {
+  background-color: #ffbf00 !important;
+  margin-right: 5px;
+  color: black;
+}
+h4 {
+  text-align: center;
+  color: red;
+}
+
+.content {
+  background-color: white;
+}

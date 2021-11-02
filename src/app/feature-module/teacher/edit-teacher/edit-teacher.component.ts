@@ -11,7 +11,8 @@ import {Observable, Subscription} from "rxjs";
 import {IDivision} from "../../../entity/IDivision";
 import {IDegree} from "../../../entity/IDegree";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
-import {log} from "util";
+
+
 
 @Component({
   selector: 'app-edit-teacher',
@@ -42,7 +43,7 @@ export class EditTeacherComponent implements OnInit {
     teacherUniversity: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]),
     teacherAddress: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
     teacherEmail: new FormControl('', [Validators.required, Validators.email]),
-    teacherPhone: new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}')]),
+    teacherPhone: new FormControl('', [Validators.required, Validators.pattern('(84|0[3|5|7|8|9])+([0-9]{8})\\b')]),
     teacherImage: new FormControl(''),
     degree: new FormControl('', [Validators.required]),
     division: new FormControl('', [Validators.required]),
@@ -113,6 +114,7 @@ export class EditTeacherComponent implements OnInit {
   }
 
 
+
   update(): void {
     for (let degree of this.degreeList) {
       if (degree.degreeId == this.teacherForm.value.degree) {
@@ -128,27 +130,28 @@ export class EditTeacherComponent implements OnInit {
       }
     }
 
-    // if (this.teacherForm.valid) {
-    //   const value = this.teacherForm.value;
-    //
-    //   var filePath = `images/${this.teacherForm.value.teacherName}_${this.teacherForm.value.id}`;
-    //   const fileRef = this.storage.ref(filePath);
-    //   this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
-    //     finalize(() => {
-    //       fileRef.getDownloadURL().subscribe((url => {
-    //         this.teacherForm.value.teacherImage = url;
-    //         console.log(url);
-    //         this.teacherService.update(value).subscribe(() => {
-    //           // this.ngOnInit();
-    //           this.snackBar.showSnackbar('Sửa thông tin học sinh thành công', 'success');
-    //           this.router.navigateByUrl("teacher/list");
-    //         });
-    //       }));
-    //     })
-    //   ).subscribe();
-    // } else {
-    //   this.snackBar.showSnackbar('Biễu mẫu sai, vui lòng nhập lại', 'success');
-    // }
+    if (this.teacherForm.valid) {
+      const value = this.teacherForm.value;
+
+      var filePath = `images/${this.teacherForm.value.teacherName}_${this.teacherForm.value.id}`;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url => {
+            this.teacherForm.value.teacherImage = url;
+            console.log(url);
+            this.teacherService.update(value).subscribe(() => {
+              // this.ngOnInit();
+              this.snackBar.showSnackbar('Sửa thông tin học sinh thành công', 'success');
+              this.router.navigateByUrl("teacher/list");
+            });
+          }));
+        })
+      ).subscribe();
+    } else {
+      this.snackBar.showSnackbar('Biễu mẫu sai, vui lòng nhập lại', 'success');
+    }
+
     console.log(this.teacherForm.value);
     console.log(typeof this.teacherForm.value.teacherDateOfBirth);
   }
@@ -195,10 +198,11 @@ export class EditTeacherComponent implements OnInit {
   validationMessage = {
     teacherDateOfBirth: [
       {type: 'required', message: 'Ngày sinh không được để trống.'},
-      {type: 'invalidAge', message: 'Tuổi của giáo viên phải lớn hơn 18 tuổi.'},
+      {type: 'invalidAge', message: 'Tuổi của học sinh phải lớn hơn 18 tuổi.'},
       {type: 'overAge', message: 'Tuổi không được lớn hơn 100 tuổi '}
     ]
   }
+
 
   check18(check: AbstractControl) {
     const birthday = new Date(check.value);
@@ -211,4 +215,5 @@ export class EditTeacherComponent implements OnInit {
     }
     return null;
   }
+
 }

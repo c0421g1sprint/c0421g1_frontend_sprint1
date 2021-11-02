@@ -1,0 +1,7 @@
+tbody tr th {
+  border-right-style:  solid;
+  border-right-width: 0.01rem;
+}
+table {
+  border-collapse: collapse;
+}

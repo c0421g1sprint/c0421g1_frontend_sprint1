@@ -8,7 +8,6 @@ export interface IAccount {
   isActivated: boolean;
   isNotLocked: boolean;
   isDeleted: boolean;
-
   accountRoleList: IAccountRole[];
   teacher: ITeacher;
 }

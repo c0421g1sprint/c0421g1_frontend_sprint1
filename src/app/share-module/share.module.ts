@@ -1,5 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+
+import {HeaderComponent} from "./header/header.component";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -7,11 +10,14 @@ import {MatButtonModule} from '@angular/material/button';
 import {DialogDeleteComponent} from "./dialog-delete/dialog-delete.component";
 import {SnackbarComponent} from "./snackbar/snackbar.component";
 import {FooterComponent} from "./footer/footer.component";
-import {HeaderComponent} from "./header/header.component";
+import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {RouterLink, RouterLinkActive, RouterModule} from "@angular/router";
-import {AppRoutingModule} from "../app-routing.module";
+import {AngularFireModule} from "@angular/fire";
+import {environment} from "../../environments/environment";
+import {AngularFireStorageModule} from "@angular/fire/storage";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+
 
 
 
@@ -23,6 +29,21 @@ import {AppRoutingModule} from "../app-routing.module";
     FooterComponent,
     HeaderComponent
   ],
+  exports: [
+    FooterComponent,
+    HeaderComponent,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatButtonModule,
+    RouterModule,
+    HttpClientModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    MatProgressSpinnerModule
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -30,27 +51,15 @@ import {AppRoutingModule} from "../app-routing.module";
     MatSnackBarModule,
     MatDialogModule,
     MatButtonModule,
-    RouterModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-
-
-  ],
-  exports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    MatButtonModule,
-    HeaderComponent,
-    FooterComponent,
-    DialogDeleteComponent,
+    MatProgressSpinnerModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
     HttpClientModule,
     RouterModule,
-    BrowserAnimationsModule,
-    AppRoutingModule
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ]
+
 })
 export class ShareModule { }
+
+

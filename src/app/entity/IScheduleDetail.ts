@@ -5,9 +5,8 @@ import {IStudyDayTime} from "./IStudyDayTime";
 
 export interface IScheduleDetail {
   scheduleDetailId: number;
-
   subject: ISubject;
   studyDayTime: IStudyDayTime;
-  classGrade: IClassroom;
+  classroomName: string;
   schedule: ISchedule;
 }
