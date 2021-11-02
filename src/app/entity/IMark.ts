@@ -3,9 +3,9 @@ import {ISubject} from "./ISubject";
 
 export interface IMark {
   markId: number;
-  pointNumber1: number;
-  pointNumber2: number;
-  pointNumber3: number;
+  markPointNumber1: number;
+  markPointNumber2: number;
+  markPointNumber3: number;
 
   student: IStudent;
   subject: ISubject;

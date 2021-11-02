@@ -8,6 +8,8 @@ import { StudentSearchComponent } from './student-search/student-search.componen
 import { StudentCreateComponent } from './student-create/student-create.component';
 import { StudentEditComponent } from './student-edit/student-edit.component';
 import {StudentDetailComponent} from "./student-detail/student-detail.component";
+import {ListMarkComponent} from "./list-mark/list-mark.component";
+import {MarkEditComponent} from "./mark-edit/mark-edit.component";
 
 
 
@@ -20,7 +22,9 @@ import {StudentDetailComponent} from "./student-detail/student-detail.component"
     StudentCreateComponent,
     StudentEditComponent,
     StudentSearchComponent,
-    StudentDetailComponent
+    StudentDetailComponent,
+    ListMarkComponent,
+    MarkEditComponent
   ],
   imports: [
     CommonModule,
