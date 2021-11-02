@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SearchTeacherService} from "../../../core-module/teacher/search-teacher.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 
 @Component({
@@ -16,8 +17,18 @@ export class SearchTeacherComponent implements OnInit {
 
   listTeacher;
   search = '';
+  formSearch: FormGroup;
 
   constructor(private teacherService: SearchTeacherService,  private snackbarService: SnackbarService) {
+    this.formSearch = new FormGroup(
+      {searchInput: new FormControl('', Validators.maxLength(20))}
+    )
+  }
+
+  validMsg = {
+    searchInput: [
+      {type: 'maxlength', message: 'Nội dung tìm kiếm quá dài.'}
+    ]
   }
 
   ngOnInit(): void {

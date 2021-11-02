@@ -3,11 +3,11 @@
 <div class="container-fluid" style="margin: 0">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 132px">
+        <form [formGroup]="formSearch">
         <div class="d-flex">
           <!--        <input class="form-control me-2" type="search" placeholder="Tìm kiếm giáo viên" aria-label="Search"&ensp>-->
-          <input [(ngModel)]="search" class="form-control" type="search"
+          <input [(ngModel)]="search" class="form-control" type="search" formControlName="searchInput"
                  placeholder="Tìm kiếm giáo viên" aria-label="Search">
           <button (click)="getSearchTeacher(0)" class="btn btn-primary" style="margin-left: 10px">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" fill="currentColor"
@@ -18,6 +18,10 @@
             </svg>
           </button>
         </div>
+            <p *ngFor="let msg of validMsg.searchInput">
+              <span *ngIf="formSearch.get('searchInput').hasError(msg.type) && formSearch.get('searchInput').dirty" style="color: red">{{msg.message}}</span>
+            </p>
+        </form>
       </div>
     </div>
   </nav>
