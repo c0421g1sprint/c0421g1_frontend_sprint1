@@ -54,7 +54,7 @@ export class StudentService {
   }
 
   // diep search student 30/10
-  getAllStudentBySearch(inforStudent: any, studentId: any, pageable: any): Observable<any> {
-    return this.httpClient.get<any>(this.url + '/searchstudent?inforStudent=' + inforStudent + '&studentId=' + studentId + '&page=' + pageable);
+  getAllStudentBySearch(inforStudent: any, pageable: any): Observable<any> {
+    return this.httpClient.get<any>(this.url + '/searchstudent?inforStudent=' + inforStudent + '&page=' + pageable);
   }
 }

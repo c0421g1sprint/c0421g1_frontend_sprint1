@@ -21,7 +21,6 @@ export class SearchStudentComponent implements OnInit {
 
   listStudent;
   inforStudent = '';
-  studentId = '';
   // searchForm = new FormGroup({
   // search : new FormControl(Validators.maxLength(50)),
   //   deleteFlag: new FormControl('')
@@ -47,8 +46,7 @@ export class SearchStudentComponent implements OnInit {
 
   getListStudent(pageable) {
     this.inforStudent = '';
-    this.studentId= '';
-    this.studentService.getAllStudentBySearch(this.inforStudent, this.studentId, pageable).subscribe(data => {
+    this.studentService.getAllStudentBySearch(this.inforStudent, pageable).subscribe(data => {
       this.listStudent = data.content;
 
       this.totalPage = data.totalPages;
@@ -70,7 +68,7 @@ export class SearchStudentComponent implements OnInit {
   }
 
   getSearchStudent(pageable) {
-    this.studentService.getAllStudentBySearch(this.inforStudent, this.studentId, pageable).subscribe(data => {
+    this.studentService.getAllStudentBySearch(this.inforStudent, pageable).subscribe(data => {
         console.log(data)
         this.listStudent = data.content;
 
