@@ -10,6 +10,8 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {ScheduleDetailService} from "../../../core-module/schedule/schedule-detail.service";
 import {HttpHeaders} from "@angular/common/http";
 import {DialogScheduleComponent} from "../dialog-schedule/dialog-schedule.component";
+import {SnackbarComponent} from "../../../share-module/snackbar/snackbar.component";
+import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 
 @Component({
   selector: 'app-edit-schedule',
@@ -27,11 +29,13 @@ export class EditScheduleComponent implements OnInit {
   httpOptions: any;
   scheduleSubject: Array<IScheduleSubject> = new Array();
   errorMessage = '';
+  showSpinner = false;
+
 
   constructor(private scheduleService: ScheduleDetailService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private snackBar: MatSnackBar,
+              private snackBarService: SnackbarService,
               private dialog: MatDialog) {
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -111,14 +115,18 @@ export class EditScheduleComponent implements OnInit {
   openDialog() {
     let dialogRef = this.dialog.open(DialogScheduleComponent);
     dialogRef.afterClosed().subscribe(next => {
+      this.showSpinner = true;
       console.log(next);
       if (next == 'true') {
         this.scheduleService.updateSchedule(this.scheduleSubject).subscribe(next => {
-          this.snackBar.open("Cập nhật thời khóa biểu thành công", null, {duration: 3000,horizontalPosition: "center",verticalPosition: "top"});
+          setTimeout(() => {
+            this.showSpinner = false;
+            this.snackBarService.showSnackbar('Cập nhật thời khóa biểu thành công','success')
+          });
       });
       }
     },error => {
-      this.snackBar.open("Cập nhật thời khóa biểu thất bại",null,{duration: 3000,horizontalPosition: "center",verticalPosition: "top"})
+      this.snackBarService.showSnackbar("Cập nhật thời khóa biểu thất bại",'error')
     });
   }
 
