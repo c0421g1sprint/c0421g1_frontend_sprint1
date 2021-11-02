@@ -12,19 +12,23 @@
         </div>
         <nav class="main-nav float-right d-none d-lg-block">
           <ul>
-            <li class="active"><a href="#intro">Trang chủ</a></li>
-            <li><a href="#services">Tin tức</a></li>
-            <li><a href="#portfolio">Hình ảnh</a></li>
+            <li><a href="#">Trang chủ</a></li>
+            <li><a [routerLink]="['/schedule/list']">Thời khóa biểu</a></li>
+            <li *ngIf="role.indexOf('ROLE_ADMIN') != -1"><a [routerLink]="['classroom']" >Classroom</a></li>
+            <li *ngIf="role.indexOf('ROLE_ADMIN') != -1"><a href="#">Navbar ADMIN</a></li>
             <li><a href="#footer">Liên hệ</a></li>
-            <li><a href="#">Thời khóa biểu</a></li>
+            <li>
+              <a [routerLink]="['teacher','list']">Teacher</a>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" data-toggle="dropdown"
                  aria-haspopup="true" aria-expanded="false">
                 Quản lý
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                <a class="dropdown-item" href="#">Quản lý học sinh</a>
+                <a class="dropdown-item" routerLink="/students">Quản lý học sinh</a>
                 <a class="dropdown-item" href="#">Quản lý giáo viên</a>
+                <a class="dropdown-item" routerLink="/classroom">Quản lý lớp</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -33,11 +37,24 @@
                 Tìm kiếm
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Tìm kiếm học sinh</a>
+                <a class="dropdown-item" routerLink="/students/search">Tìm kiếm học sinh</a>
                 <a class="dropdown-item" href="#">Tìm kiếm giáo viên</a>
               </div>
             </li>
-            <li><a href="#">Đăng nhập</a></li>
+            <li *ngIf="this.username == null" >
+              <a [routerLink]="['/login']">Đăng nhập</a>
+            </li>
+            <li *ngIf="this.username" class="nav-item dropdown" >
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false">
+                Chào {{this.username}}
+              </a>
+              <div class="dropdown-menu" >
+                <a class="dropdown-item" (click)="getOut()"  > Đăng xuất </a>
+                <a class="dropdown-item" [routerLink]="['account','editPass', this.username]">Đổi mật khẩu</a>
+                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+              </div>
+            </li>
           </ul>
         </nav>
       </div>

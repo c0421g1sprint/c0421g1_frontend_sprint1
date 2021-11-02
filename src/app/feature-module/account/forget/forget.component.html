@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class = "col-3 col-lg-3 col-md-4 col-sm-4 form">
+      <div>
+        <img src = "/assets/img/img_kiet/avatar-svgrepo-com.svg" width = "30%" alt = "AVT">
+        <h3>Lấy lại mật khẩu</h3>
+        <form #formElement=ngForm (ngSubmit)="sendEmail(formElement.value)">
+          <div>
+            <input type = "text" placeholder = "Nhập email của bạn" name="email"  ngModel="">
+          </div>
+          <input type = "submit" value = "Gửi">
+          <div style = "text-align: center">
+            <a href = "#">Trở về </a>|| <a [routerLink]="['/login']"> Đăng nhập</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-loading [show] = "loading" [config] = "{ backdropBorderRadius: '3px' }"></ngx-loading>
+
