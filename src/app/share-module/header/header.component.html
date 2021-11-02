@@ -13,16 +13,17 @@
           <ul>
             <li><a [routerLink]="['']" >Trang chủ</a></li>
             <li><a [routerLink]="['/schedule/list']">Thời khóa biểu</a></li>
-<!--            <li *ngIf="role.indexOf('ROLE_ADMIN') != -1"><a [routerLink]="['classroom']" >Classroom</a></li>-->
-<!--            <li *ngIf="role.indexOf('ROLE_ADMIN') != -1"><a href="#">Navbar ADMIN</a></li>-->
-            <li class="nav-item dropdown">
+            <li *ngIf="role.indexOf('ROLE_USER') != -1"><a [routerLink]="['teacher', 'scheduleTeacher']">Thời khóa biểu lớp đang dạy</a></li>
+            <li *ngIf="role.indexOf('ROLE_USER') != -1"><a [routerLink]="['teacher', 'listStudentByTeacher']">Học Sinh trong lớp</a></li>
+            <li class="nav-item dropdown" *ngIf="role.indexOf('ROLE_ADMIN') != -1">
+
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" data-toggle="dropdown"
                  aria-haspopup="true" aria-expanded="false">
                 Quản lý
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                 <a class="dropdown-item" routerLink="/students">Quản lý học sinh</a>
-                <a class="dropdown-item" href="#">Quản lý giáo viên</a>
+                <a class="dropdown-item" routerLink="/teacher/list">Quản lý giáo viên</a>
                 <a class="dropdown-item" routerLink="/classroom">Quản lý lớp</a>
               </div>
             </li>
@@ -33,7 +34,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" routerLink="/students/search">Tìm kiếm học sinh</a>
-                <a class="dropdown-item" href="#">Tìm kiếm giáo viên</a>
+                <a class="dropdown-item" [routerLink]="['']">Tìm kiếm giáo viên</a>
               </div>
             </li>
             <li *ngIf="this.username == null" >
@@ -46,8 +47,8 @@
               </a>
               <div class="dropdown-menu" >
                 <a class="dropdown-item" (click)="getOut()"  > Đăng xuất </a>
-                <a class="dropdown-item" [routerLink]="['account','editPass', this.username]">Đổi mật khẩu</a>
-                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                <a  class="dropdown-item" [routerLink]="['account','editPass', this.username]">Đổi mật khẩu</a>
+                <a *ngIf="role.indexOf('ROLE_USER') != -1" class="dropdown-item" [routerLink]="['teacher', 'update']" >Thông tin cá nhân</a>
               </div>
             </li>
           </ul>

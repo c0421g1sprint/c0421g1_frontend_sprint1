@@ -4,7 +4,6 @@ import {EditPasswordComponent} from "./edit-password/edit-password.component";
 import {AccountComponent} from './account.component';
 import {ForgetComponent} from "./forget/forget.component";
 
-
 const routes: Routes = [
   {path: "login", component: AccountComponent},
   {path: "forget", component: ForgetComponent},

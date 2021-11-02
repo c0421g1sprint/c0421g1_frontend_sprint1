@@ -44,7 +44,7 @@ export class NewsReadComponent implements OnInit {
   }
 
   navigate() {
-    this.router.navigateByUrl('news/list');
+    this.router.navigateByUrl('/list');
     window.scrollTo(0,0);
   }
 }

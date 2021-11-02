@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   firebaseConfig: {
+
     apiKey: 'AIzaSyDipDcyN6NfUogNnGZKPXYDNmsNKs1ix9I',
     authDomain: 'student-image.firebaseapp.com',
     databaseURL: 'https://student-image-default-rtdb.asia-southeast1.firebasedatabase.app',

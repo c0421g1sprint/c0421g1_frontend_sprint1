@@ -1,8 +1,7 @@
-.content{
-  background-color: #eff9ff;
+tbody tr th {
+  border-right-style:  solid;
+  border-right-width: 0.01rem;
 }
-
-#back{
-  background-color: #1bb1dc;
-
+table {
+  border-collapse: collapse;
 }

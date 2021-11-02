@@ -1,4 +1,5 @@
 
+
 import {HeaderComponent} from "./header/header.component";
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
@@ -16,6 +17,7 @@ import {environment} from "../../environments/environment";
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+
 
 
 
@@ -56,6 +58,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     RouterModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
   ]
+
 })
 export class ShareModule { }
 

@@ -1,0 +1,31 @@
+
+<h3 style="text-align: center">Lịch dạy lớp </h3>
+
+<div class="table-responsive" style="margin-top: 10px">
+  <table class="table  table-striped" style="width: 800px;margin: 0px auto">
+    <thead style="background-color: #1BB1DC">
+    <tr>
+      <th>Tiết</th>
+      <th>Thứ Hai</th>
+      <th>Thứ Ba</th>
+      <th>Thứ Tư</th>
+      <th>Thứ Năm</th>
+      <th>Thứ Sáu</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let time of times">
+      <td>{{time}}</td>
+      <td *ngFor="let day of days">
+        <ng-container *ngFor="let schedule of scheduleDetails">
+
+          <p *ngIf="schedule.studyDayTime.studyDayTimeStudyTime == time && schedule.studyDayTime.studyDayTimeStudyDay == day">
+            {{schedule.subject.subjectName}}
+          </p>
+        </ng-container>
+      </td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>

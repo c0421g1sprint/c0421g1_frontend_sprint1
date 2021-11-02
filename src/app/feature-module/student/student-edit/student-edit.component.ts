@@ -28,14 +28,14 @@ export class StudentEditComponent implements OnInit {
     ]),
     studentGender: new FormControl('', [Validators.required]),
     studentFatherName: new FormControl('', [Validators.required,
-      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéếẾêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/),
+      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀẾỂưạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/),
       Validators.minLength(5), Validators.maxLength(50),
       this.customPatternValid({
         pattern: /^\s?\S+(?: \S+)*\s?$/, msg: 'Không thể nhập nhiều khoảng trắng.'
       })
     ]),
     studentMotherName: new FormControl('', [Validators.required,
-      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếẾìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/),
+      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀẾỂưạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/),
       Validators.minLength(5), Validators.maxLength(50),
       this.customPatternValid({
         pattern: /^\s?\S+(?: \S+)*\s?$/, msg: 'Không thể nhập nhiều khoảng trắng.'
@@ -43,22 +43,18 @@ export class StudentEditComponent implements OnInit {
     ]),
     studentDateOfBirth: new FormControl('', [Validators.required, this.check6]),
     studentEthnicity: new FormControl('', [Validators.required,
-      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/)
+      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀẾỂưạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/)
     ]),
     studentAddress: new FormControl('', [Validators.required,
-      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/)]),
+      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀẾỂưạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/)]),
     studentImage: new FormControl('', [Validators.required]),
     studentParentPhone: new FormControl('', [Validators.required,
-      Validators.pattern(/^(0|84)[0-9]{9}$/),
       this.customPatternValid({
-        pattern: /\b\d+\b/, msg: 'Số điện thoại chỉ được nhập số.'
+        pattern: /^(\+84|0)[0-9]{9}$/, msg: 'Số điện thoại phải bắt đầu từ 0 hoặc +84. Ví dụ: +849xxxxxxxx hoặc 0xxxxxxxxxx.'
       }),
-      // this.customPatternValid({
-      //   pattern: /^(\+84)[0-9]{9}$/, msg: 'Số điện thoại phải bắt đầu từ 0 hoặc +84. Ví dụ: +849xxxxxxxx hoặc 0xxxxxxxxxx.'
-      // }),
     ]),
     studentReligion: new FormControl('',
-      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/)),
+      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀẾỂưạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/)),
     studentStatus: new FormControl(''),
     deleteFlag: new FormControl('')
   });
@@ -148,7 +144,8 @@ export class StudentEditComponent implements OnInit {
     ],
     studentDateOfBirth: [
       {type: 'required', message: 'Bạn phải lựa chọn ngày sinh cho học sinh.'},
-      {type: 'invalidAge', message: 'Tuổi của học sinh phải lớn hơn 6 tuổi.'}
+      {type: 'invalidAge', message: 'Tuổi của học sinh phải lớn hơn 6 tuổi.'},
+      {type: 'overAge', message: 'Tuổi không được lớn hơn 100 tuổi '}
     ],
     studentEthnicity: [
       {type: 'required', message: 'Dân tộc không được để trống.'},
@@ -160,10 +157,12 @@ export class StudentEditComponent implements OnInit {
     ],
     studentParentPhone: [
       {type: 'required', message: 'Số điện thoại phụ huynh không được để trống.'},
-      {type: 'pattern', message: 'Số điện thoại phải bắt đầu từ 0 hoặc 84. Ví dụ: 849xxxxxxxx hoặc 0xxxxxxxxxx.'},
     ],
     studentReligion: [
       {type: 'pattern', message: 'Tôn giáo không được chứa ký tự đặc biệt và số.'}
+    ],
+    studentImage: [
+      {type: 'required', message: 'Ảnh không được để trống.'}
     ]
   };
   imgSrc: any;
@@ -195,15 +194,23 @@ export class StudentEditComponent implements OnInit {
     let age = Date.now() - birthday.getTime() - 86400000;
     const ageDate = new Date(age);
     age = ageDate.getUTCFullYear() - 1970;
-
+​
     console.log(age);
     if (age < 6) {
       return {'invalidAge': true};
+    } else if (age > 100) {
+      return {'overAge': true};
     }
     return null;
   }
 
   get formControl() {
     return this.editForm['controls'];
+  }
+
+  quayLai() {
+    this.router.navigate(['students', {
+      "idClassroom": this.student.classroom.classroomId
+    }]);
   }
 }

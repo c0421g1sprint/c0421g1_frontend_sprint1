@@ -13,7 +13,7 @@ export class HomepageBodyComponent implements OnInit {
   ngOnInit(): void {
   }
   navigate() {
-    this.router.navigateByUrl('news/list');
+    this.router.navigateByUrl('/list');
     window.scrollTo(0,0);
   }
 }

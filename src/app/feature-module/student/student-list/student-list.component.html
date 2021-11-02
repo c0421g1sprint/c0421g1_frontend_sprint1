@@ -50,7 +50,8 @@
           <h1 style="color: #1BB1DC;">LỚP {{classroomToShow.classroomName | uppercase}} NĂM
             HỌC {{classroomToShow.classroomSchoolYear}}</h1>
           <span class="w-75">GVCN: {{classroomToShow.teacher.teacherName}}</span>
-          <button class="btn p-1 mb-1 text-white ml-2" style="background-color: #1BB1DC; ">
+          <button class="btn p-1 mb-1 text-white ml-2" style="background-color: #1BB1DC; "
+          routerLink="/classroom/edit/{{classroomToShow.classroomId}}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                  class="bi bi-pencil-square"
                  viewBox="0 0 16 16">
@@ -83,7 +84,7 @@
         <div class="row">
           <div class="col-xl-12 d-flex justify-content-center">
             <div class="w-100" style="overflow-x: scroll">
-              <table class="table table-striped d-inline-block w-100">
+              <table class="table table-striped d-inline-block w-100" style="min-width: 1000px">
                 <thead class="" style="background-color: #1bb1dc;">
                 <th style="width: max-content">STT</th>
                 <th style="width: 15%;">Tên</th>
@@ -191,15 +192,5 @@
         </div>
       </div>
     </div>
-    <!--BUTTON TRỞ VỀ-->
-    <button class="btn" style="position: absolute; right: 24px; background-color: #1bb1dc; color: white;"
-            routerLink="">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-           class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-        <path fill-rule="evenodd"
-              d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
-      </svg>
-      Trở về
-    </button>
   </div>
 </div>
