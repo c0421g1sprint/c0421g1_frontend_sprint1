@@ -22,7 +22,7 @@ export class EditInforTeacherComponent implements OnInit {
     division: new FormControl(""),
     teacherAddress: new FormControl("", [Validators.required]),
     teacherEmail: new FormControl("", [Validators.required, Validators.pattern("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")]),
-    teacherPhone: new FormControl("", [Validators.required, Validators.pattern("^[(][84]{2}[)]\\\\+9[0-1]\\d{7}|09[0-1]\\d{7}$")]),
+    teacherPhone: new FormControl("", [Validators.required, Validators.pattern("(84|0[3|5|7|8|9])+([0-9]{8})\\b")]),
 
   });
   id: number;

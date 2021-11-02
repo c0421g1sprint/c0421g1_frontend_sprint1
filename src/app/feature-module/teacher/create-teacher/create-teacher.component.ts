@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IDegree} from "../../../entity/IDegree";
 import {IDivision} from "../../../entity/IDivision";
 import {Observable} from "rxjs";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TeacherService} from "../../../core-module/teacher/teacher.service";
 import {DegreeService} from "../../../core-module/teacher/degree.service";
 import {Router} from "@angular/router";
@@ -35,11 +35,11 @@ export class CreateTeacherComponent implements OnInit {
   teacherForm: FormGroup = new FormGroup({
     teacherName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]),
     teacherGender: new FormControl('', [Validators.required]),
-    teacherDateOfBirth: new FormControl('', [Validators.required, Validators.pattern('^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$')]),
+    teacherDateOfBirth: new FormControl('', [Validators.required,this.check18]),
     teacherUniversity: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]),
     teacherAddress: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
     teacherEmail: new FormControl('', [Validators.required, Validators.email]),
-    teacherPhone: new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}')]),
+    teacherPhone: new FormControl('', [Validators.required, Validators.pattern('(84|0[3|5|7|8|9])+([0-9]{8})\\b')]),
     teacherImage: new FormControl(''),
     degree: new FormControl('', [Validators.required]),
     division: new FormControl('', [Validators.required]),
@@ -144,4 +144,28 @@ export class CreateTeacherComponent implements OnInit {
       this.selectedImage = null;
     }
   }
+
+  validationMessage = {
+    teacherDateOfBirth: [
+      {type: 'required', message: 'Ngày sinh không được để trống.'},
+      {type: 'invalidAge', message: 'Tuổi của học sinh phải lớn hơn 18 tuổi.'},
+      {type: 'overAge', message: 'Tuổi không được lớn hơn 100 tuổi '}
+    ]
+  }
+
+  check18(check: AbstractControl) {
+    let birthday = new Date(check.value);
+    let age = Date.now() - birthday.getTime() - 86400000;
+    const ageDate = new Date(age);
+    age = ageDate.getUTCFullYear() - 1970;
+
+    console.log(age);
+    if (age < 18) {
+      return {'invalidAge': true};
+    } else if (age > 100) {
+      return {'overAge': true};
+    }
+    return null;
+  }
+
 }

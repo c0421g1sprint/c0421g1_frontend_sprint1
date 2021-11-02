@@ -1,5 +1,6 @@
 .container{
-  width: 500px;
+  width: 1000px;
+
 }
 mat-dialog-container{
   /*overflow: hidden;*/
@@ -10,6 +11,7 @@ mat-dialog-container{
 .validate{
   color: red;
 }
+
  * {
   overflow-x: hidden;
    overflow-y: hidden;

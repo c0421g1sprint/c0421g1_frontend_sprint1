@@ -152,7 +152,12 @@ export class ListTeacherComponent implements OnInit {
     let dialog = this.dialog.open(CreateTeacherComponent,{
       // maxHeight:'250px',
       // backdropClass:'red',
-      maxWidth: '650px',
+      // maxWidth: '650px',
+
+      width:'1100px',
+      autoFocus:false,
+      maxHeight:'90vh'
+
     });
   }
 }

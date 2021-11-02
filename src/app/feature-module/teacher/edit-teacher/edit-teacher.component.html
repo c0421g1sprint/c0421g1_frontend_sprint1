@@ -44,17 +44,15 @@
               Sinh<span
                 style="color: red">*</span> :</label>
             <input type="date" class="form-control" id="date" formControlName="teacherDateOfBirth">
-            <small
-              *ngIf="teacherForm.controls.teacherDateOfBirth.hasError('required') && teacherForm.controls.teacherDateOfBirth.touched "
-              class="validate">
-              ngày sinh
-              không được để trống</small>
 
-            <!--            <small-->
-            <!--              *ngIf="teacherForm.controls.teacherDateOfBirth.hasError('pattern') && teacherForm.controls.teacherDateOfBirth.touched "-->
-            <!--              class="validate">Ngày-->
-            <!--              sinh không đúng định dạng-->
-            <!--            </small>-->
+
+            <div *ngFor="let valid of validationMessage.teacherDateOfBirth">
+              <small style="color: red"
+                     *ngIf="teacherForm.get('teacherDateOfBirth').hasError(valid.type) &&
+           (teacherForm.get('teacherDateOfBirth').touched || teacherForm.get('teacherDateOfBirth').dirty)">
+                {{valid.message}}
+              </small>
+            </div>
 
           </div>
         </div>
