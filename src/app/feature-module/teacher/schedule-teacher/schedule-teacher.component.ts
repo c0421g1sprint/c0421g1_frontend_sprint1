@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import {Router} from "@angular/router";
-import {ScheduleTeacherService} from "../../../../core-module/teacher/scheduleTeacher/schedule-teacher.service";
-import {IScheduleDetail} from "../../../../entity/IScheduleDetail";
+import {ScheduleTeacherService} from "../../../core-module/teacher/scheduleTeacher/schedule-teacher.service";
+import {IScheduleDetail} from "../../../entity/IScheduleDetail";
 
 @Component({
   selector: 'app-schedule-teacher',
