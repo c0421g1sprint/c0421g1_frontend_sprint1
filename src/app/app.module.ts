@@ -1,20 +1,35 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ShareModule} from "./share-module/share.module";
 import {TeacherModule} from "./feature-module/teacher/teacher.module";
+
+
+
+
 import {environment} from "../environments/environment";
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {AngularFireModule} from "@angular/fire";
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+
   ],
+  // imports: [
+  //   BrowserModule,
+  //   AppRoutingModule,
+  //   ShareModule,
+  //   TeacherModule,
+  //   StudentModule
+  // ],
+
+
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -23,7 +38,9 @@ import {AngularFireModule} from "@angular/fire";
       AngularFireStorageModule,
       AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
     ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

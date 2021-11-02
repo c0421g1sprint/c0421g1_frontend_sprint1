@@ -13,4 +13,10 @@ export interface ISubject {
 
   scheduleDetailList: IScheduleDetail[];
   markList: IMark[];
+
+  // subjectId: number;
+  // subjectName: string;
+  //
+  // scheduleDetails: IScheduleDetail[];
+  // marks: IMark[];
 }

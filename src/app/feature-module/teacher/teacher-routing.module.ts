@@ -5,8 +5,10 @@ import {ListTeacherComponent} from './list-teacher/list-teacher.component';
 import {EditTeacherComponent} from './edit-teacher/edit-teacher.component';
 import {DetailTeacherComponent} from "./detail-teacher/detail-teacher.component";
 import {CreateTeacherComponent} from "./create-teacher/create-teacher.component";
+import {ListStudentByTeacherComponent} from "./list-student-by-teacher/list-student-by-teacher.component";
+import {StudentDetailInListComponent} from "./student-detail-in-list/student-detail-in-list.component";
 
-import {ScheduleTeacherComponent} from "./list-teacher/schedule-teacher/schedule-teacher.component";
+import {ScheduleTeacherComponent} from "./schedule-teacher/schedule-teacher.component";
 
 import {EditInforTeacherComponent} from "./edit-infor-teacher/edit-infor-teacher.component";
 import {DetailAccountComponent} from "../account/detail-account/detail-account.component";
@@ -23,12 +25,18 @@ const routes: Routes = [
       {path: 'edit/:id', component: EditTeacherComponent},
       {path: 'detail/:teacherId', component: DetailTeacherComponent},
 
+      {path: 'create', component: CreateTeacherComponent},
+      {path: "listStudentByTeacher", component: ListStudentByTeacherComponent},
+      {path: "detail-Teacher/:idStudent",component:StudentDetailInListComponent},
+
+
       {path: "scheduleTeacher", component:ScheduleTeacherComponent},
 
       {path: 'create', component: CreateTeacherComponent},
       {path:'editInfor/:id',component:EditInforTeacherComponent},
       {path:'account/detail',component:DetailAccountComponent},
       {path:'account/create',component:CreateAccountComponent},
+
 
     ]},
 ];
