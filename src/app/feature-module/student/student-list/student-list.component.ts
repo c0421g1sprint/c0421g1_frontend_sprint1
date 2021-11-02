@@ -247,6 +247,7 @@ export class StudentListComponent implements OnInit {
   //LamNT Open dialog create student
   openDialogCreate() {
     // this.dialog.open(StudentCreateComponent, {width: '1100px', autoFocus: false, maxHeight: '90vh'});
-    alert("điều hướng qua màn hình của Danh")
+    this.router.navigateByUrl("/classroom/edit/"+this.classroomToShow.classroomId);
+    console.log("/classroom/edit/"+this.classroomToShow.classroomId);
   }
 }

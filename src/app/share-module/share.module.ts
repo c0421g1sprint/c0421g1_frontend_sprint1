@@ -11,7 +11,6 @@ import {SnackbarComponent} from "./snackbar/snackbar.component";
 import {FooterComponent} from "./footer/footer.component";
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AngularFireModule} from "@angular/fire";
 import {environment} from "../../environments/environment";
 import {AngularFireStorageModule} from "@angular/fire/storage";
@@ -26,7 +25,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     DialogDeleteComponent,
     SnackbarComponent,
     FooterComponent,
-    HeaderComponent,
+    HeaderComponent
   ],
   exports: [
     FooterComponent,
@@ -39,7 +38,6 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatButtonModule,
     RouterModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     MatProgressSpinnerModule

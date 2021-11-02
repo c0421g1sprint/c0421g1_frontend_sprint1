@@ -36,9 +36,9 @@
     <tr *ngFor="let item of students.content ;let i = index" style="text-align: center">
       <td>{{i+1 + sizePagination*indexPagination}}</td>
       <td>{{item.studentName}}</td>
-      <td>{{item.classroom.classroomName}}</td>
+      <td>{{item.classroom == null ? 'N/A' : item.classroom.classroomName}}</td>
       <td>{{item.studentDateOfBirth}}</td>
-      <td>{{item.classroom.classroomSchoolYear}}</td>
+      <td>{{item.classroom == null ? 'N/A' : item.classroom.classroomSchoolYear}}</td>
       <td>{{item.studentAddress}}</td>
       <td>{{item.studentStatus}}</td>
       <td class="text-center d-flex justify-content-center">

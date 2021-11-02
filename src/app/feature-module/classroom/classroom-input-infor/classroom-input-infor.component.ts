@@ -124,9 +124,11 @@ export class ClassroomInputInforComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.getStudentListChecked(); // để đây???
-      console.log('list học sinh sau cập nhật từ dialog: ');
-      console.log(this.studentListSelected);
+      if (result == 'true'){
+        this.getStudentListChecked(); // để đây???
+        console.log('list học sinh sau cập nhật từ dialog: ');
+        console.log(this.studentListSelected);
+      }
     });
   }
 

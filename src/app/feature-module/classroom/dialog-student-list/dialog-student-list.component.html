@@ -1,5 +1,5 @@
-<div *ngIf="displayList.length != 0; else isEmty">
-  <h2 mat-dialog-title>Vui lòng chọn học sinh để thêm mới:</h2>
+<div *ngIf="displayList.length != 0; else isEmty" style="background-color: white; margin: 16px">
+  <h2 style="color: red; text-align: center">Vui lòng chọn học sinh để thêm mới:</h2>
   <mat-dialog-content>
     <table class="table">
       <tr>
@@ -28,7 +28,7 @@
 </ng-template>
 
 
-<mat-dialog-actions class="align-center">
+<div style="text-align: center; margin-bottom: 8px" >
   <button type="button" class="btn btn-secondary cancel" mat-dialog-close>
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
          class="bi bi-x-square" viewBox="0 0 16 16">
@@ -48,4 +48,4 @@
     </svg>
     Chọn
   </button>
-</mat-dialog-actions>
+</div>

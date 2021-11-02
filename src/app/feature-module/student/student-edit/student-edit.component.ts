@@ -3,11 +3,9 @@ import {IStudent} from '../../../entity/IStudent';
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {StudentService} from "../../../core-module/student/student.service";
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {AngularFireStorage} from '@angular/fire/storage';
-import * as url from 'url';
 import {finalize} from 'rxjs/operators';
+import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 
 @Component({
   selector: 'app-student-edit',
@@ -23,21 +21,21 @@ export class StudentEditComponent implements OnInit {
   editForm = new FormGroup({
     studentId: new FormControl(''),
     studentName: new FormControl('', [Validators.required,
-      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/),
+      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéếẾêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/),
       Validators.minLength(5), Validators.maxLength(50),
       this.customPatternValid(
         {pattern: /^\s?\S+(?: \S+)*\s?$/, msg: 'Không thể nhập nhiều khoảng trắng.'})
     ]),
     studentGender: new FormControl('', [Validators.required]),
     studentFatherName: new FormControl('', [Validators.required,
-      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/),
+      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéếẾêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/),
       Validators.minLength(5), Validators.maxLength(50),
       this.customPatternValid({
         pattern: /^\s?\S+(?: \S+)*\s?$/, msg: 'Không thể nhập nhiều khoảng trắng.'
       })
     ]),
     studentMotherName: new FormControl('', [Validators.required,
-      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/),
+      Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếẾìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/),
       Validators.minLength(5), Validators.maxLength(50),
       this.customPatternValid({
         pattern: /^\s?\S+(?: \S+)*\s?$/, msg: 'Không thể nhập nhiều khoảng trắng.'
@@ -83,7 +81,7 @@ export class StudentEditComponent implements OnInit {
   constructor(private studentService: StudentService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private snackBar: MatSnackBar,
+              private snackBar: SnackbarService,
               private storage: AngularFireStorage) {
   }
 
@@ -118,11 +116,7 @@ export class StudentEditComponent implements OnInit {
             this.studentService.edit(value).subscribe(() => {
               setTimeout(() => {
                 this.showSpinner = false;
-                this.snackBar.open('Sửa thông tin học sinh thành công', null, {
-                  duration: 3000,
-                  verticalPosition: 'top',
-                  horizontalPosition: 'end'
-                });
+                this.snackBar.showSnackbar("Sửa thông tin học sinh thành công", "success");
               })
               this.router.navigate(['students', {
                 "idClassroom": this.student.classroom.classroomId
@@ -132,11 +126,7 @@ export class StudentEditComponent implements OnInit {
         })
       ).subscribe();
     } else {
-      this.snackBar.open('Biễu mẫu sai, vui lòng nhập lại', null, {
-        duration: 3000,
-        verticalPosition: 'top',
-        horizontalPosition: 'end'
-      });
+      this.snackBar.showSnackbar('Biễu mẫu sai, vui lòng nhập lại', "error");
     }
   }
 
@@ -177,10 +167,6 @@ export class StudentEditComponent implements OnInit {
     ]
   };
   imgSrc: any;
-
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action);
-  }
 
   showPreview(event: any) {
     if (event.target.files && event.target.files[0]) {

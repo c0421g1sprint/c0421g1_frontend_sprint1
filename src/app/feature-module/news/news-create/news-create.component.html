@@ -1,0 +1,81 @@
+
+<div class="container-fluid" style="padding-top: 150px; padding-bottom: 100px; background: #ebebfa">
+  <form [formGroup]="newsForm" (ngSubmit)="createNews()">
+    <h1 style="text-align: center">TẠO MỚI TIN TỨC</h1>
+    <table class="table table-responsive table-light table-bordered w-75" style="margin: 0 auto; border: solid black 2px; text-align: center">
+      <thead>
+      <tr style="height: 50px; line-height: 50px; text-align: left">
+        <td>
+          <label class="form-label" style="font-weight: bold">Tiêu đề tin<sup style="color: red">*</sup></label>
+        </td>
+        <td>
+          <input type="text" class="form-control"  formControlName="newsTitle" style="width: 650px; height: 50px" placeholder="10 đến 100 ký tự">
+        </td>
+        <td>
+          <div *ngFor="let valid of validationMessage.newsTitle">
+            <span class="err" *ngIf="newsForm.get('newsTitle').hasError(valid.type) && newsForm.get('newsTitle').dirty">{{valid.message}}</span>
+          </div>
+        </td>
+      </tr>
+      <tr style="height: 100px; line-height: 100px; text-align: left">
+        <td>
+          <label class="form-label"  style="font-weight: bold">Tóm tắt <sup style="color: red">*</sup></label>
+        </td>
+        <td>
+          <textarea type="text" class="form-control" formControlName="newsBrief" style="width: 650px; height: 100px" placeholder="10 đến 256 ký tự"></textarea>
+        </td>
+        <td>
+          <div *ngFor="let valid of validationMessage.newsBrief">
+            <span  class="err" *ngIf="newsForm.get('newsBrief').hasError(valid.type) && newsForm.get('newsBrief').dirty">{{valid.message}}</span>
+          </div>
+        </td>
+      </tr>
+      <tr style="height: 100px; line-height: 100px; text-align: left">
+        <td>
+          <label class="form-label"  style="font-weight: bold">Nội dung <sup style="color: red">*</sup></label>
+        </td>
+        <td>
+          <textarea class="form-control" formControlName="newsContent" style="width: 650px; height: 100px" placeholder="100 đến 1024 ký tự"></textarea>
+        </td>
+        <td>
+          <div *ngFor="let valid of validationMessage.newsContent">
+            <span  class="err" *ngIf="newsForm.get('newsContent').hasError(valid.type) && newsForm.get('newsContent').dirty">{{valid.message}}</span>
+          </div>
+        </td>
+      </tr>
+      <tr style="height: 50px; line-height: 50px; text-align: left">
+        <td>
+          <label class="form-label"  style="font-weight: bold">URL hình ảnh <sup style="color: red">*</sup></label>
+        </td>
+        <td>
+          <input type="text" class="form-control" placeholder="Yêu cầu nhập" style="width: 650px; height: 50px"  formControlName="imageUrl">
+        </td>
+        <td>
+          <div *ngFor="let valid of validationMessage.imageUrl">
+            <span class="err" *ngIf="newsForm.get('imageUrl').hasError(valid.type) && newsForm.get('imageUrl').dirty">{{valid.message}}</span>
+          </div>
+        </td>
+      </tr>
+      <tr style="height: 50px; line-height: 50px; text-align: left">
+        <td>
+          <label class="form-label"  style="font-weight: bold">Thể loại <sup style="color: red">*</sup></label>
+        </td>
+        <td>
+          <select style="width: 200px; height: 40px; text-align: left" formControlName="type">
+            <option *ngFor="let type of newsType" [ngValue]="type" [selected]="type.typeName">{{type.typeName}}</option>
+          </select>
+        </td>
+        <td>
+          <div *ngFor="let valid of validationMessage.type">
+            <span class="err" *ngIf="newsForm.get('type').hasError(valid.type) && newsForm.get('type').dirty">{{valid.message}}</span>
+          </div>
+        </td>
+      </tr>
+      </thead>
+    </table><br>
+    <div class="row" style="margin-left: 530px">
+      <button class="btn btn-dark rounded-pill" style="width: 150px; text-align: center; margin-right: 10px" [routerLink]="['/news/list']">Trở lại</button>
+      <button type="submit" class="btn btn-primary rounded-pill" style="width: 150px; background: #1BB1DC;  text-align: center" [disabled]="newsForm.invalid">Tạo mới</button>
+    </div>
+  </form>
+</div>

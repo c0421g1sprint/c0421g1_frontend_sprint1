@@ -9,6 +9,7 @@ import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
 
 
 
+
 @NgModule({
   declarations: [TeacherComponent, ListTeacherComponent, EditTeacherComponent],
   imports: [

@@ -52,7 +52,8 @@ export class ViewScheduleComponent implements OnInit {
       console.log(value);
       this.message = null;
       console.log(this.scheduleDetails);
-      console.log(this.scheduleDetails[0].schedule.classGrade.classroomName);
+      // console.log(this.scheduleDetails[0].schedule.classGrade.classroomName);
+      // @ts-ignore
       this.classroomsName = this.scheduleDetails[0].schedule.classGrade.classroomName;
 
     }, error => {
