@@ -10,254 +10,254 @@
       </button>
     </div>
   </div>
-<form [formGroup]="createForm" (ngSubmit)="createStudent(createForm)">
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="name" style="color: #1BB1DC" class="font-weight">Họ và tên học sinh <span
-        style="color: red">*</span>
-        :
-      </label>
-      <input type="text" class="form-control" formControlName="studentName" id="name"
-             placeholder="Nguyễn Văn A">
-      <div>
-        <div *ngFor="let valid of validationMessage.studentName">
-          <small style="color: red"
-                 *ngIf="createForm.get('studentName').hasError(valid.type) && createForm.get('studentName').dirty">
-            {{valid.message}}
-          </small>
-        </div>
-        <div
-          *ngIf="!createForm.controls.studentName.valid && (createForm.controls.studentName.dirty || createForm.controls.studentName.touched)">
-          <small style="color: red" *ngIf="createForm.controls.studentName.errors.invalidMsg">
-            {{createForm.controls.studentName.errors.invalidMsg}}
-          </small>
-        </div>
-        <small style="color: red"
-               *ngIf="createForm.controls.studentName.hasError('minlength') &&
-                 createForm.controls.studentName.touched">Họ tên tối học sinh thiểu 5 chữ cái.
-        </small>
-        <small style="color: red"
-               *ngIf="createForm.controls.studentName.hasError('maxlength') &&
-                 createForm.controls.studentName.touched">Họ và tên học sinh tối đa 50 chữ cái.
-        </small>
-      </div>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="date" style="color: #1BB1DC" class="font-weight">Ngày sinh <span style="color: red">*</span>
-        :
-      </label>
-      <input type="date" class="form-control" id="date" formControlName="studentDateOfBirth">
-      <div>
+  <form [formGroup]="createForm" (ngSubmit)="createStudent(createForm)">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="name" style="color: #1BB1DC" class="font-weight">Họ và tên học sinh <span
+          style="color: red">*</span>
+          :
+        </label>
+        <input type="text" class="form-control" formControlName="studentName" id="name"
+               placeholder="Nguyễn Văn A">
         <div>
-          <small
-            *ngIf="createForm.controls.studentDateOfBirth.hasError('invalidDateOfBirth') && (createForm.controls.studentDateOfBirth.touched)">
-            Tuổi học sinh phải lớn hơn 6
-          </small>
-        </div>
-        <div *ngFor="let valid of validationMessage.studentDateOfBirth">
+          <div *ngFor="let valid of validationMessage.studentName">
+            <small style="color: red"
+                   *ngIf="createForm.get('studentName').hasError(valid.type) && createForm.get('studentName').dirty">
+              {{valid.message}}
+            </small>
+          </div>
+          <div
+            *ngIf="!createForm.controls.studentName.valid && (createForm.controls.studentName.dirty || createForm.controls.studentName.touched)">
+            <small style="color: red" *ngIf="createForm.controls.studentName.errors.invalidMsg">
+              {{createForm.controls.studentName.errors.invalidMsg}}
+            </small>
+          </div>
           <small style="color: red"
-                 *ngIf="createForm.get('studentDateOfBirth').hasError(valid.type) && createForm.get('studentDateOfBirth').touched">
-            {{valid.message}}
+                 *ngIf="createForm.controls.studentName.hasError('minlength') &&
+                 createForm.controls.studentName.touched">Họ tên tối học sinh thiểu 5 chữ cái.
+          </small>
+          <small style="color: red"
+                 *ngIf="createForm.controls.studentName.hasError('maxlength') &&
+                 createForm.controls.studentName.touched">Họ và tên học sinh tối đa 50 chữ cái.
           </small>
         </div>
       </div>
+      <div class="form-group col-md-6">
+        <label for="date" style="color: #1BB1DC" class="font-weight">Ngày sinh <span style="color: red">*</span>
+          :
+        </label>
+        <input type="date" class="form-control" id="date" formControlName="studentDateOfBirth">
+        <div>
+          <div>
+            <small
+              *ngIf="createForm.controls.studentDateOfBirth.hasError('invalidDateOfBirth') && (createForm.controls.studentDateOfBirth.touched)">
+              Tuổi học sinh phải lớn hơn 6
+            </small>
+          </div>
+          <div *ngFor="let valid of validationMessage.studentDateOfBirth">
+            <small style="color: red"
+                   *ngIf="createForm.get('studentDateOfBirth').hasError(valid.type) && createForm.get('studentDateOfBirth').touched">
+              {{valid.message}}
+            </small>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="father" style="color: #1BB1DC" class="font-weight">Họ và tên cha<span
-        style="color: red"> *</span>
-        :
-      </label>
-      <input type="text" class="form-control" id="father" placeholder="Nguyễn Văn B"
-             formControlName="studentFatherName">
-      <div>
-        <div *ngFor="let valid of validationMessage.studentFatherName">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="father" style="color: #1BB1DC" class="font-weight">Họ và tên cha<span
+          style="color: red"> *</span>
+          :
+        </label>
+        <input type="text" class="form-control" id="father" placeholder="Nguyễn Văn B"
+               formControlName="studentFatherName">
+        <div>
+          <div *ngFor="let valid of validationMessage.studentFatherName">
+            <small style="color: red"
+                   *ngIf="createForm.get('studentFatherName').hasError(valid.type) && createForm.get('studentFatherName').dirty">
+              {{valid.message}}
+            </small>
+          </div>
+          <div
+            *ngIf="!createForm.controls.studentFatherName.valid && (createForm.controls.studentFatherName.dirty || createForm.controls.studentFatherName.touched)">
+            <small style="color: red" *ngIf="createForm.controls.studentFatherName.errors.invalidMsg">
+              {{createForm.controls.studentFatherName.errors.invalidMsg}}
+            </small>
+          </div>
           <small style="color: red"
-                 *ngIf="createForm.get('studentFatherName').hasError(valid.type) && createForm.get('studentFatherName').dirty">
-            {{valid.message}}
-          </small>
-        </div>
-        <div
-          *ngIf="!createForm.controls.studentFatherName.valid && (createForm.controls.studentFatherName.dirty || createForm.controls.studentFatherName.touched)">
-          <small style="color: red" *ngIf="createForm.controls.studentFatherName.errors.invalidMsg">
-            {{createForm.controls.studentFatherName.errors.invalidMsg}}
-          </small>
-        </div>
-        <small style="color: red"
-               *ngIf="createForm.controls.studentFatherName.hasError('minlength') &&
+                 *ngIf="createForm.controls.studentFatherName.hasError('minlength') &&
                  createForm.controls.studentFatherName.touched">Họ tên tối thiểu 5 chữ cái.
-        </small>
-        <small style="color: red"
-               *ngIf="createForm.controls.studentFatherName.hasError('maxlength') &&
+          </small>
+          <small style="color: red"
+                 *ngIf="createForm.controls.studentFatherName.hasError('maxlength') &&
                  createForm.controls.studentFatherName.touched">Họ và tên tối đa 50 chữ cái.
-        </small>
+          </small>
+        </div>
       </div>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="mother" style="color: #1BB1DC" class="font-weight">Họ và tên mẹ<span
-        style="color: red"> *</span> :
-      </label>
-      <input type="text" class="form-control" id="mother"
-             placeholder="Nguyễn Văn C" formControlName="studentMotherName">
-      <div>
-        <div *ngFor="let valid of validationMessage.studentMotherName">
+      <div class="form-group col-md-6">
+        <label for="mother" style="color: #1BB1DC" class="font-weight">Họ và tên mẹ<span
+          style="color: red"> *</span> :
+        </label>
+        <input type="text" class="form-control" id="mother"
+               placeholder="Nguyễn Văn C" formControlName="studentMotherName">
+        <div>
+          <div *ngFor="let valid of validationMessage.studentMotherName">
+            <small style="color: red"
+                   *ngIf="createForm.get('studentMotherName').hasError(valid.type) && createForm.get('studentMotherName').dirty">
+              {{valid.message}}
+            </small>
+          </div>
+          <div
+            *ngIf="!createForm.controls.studentMotherName.valid && (createForm.controls.studentFatherName.dirty || createForm.controls.studentMotherName.touched)">
+            <small style="color: red" *ngIf="createForm.controls.studentMotherName.errors.invalidMsg">
+              {{createForm.controls.studentMotherName.errors.invalidMsg}}
+            </small>
+          </div>
           <small style="color: red"
-                 *ngIf="createForm.get('studentMotherName').hasError(valid.type) && createForm.get('studentMotherName').dirty">
-            {{valid.message}}
-          </small>
-        </div>
-        <div
-          *ngIf="!createForm.controls.studentMotherName.valid && (createForm.controls.studentFatherName.dirty || createForm.controls.studentMotherName.touched)">
-          <small style="color: red" *ngIf="createForm.controls.studentMotherName.errors.invalidMsg">
-            {{createForm.controls.studentMotherName.errors.invalidMsg}}
-          </small>
-        </div>
-        <small style="color: red"
-               *ngIf="createForm.controls.studentMotherName.hasError('minlength') &&
+                 *ngIf="createForm.controls.studentMotherName.hasError('minlength') &&
                  createForm.controls.studentMotherName.touched">Họ tên tối thiểu 5 chữ cái.
-        </small>
-        <small style="color: red"
-               *ngIf="createForm.controls.studentMotherName.hasError('maxlength') &&
+          </small>
+          <small style="color: red"
+                 *ngIf="createForm.controls.studentMotherName.hasError('maxlength') &&
                  createForm.controls.studentMotherName.touched">Họ và tên tối đa 50 chữ cái.
-        </small>
+          </small>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="phone" style="color: #1BB1DC" class="font-weight">Số điện thoại của cha hoặc mẹ<span
-        style="color: red"> *</span>
-        :
-      </label>
-      <input type="text" class="form-control" id="phone" placeholder="0xxxxxxxxx"
-             formControlName="studentParentPhone">
-      <div>
-        <div *ngFor="let valid of validationMessage.studentParentPhone">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="phone" style="color: #1BB1DC" class="font-weight">Số điện thoại của cha hoặc mẹ<span
+          style="color: red"> *</span>
+          :
+        </label>
+        <input type="text" class="form-control" id="phone" placeholder="0xxxxxxxxx"
+               formControlName="studentParentPhone">
+        <div>
+          <div *ngFor="let valid of validationMessage.studentParentPhone">
+            <small style="color: red"
+                   *ngIf="createForm.get('studentParentPhone').hasError(valid.type) && createForm.get('studentParentPhone').dirty">
+              {{valid.message}}
+            </small>
+          </div>
+          <div
+            *ngIf="!createForm.controls.studentParentPhone.valid && (createForm.controls.studentParentPhone.dirty || createForm.controls.studentParentPhone.touched)">
+            <small style="color: red" *ngIf="createForm.controls.studentParentPhone.errors.invalidMsg">
+              {{createForm.controls.studentParentPhone.errors.invalidMsg}}
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="religion" style="color: #1BB1DC" class="font-weight">Tôn giáo : </label>
+        <input type="text" class="form-control" id="religion" placeholder="Phật giáo"
+               formControlName="studentReligion" value="Không">
+        <div *ngFor="let valid of validationMessage.studentReligion">
           <small style="color: red"
-                 *ngIf="createForm.get('studentParentPhone').hasError(valid.type) && createForm.get('studentParentPhone').dirty">
+                 *ngIf="createForm.get('studentReligion').hasError(valid.type) && createForm.get('studentReligion').dirty">
             {{valid.message}}
           </small>
         </div>
-        <div
-          *ngIf="!createForm.controls.studentParentPhone.valid && (createForm.controls.studentParentPhone.dirty || createForm.controls.studentParentPhone.touched)">
-          <small style="color: red" *ngIf="createForm.controls.studentParentPhone.errors.invalidMsg">
-            {{createForm.controls.studentParentPhone.errors.invalidMsg}}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="address" style="color: #1BB1DC" class="font-weight">Quê quán<span style="color: red"> *</span>
+          :
+        </label>
+        <input type="text" class="form-control" id="address" placeholder="Đà Nẵng"
+               formControlName="studentAddress">
+        <div *ngFor="let valid of validationMessage.studentAddress">
+          <small style="color: red"
+                 *ngIf="createForm.get('studentAddress').hasError(valid.type) && createForm.get('studentAddress').dirty">
+            {{valid.message}}
+          </small>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="ethnicity" style="color: #1BB1DC" class="font-weight">Dân tộc<span
+          style="color: red"> *</span> : </label>
+        <input type="text" class="form-control" id="ethnicity" placeholder="Kinh"
+               formControlName="studentEthnicity">
+        <div *ngFor="let valid of validationMessage.studentEthnicity">
+          <small style="color: red"
+                 *ngIf="createForm.get('studentEthnicity').hasError(valid.type) && createForm.get('studentEthnicity').dirty">
+            {{valid.message}}
           </small>
         </div>
       </div>
     </div>
-    <div class="form-group col-md-6">
-      <label for="religion" style="color: #1BB1DC" class="font-weight">Tôn giáo : </label>
-      <input type="text" class="form-control" id="religion" placeholder="Phật giáo"
-             formControlName="studentReligion" value="Không">
-      <div *ngFor="let valid of validationMessage.studentReligion">
-        <small style="color: red"
-               *ngIf="createForm.get('studentReligion').hasError(valid.type) && createForm.get('studentReligion').dirty">
-          {{valid.message}}
-        </small>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label style="padding-right: 10px; color: #1BB1DC"
+               class="font-weight">Giới tính<span
+          style="color: red"> *</span> :</label>
+        <br>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input class="custom-control-input" type="radio"
+                 name="studentGender" id="inlineRadio1"
+                 value="0" formControlName="studentGender">
+          <label class="custom-control-label" for="inlineRadio1">Nam</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input class="custom-control-input" type="radio"
+                 name="studentGender" id="inlineRadio2"
+                 value="1" formControlName="studentGender">
+          <label class="custom-control-label" for="inlineRadio2">Nữ</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input class="custom-control-input" type="radio"
+                 name="studentGender" id="inlineRadio3"
+                 value="2" formControlName="studentGender">
+          <label class="custom-control-label" for="inlineRadio3">Khác</label>
+        </div>
+        <div *ngFor="let valid of validationMessage.studentGender">
+          <small style="color: red"
+                 *ngIf="createForm.get('studentGender').hasError(valid.type) && createForm.get('studentGender').dirty">
+            {{valid.message}}
+          </small>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="file" style="color: #1BB1DC"
+               class="font-weight">Ảnh học sinh<span style="color: red"> *</span> :
+        </label>
+        <input type="file" accept="image/*" #fileUploader class="form-control-file"
+               formControlName="studentImage" id="file"
+               (change)="showPreview($event)">
+        <img [src]="imgSrc" width="auto" height="150px" (click)="fileUploader.click()">
       </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="address" style="color: #1BB1DC" class="font-weight">Quê quán<span style="color: red"> *</span>
-        :
-      </label>
-      <input type="text" class="form-control" id="address" placeholder="Đà Nẵng"
-             formControlName="studentAddress">
-      <div *ngFor="let valid of validationMessage.studentAddress">
-        <small style="color: red"
-               *ngIf="createForm.get('studentAddress').hasError(valid.type) && createForm.get('studentAddress').dirty">
-          {{valid.message}}
-        </small>
-      </div>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="ethnicity" style="color: #1BB1DC" class="font-weight">Dân tộc<span
-        style="color: red"> *</span> : </label>
-      <input type="text" class="form-control" id="ethnicity" placeholder="Kinh"
-             formControlName="studentEthnicity">
-      <div *ngFor="let valid of validationMessage.studentEthnicity">
-        <small style="color: red"
-               *ngIf="createForm.get('studentEthnicity').hasError(valid.type) && createForm.get('studentEthnicity').dirty">
-          {{valid.message}}
-        </small>
-      </div>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label style="padding-right: 10px; color: #1BB1DC"
-             class="font-weight">Giới tính<span
-        style="color: red"> *</span> :</label>
-      <br>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input class="custom-control-input" type="radio"
-               name="studentGender" id="inlineRadio1"
-               value="0" formControlName="studentGender">
-        <label class="custom-control-label" for="inlineRadio1">Nam</label>
-      </div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input class="custom-control-input" type="radio"
-               name="studentGender" id="inlineRadio2"
-               value="1" formControlName="studentGender">
-        <label class="custom-control-label" for="inlineRadio2">Nữ</label>
-      </div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input class="custom-control-input" type="radio"
-               name="studentGender" id="inlineRadio3"
-               value="2" formControlName="studentGender">
-        <label class="custom-control-label" for="inlineRadio3">Khác</label>
-      </div>
-      <div *ngFor="let valid of validationMessage.studentGender">
-        <small style="color: red"
-               *ngIf="createForm.get('studentGender').hasError(valid.type) && createForm.get('studentGender').dirty">
-          {{valid.message}}
-        </small>
-      </div>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="file" style="color: #1BB1DC"
-             class="font-weight">Ảnh học sinh<span style="color: red"> *</span> :
-      </label>
-      <input type="file" accept="image/*" #fileUploader class="form-control-file"
-             formControlName="studentImage" id="file"
-             (change)="showPreview($event)">
-      <img [src]="imgSrc" width="auto" height="150px" (click)="fileUploader.click()">
-    </div>
-  </div>
-  <mat-spinner *ngIf="showSpinner" [diameter]="30" style="display: inline-block"></mat-spinner>
-  <button mat-dialog-close="true" class="btn btn-warning float-right mb-2" data-dismiss="modal">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-         fill="currentColor"
-         style="margin-bottom: 5px"
-         class="bi bi-x-circle" viewBox="0 0 16 16">
-      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-      <path
-        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-    </svg>
-    Huỷ
-  </button>
-  <button type="button" (click)="resetForm()" class="btn btn-danger float-right ml-2 mr-2 mb-2">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-         fill="currentColor"
-         style="margin-bottom: 5px"
-         class="bi bi-eraser" viewBox="0 0 16 16">
-      <path
-        d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414l-3.879-3.879zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
-    </svg>
-    Xoá biểu mẫu
-  </button>
-  <button type="submit" class="btn btn-success float-right mb-2" mat-dialog-close="yes">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-         fill="currentColor"
-         class="bi bi-plus-circle" viewBox="0 0 16 16" style="margin-bottom: 5px">
-      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-      <path
-        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-    </svg>
-    Thêm học sinh mới
-  </button>
-</form>
+    <mat-spinner *ngIf="showSpinner" [diameter]="30" style="display: inline-block"></mat-spinner>
+    <button mat-dialog-close="true" class="btn btn-warning float-right mb-2" data-dismiss="modal">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+           fill="currentColor"
+           style="margin-bottom: 5px"
+           class="bi bi-x-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path
+          d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
+      Huỷ
+    </button>
+    <button type="button" (click)="resetForm()" class="btn btn-danger float-right ml-2 mr-2 mb-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+           fill="currentColor"
+           style="margin-bottom: 5px"
+           class="bi bi-eraser" viewBox="0 0 16 16">
+        <path
+          d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414l-3.879-3.879zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+      </svg>
+      Xoá biểu mẫu
+    </button>
+    <button type="submit" class="btn btn-success float-right mb-2" mat-dialog-close="yes">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+           fill="currentColor"
+           class="bi bi-plus-circle" viewBox="0 0 16 16" style="margin-bottom: 5px">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+      </svg>
+      Thêm học sinh mới
+    </button>
+  </form>
 </div>

@@ -1,3 +1,4 @@
+
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
@@ -71,7 +72,7 @@ export class ClassroomService {
 
   //DanhNT coding
   promoteClass(IClassroom: IClassroom): Observable<IClassroom | any> {
-    return this.httpClient.put(this.api_classroom + '/promote', IClassroom);
+    return this.httpClient.put(this.api_classroom + '/promote',IClassroom);
   }
 
   //DanhNT coding

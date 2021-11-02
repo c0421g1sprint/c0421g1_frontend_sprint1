@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IStudent} from "../../entity/IStudent";
@@ -7,6 +8,7 @@ import {IStudent} from "../../entity/IStudent";
   providedIn: 'root'
 })
 export class StudentService {
+
   url = "http://localhost:8080/api/students";
 
   constructor(private httpClient: HttpClient) {
@@ -23,7 +25,7 @@ export class StudentService {
   }
 
   //DungNM - lấy danh sách các học sinh theo ID classroom
-  getStudentsByClassroomId(classId: number, index: number, size: number): Observable<any>{
+  getStudentsByClassroomId(classId: number, index: number, size: number): Observable<any> {
     return this.httpClient.get(this.url + "/get-students-by-classroom-id?classId=" + classId +
       "&index=" + index + "&size=" + size);
   }
@@ -47,9 +49,21 @@ export class StudentService {
   findById(id: number): Observable<IStudent | any> {
     return this.httpClient.get(this.url + '/detail/' + id);
   }
+
+  //Danh
+  // findById(id: number): Observable<IStudent | any> {
+  //   return this.httpClient.get(this.url + '/find-student/' + id);
+  // }
+
+
   //NhatDV - tìm kiếm học sinh
-  findSearch(studentName: any, studentStatus: any, index: number, size: number): Observable<IStudent|any> {
+  findSearch(studentName: any, studentStatus: any, index: number, size: number): Observable<IStudent | any> {
     return this.httpClient.get<any>(this.url + '/search?name=' + studentName + '&status=' + studentStatus + '&index=' + index + "&size=" + size);
+  }
+
+//HaNTT, 26/20/2021 - 11:00 AM (list student chưa có lớp)
+  getStudentWhereClassIdNull(): Observable<IStudent[] | any> {
+    return this.httpClient.get(`${this.url}/find-student`)
   }
 
 }
