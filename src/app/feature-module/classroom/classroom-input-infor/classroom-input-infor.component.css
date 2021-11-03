@@ -1,3 +1,4 @@
+
 h1 {
   color: #1BB1DC;
   text-align: center;
@@ -8,26 +9,25 @@ h1 {
   background-color: #1BB1DC !important;
   color: white !important;
 }
-
-#tableClassInfo {
-  width: 50%;
-}
-
 #tableClassInfo thead th {
   align-items: center;
   padding: 0;
+  /*background-color: #eff9ff;*/
 }
 
+#tableClassInfo{
+  width: 25%;
+  min-width: 300px;
+  /*z-index: 11;*/
+}
 #tableContentThead {
   background-color: #1BB1DC;
+  color: white;
 }
 
 #tableContent {
-  max-width: 100% !important;
-}
-
-body {
-  background-color: #eff9ff !important;
+  min-width: 1000px;
+  background-color: #eff9ff;
 }
 
 .phone {
@@ -55,4 +55,94 @@ ul {
   margin-bottom: 1rem;
   margin-left: 42%;
 }
+.setWidth {
+  width: 200px;
+}
+#setWidthPhone {
+  width: 300px;
+}
+#phoneTd {
+  padding-left: 50px;
+}
+
+.setBackground {
+  /*background-color: #eff9ff;*/
+  /*background-repeat: no-repeat !important;*/
+}
+/*#pricing {*/
+/*  background-repeat: no-repeat;*/
+/*  background-position: center;*/
+/*  !*background-attachment: fixed;*!*/
+/*  background-size: 1000px;*/
+/*}*/
+/*#pricing {*/
+/*  background-repeat: no-repeat;*/
+/*  background-position: center;*/
+/*  !*background-attachment: fixed;*!*/
+/*  !*Fix vừa nội dung vào khung ảnh*!*/
+/*  background-size: cover;*/
+/*  !*min-width: 1000px;*!*/
+/*}*/
+.setBackground {
+  background-color: #ecf4f8;
+}
+
+
+/*h1 {*/
+/*  color: #1BB1DC;*/
+/*  text-align: center;*/
+/*  padding-bottom: 25px;*/
+/*}*/
+
+/*#buttonGroup button {*/
+/*  background-color: #1BB1DC !important;*/
+/*  color: white !important;*/
+/*}*/
+
+/*#tableClassInfo {*/
+/*  width: 50%;*/
+/*}*/
+
+/*#tableClassInfo thead th {*/
+/*  align-items: center;*/
+/*  padding: 0;*/
+/*}*/
+
+/*#tableContentThead {*/
+/*  background-color: #1BB1DC;*/
+/*}*/
+
+/*#tableContent {*/
+/*  max-width: 100% !important;*/
+/*}*/
+
+/*body {*/
+/*  background-color: #eff9ff !important;*/
+/*}*/
+
+/*.phone {*/
+/*  text-align: center;*/
+/*}*/
+
+/*h5, h6 {*/
+/*  text-align: center;*/
+/*  color: red;*/
+/*}*/
+
+/*p {*/
+/*  margin-bottom: 5px;*/
+/*  color: red;*/
+/*  text-align: center;*/
+/*}*/
+
+/*.container-fluid {*/
+/*  padding: 0 15px 0 15px;*/
+/*  !*border-color: #000;;*!*/
+/*}*/
+
+/*ul {*/
+/*  margin-top: 1rem;*/
+/*  margin-bottom: 1rem;*/
+/*  margin-left: 42%;*/
+/*}*/
 

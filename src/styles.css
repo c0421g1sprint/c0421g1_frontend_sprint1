@@ -20,3 +20,12 @@ h1, h2, h3, h4, h5, h6 {
   color: black !important;
 }
 
+/*HaNTT TEST*/
+/*body {*/
+/*  background-image:*/
+/*    url("https://lh3.googleusercontent.com/proxy/hBzEFA_9x4dhriEgI_ZxfY9eA5FYbhhhteITpz4fmVe6gSSj_2e-p-uBKyJNLN0L2Guf6SOsUo4h7b3ks_jJ") !important;*/
+/*}*/
+.forContent {
+  z-index: 1 !important;
+}
+

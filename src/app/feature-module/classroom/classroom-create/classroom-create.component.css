@@ -17,15 +17,19 @@ button {
   background-color: gold !important;
 }
 #tableInputClassName {
-  width: 50%;
+  max-width: 50%;
 }
 
 .table th {
   padding: 0;
 }
-body {
-  background-color: #eff9ff !important;
-}
+/*body {*/
+/*  background-image:*/
+/*    url("https://lh3.googleusercontent.com/proxy/hBzEFA_9x4dhriEgI_ZxfY9eA5FYbhhhteITpz4fmVe6gSSj_2e-p-uBKyJNLN0L2Guf6SOsUo4h7b3ks_jJ") !important;*/
+/*}*/
+/*.forContent {*/
+/*  z-index: 1 !important;*/
+/*}*/
 .phone {
   text-align: center;
 }
@@ -33,3 +37,16 @@ p {
   margin-top: 6px;
   font-weight: normal !important;
 }
+/*forContent {*/
+/*  background-color: #1BB1DC;*/
+/*}*/
+#pricing {
+  background-repeat: no-repeat;
+  background-position: center ;
+  background-size: 55%;
+
+  /*background-attachment: fixed;*/
+  /*Fix vừa nội dung vào khung ảnh*/
+  /*background-size: cover;*/
+}
+
