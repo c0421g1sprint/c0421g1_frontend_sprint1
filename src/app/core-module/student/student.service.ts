@@ -56,14 +56,13 @@ export class StudentService {
   // }
 
 
-  //NhatDV - tìm kiếm học sinh
-  findSearch(studentName: any, studentStatus: any, index: number, size: number): Observable<IStudent | any> {
-    return this.httpClient.get<any>(this.url + '/search?name=' + studentName + '&status=' + studentStatus + '&index=' + index + "&size=" + size);
-  }
-
 //HaNTT, 26/20/2021 - 11:00 AM (list student chưa có lớp)
   getStudentWhereClassIdNull(): Observable<IStudent[] | any> {
     return this.httpClient.get(`${this.url}/find-student`)
+  }
+  //NhatDV - tìm kiếm học sinh
+  findSearch(studentName: any, studentStatus: any, index: number, size: number): Observable<IStudent | any> {
+    return this.httpClient.get<any>(this.url + '/search?name=' + studentName + '&status=' + studentStatus + '&index=' + index + "&size=" + size);
   }
 
 }
