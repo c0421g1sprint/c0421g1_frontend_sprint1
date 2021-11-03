@@ -5,6 +5,7 @@ import {IScheduleDetail} from "../../../entity/IScheduleDetail";
 import {ScheduleDetailService} from "../../../core-module/schedule/schedule-detail.service";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import {StorageService} from "../../../core-module/account/storage.service";
 
 @Component({
   selector: 'app-view-schedule',
@@ -22,8 +23,13 @@ export class ViewScheduleComponent implements OnInit {
   days: string[] = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu'];
   times: string[] = ['Tiết 1', 'Tiết 2', 'Tiết 3', 'Tiết 4', 'Tiết 5'];
   message: string;
+  role: string[] = [];
 
-  constructor(private scheduleDetailService: ScheduleDetailService) { }
+  constructor(private scheduleDetailService: ScheduleDetailService, private storageService: StorageService) {
+    if (this.storageService.getToken()){
+      this.role = this.storageService.getRole();
+    }
+  }
 
   ngOnInit(): void {
     this.getAllClass();

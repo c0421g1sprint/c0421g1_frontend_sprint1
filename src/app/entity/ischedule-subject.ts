@@ -6,4 +6,5 @@ export class IScheduleSubject {
     this.subjectId = subjectId;
     this.scheduleDetailId = scheduleDetailId;
   }
+
 }

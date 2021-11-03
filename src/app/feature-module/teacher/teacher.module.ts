@@ -11,6 +11,7 @@ import {ListStudentByTeacherComponent} from "./list-student-by-teacher/list-stud
 import {StudentDetailInListComponent} from './student-detail-in-list/student-detail-in-list.component';
 import {EditInforTeacherComponent} from "./edit-infor-teacher/edit-infor-teacher.component";
 import {ScheduleTeacherComponent} from "./schedule-teacher/schedule-teacher.component";
+import { SearchTeacherComponent } from './search-teacher/search-teacher.component';
 
 
 
@@ -18,7 +19,7 @@ import {ScheduleTeacherComponent} from "./schedule-teacher/schedule-teacher.comp
 @NgModule({
   declarations: [TeacherComponent, ListTeacherComponent, EditTeacherComponent, DetailTeacherComponent,
     CreateTeacherComponent,EditInforTeacherComponent,
-    ScheduleTeacherComponent,ListStudentByTeacherComponent,StudentDetailInListComponent],
+    ScheduleTeacherComponent,ListStudentByTeacherComponent,StudentDetailInListComponent, SearchTeacherComponent],
   imports: [
     CommonModule,
     TeacherRoutingModule,

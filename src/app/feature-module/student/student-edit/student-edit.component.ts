@@ -194,7 +194,6 @@ export class StudentEditComponent implements OnInit {
     let age = Date.now() - birthday.getTime() - 86400000;
     const ageDate = new Date(age);
     age = ageDate.getUTCFullYear() - 1970;
-​
     console.log(age);
     if (age < 6) {
       return {'invalidAge': true};

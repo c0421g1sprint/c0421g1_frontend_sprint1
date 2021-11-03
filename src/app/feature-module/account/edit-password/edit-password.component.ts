@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {IEditAccount} from "../entity/iedit-account";
 import {IEditPasswordAccountDto} from "../entity/IEditPassAccount";
 import {AccountService} from "../../../core-module/account/account.service";
+import {LinkService} from "../../../core-module/account/link.service";
+import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 
 
 @Component({
@@ -37,7 +39,7 @@ export class EditPasswordComponent implements OnInit {
 
   constructor(private activedRouter: ActivatedRoute ,
               private accountService: AccountService,
-              private matSnackBar: MatSnackBar) {
+              private matSnackBar: SnackbarService, private linkService: LinkService, private router: Router) {
       activedRouter.paramMap.subscribe((paramMap: ParamMap) => {
         this.accountUsername = paramMap.get('accountUsername');
         console.log(this.accountUsername + "Hau o day");
@@ -65,18 +67,15 @@ export class EditPasswordComponent implements OnInit {
   submit() {
     this.editPassAccountForm.patchValue({accountId: this.id});
     this.editPasswordAccountDto = this.editPassAccountForm.value;
-    console.log(this.editPassAccountForm);
     this.accountService.editPassword(this.editPasswordAccountDto).subscribe(() => {
-      this.matSnackBar.open("Thay đổi mật khẩu thành công", "", {
-        duration: 3000,
-        verticalPosition: 'top',
-        horizontalPosition: 'center',
-        panelClass: 'green-snackbar'
-      });
+      this.matSnackBar.showSnackbar("Thay đổi mật khẩu thành công", "success");
       this.editPassAccountForm.reset();
+        window.sessionStorage.clear();
+      this.linkService.reloadComponent();
+      this.router.navigateByUrl("");
     },
       error => {
-        this.message = "Mật khẩu cũ chưa đúng. Vui lòng nhập lại.";
+        this.matSnackBar.showSnackbar("Mật khẩu cũ chưa đúng. Vui lòng nhập lại.", "error");
       });
   }
 }

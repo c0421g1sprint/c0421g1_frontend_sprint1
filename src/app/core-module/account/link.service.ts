@@ -12,9 +12,14 @@ export class LinkService {
     this.behaviorSubject.next();
   }
 
+  reloadLogoutComponent(){
+    this.behaviorSubject.error("error");
+  }
+
   getReloadComponent(){
     return this.behaviorSubject.asObservable();
   }
+
 
   constructor() { }
 

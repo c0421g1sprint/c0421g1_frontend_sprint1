@@ -51,10 +51,9 @@ export class AccountComponent implements OnInit {
           this.storageService.saveTokenSession(next.token);
           this.storageService.saveRolesSession(next.roles);
           this.storageService.saveUsernameSession(next.username);
-          console.log(next);
           this.snackBar.showSnackbar("Chào mừng đến với website C0421G1", "success");
-          this.router.navigateByUrl("");
           this.linkService.reloadComponent();
+          this.router.navigateByUrl("");
         },
         error => {
          this.snackBar.showSnackbar("Wrong password or username", "error")

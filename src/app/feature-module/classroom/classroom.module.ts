@@ -10,11 +10,12 @@ import { ClassroomInputInforComponent } from './classroom-input-infor/classroom-
 import { DialogConfirmCreateComponent } from './dialog-confirm-create/dialog-confirm-create.component';
 import { DialogStudentListComponent } from './dialog-student-list/dialog-student-list.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import { PromoteConfirmComponent } from './promote-confirm/promote-confirm.component';
 
 
 
 @NgModule({
-  declarations: [ClassroomComponent, ClassroomListComponent, ClassroomEditComponent, ClassroomCreateComponent, ClassroomInputInforComponent, DialogConfirmCreateComponent, DialogStudentListComponent],
+  declarations: [ClassroomComponent, ClassroomListComponent, ClassroomEditComponent, ClassroomCreateComponent, ClassroomInputInforComponent, DialogConfirmCreateComponent, DialogStudentListComponent, PromoteConfirmComponent],
   imports: [
     CommonModule,
     ClassroomRoutingModule,

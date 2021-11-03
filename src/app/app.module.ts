@@ -13,6 +13,7 @@ import {ScheduleModule} from "./feature-module/schedule/schedule.module";
 import {NewsModule} from "./feature-module/news/news.module";
 import {TeacherModule} from "./feature-module/teacher/teacher.module";
 
+
 @NgModule({
   declarations: [
     AppComponent,

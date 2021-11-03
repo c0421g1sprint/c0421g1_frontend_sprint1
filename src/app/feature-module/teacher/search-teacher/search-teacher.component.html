@@ -1,0 +1,118 @@
+
+
+<div class="container-fluid" style="margin: 0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form [formGroup]="formSearch">
+          <div class="d-flex">
+            <!--        <input class="form-control me-2" type="search" placeholder="Tìm kiếm giáo viên" aria-label="Search"&ensp>-->
+            <input [(ngModel)]="search" class="form-control" type="search" formControlName="searchInput"
+                   placeholder="Tìm kiếm giáo viên" aria-label="Search" style = "margin-left: -30px">
+            <button (click)="getSearchTeacher(0)" class="btn btn-primary" style="margin-left: 10px">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" fill="currentColor"
+                   class="bi bi-search"
+                   viewBox="0 0 16 16">
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+            </button>
+          </div>
+          <p *ngFor="let msg of validMsg.searchInput">
+            <span *ngIf="formSearch.get('searchInput').hasError(msg.type) && formSearch.get('searchInput').dirty" style="color: red">{{msg.message}}</span>
+          </p>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <table class="table table-striped w-120" style="margin: 0 auto">
+    <thead class="" style="background-color: #1bb1dc;margin: 0;color: whitesmoke">
+    <tr style="text-align: center">
+      <th style="width: 8% ">Mã giáo viên</th>
+      <th style="width: 10%;">Họ tên giáo viên</th>
+      <th style="width:10%">Giới tính</th>
+      <th style="width: 10%;">Ngày sinh</th>
+      <th style="width: 10%;">Số điện thoại</th>
+      <th style="width: 19%;">Địa chỉ</th>
+      <th style="width: 13%;">Chuyên ngành</th>
+      <th style="width: 10%;">Bằng cấp</th>
+      <!--    <th style="width: 10%;">Chủ nhiệm lớp</th>-->
+      <th style="width: 10%;">Ảnh</th>
+
+
+    </tr>
+    </thead>
+    <tbody style="text-align: center; vertical-align: middle">
+    <tr *ngFor="let element of listTeacher,index as i  ">
+      <td>{{getCode(element.teacherId, 2)}}</td>
+      <td>{{element.teacherName}}</td>
+      <td [ngSwitch]="element.teacherGender">
+        <span *ngSwitchCase="1">Nam</span>
+        <span *ngSwitchCase="0">Nữ</span>
+      </td>
+      <td>{{element.teacherDateOfBirth | date: 'dd/MM/yyyy'}}</td>
+      <td>{{element.teacherPhone}}</td>
+      <td>{{element.teacherAddress}}</td>
+      <td>{{element.division.divisionName}}</td>
+      <td>{{element.degree.degreeName}}</td>
+      <!--      <td>{{element.classroom.classroomName}}</td>-->
+      <td><img src ="{{element.teacherImage}}" style="width: 70px ; height: 70px"> </td>
+
+    </tr>
+
+    </tbody>
+  </table>
+  <div style="margin-left: 530px; margin-top: 10px">
+    <ul class="pagination ">
+      <!--      <li class="page-item ">-->
+      <!--        <a class="btn btn-primary mr-2" (click)="firstPage()">First</a>-->
+      <!--      </li>-->
+      <li class="page-item">
+        <button class="page-link" aria-label="Previous" (click)="firstPage()">
+          <span aria-hidden="true">&laquo;</span>
+        </button>
+      </li>
+      <!--      <li class="page-item "><a class="btn btn-primary mr-2" (click)="previousPage()">Previous</a>-->
+      <!--      </li>-->
+      <li class="page-item">
+        <button class="page-link" aria-label="Previous" (click)="previousPage()">
+          <span aria-hidden="true">&laquo;</span>
+        </button>
+        <!--      </li>-->
+        <!--      <li class="page-item"><a class="btn btn-primary mr-2" style="color: black">{{page + 1}}</a></li>-->
+      <li class="page-item">
+        <p class="page-link">{{page + 1}}/{{totalPage}}</p>
+      </li>
+      <input type="number" min="1" max="{{this.totalPage}}"
+             class="page-link bg-light text-dark rounded" placeholder="Nhập số trang"
+             style="width: 140px; height: 38px" [(ngModel)]="pageNumberInput"
+             (change)="searchPage()">
+      <!--      <li class="page-item"><p class="btn btn-primary mr-2" style="color: black">/</p></li>-->
+      <!--      <li class="page-item"><a class="btn btn-primary mr-2" style="color: black">{{totalPage}}</a></li>-->
+      <!--      <li class="page-item"><a class="btn btn-primary mr-2" style="color: black" (click)="nextPage()">Next</a></li>-->
+      <li class="page-item" (click)="nextPage()">
+        <button class="page-link" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </button>
+      </li>
+      <!--      <li class="page-item "><a class="btn btn-primary mr-2" style="color: black" (click)="lastPage()">Last</a></li>-->
+      <li class="page-item">
+        <button class="page-link" aria-label="Previous" (click)="lastPage()">
+          <span aria-hidden="true">&raquo;</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+

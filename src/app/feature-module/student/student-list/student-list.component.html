@@ -1,4 +1,4 @@
-<div style="min-height: 70vh">
+<div style="min-height: 70vh;">
   <div class="container-fluid ">
     <div class="row d-flex justify-content-center">
       <h1 class="mt-5" style="color: #1BB1DC">DANH SÁCH HỌC SINH</h1>
@@ -18,7 +18,7 @@
         <select class="form-control m-3" formControlName="classroom" (change)="toggleButtonChoose()">
           <option selected value="null">--Chọn lớp--</option>
           <option *ngFor="let classroom of classroomSelect" [ngValue]="classroom"
-          [selected]="classroom.classroomId == classroomToShow?.classroomId">{{classroom.classroomName}}</option>
+                  [selected]="classroom.classroomId == classroomToShow?.classroomId">{{classroom.classroomName}}</option>
         </select>
         <div class="w-100">
           <button class="btn m-3 float-right" style="color: white; background-color: #1BB1DC" #buttonChoose disabled>
@@ -32,7 +32,7 @@
         </div>
       </form>
     </div>
-
+    ​
     <!--BLOCKQUOTE-->
     <blockquote *ngIf="classroomToShow==null" class="blockquote text-center mb-0 mt-5">
       <p class="mb-0">Chú thích</p>
@@ -41,7 +41,7 @@
         <cite title="Source Title">học sinh</cite> có trong <cite title="Source Title">lớp học</cite> đã chọn.
       </footer>
     </blockquote>
-
+    ​
     <!--DATA-->
     <div *ngIf="classroomToShow != null">
       <!--TIÊU ĐỀ-->
@@ -51,7 +51,7 @@
             HỌC {{classroomToShow.classroomSchoolYear}}</h1>
           <span class="w-75">GVCN: {{classroomToShow.teacher.teacherName}}</span>
           <button class="btn p-1 mb-1 text-white ml-2" style="background-color: #1BB1DC; "
-          routerLink="/classroom/edit/{{classroomToShow.classroomId}}">
+                  routerLink="/classroom/edit/{{classroomToShow.classroomId}}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                  class="bi bi-pencil-square"
                  viewBox="0 0 16 16">
@@ -70,7 +70,7 @@
       <div>
         <div class="row">
           <button class="btn mb-1" style="position: relative;left: 16px;  color: white; background-color: #1BB1DC;"
-                   (click)="openDialogCreate()">
+                  (click)="openDialogCreate()">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                  class="bi bi-person-plus mb-1" viewBox="0 0 16 16">
               <path
@@ -84,7 +84,7 @@
         <div class="row">
           <div class="col-xl-12 d-flex justify-content-center">
             <div class="w-100" style="overflow-x: scroll">
-              <table class="table table-striped d-inline-block w-100" style="min-width: 1000px">
+              <table class="table table-striped d-inline-block w-100" style="min-width: 1000px" id="studentList">
                 <thead class="" style="background-color: #1bb1dc;">
                 <th style="width: max-content">STT</th>
                 <th style="width: 15%;">Tên</th>
@@ -102,7 +102,7 @@
                   <td style="vertical-align: middle">{{student.studentName}}</td>
                   <td style="vertical-align: middle">{{student.studentDateOfBirth | date: 'dd/MM/yyyy'}}</td>
                   <td style="vertical-align: middle"
-                    [style.color]="student.studentGender == 1 ? '#156d8b' : (student.studentGender == 0 ? 'red' : '#17A2B8')">
+                      [style.color]="student.studentGender == 1 ? '#156d8b' : (student.studentGender == 0 ? 'red' : '#17A2B8')">
                     {{student.studentGender == 1 ? 'Nam' : (student.studentGender == 0 ? 'Nữ' : 'Khác')}}
                   </td>
                   <td style="vertical-align: middle">{{student.studentAddress}}</td>
@@ -151,7 +151,7 @@
             </div>
           </div>
         </div>
-
+        ​
         <!-- Phân trang và button quay lại -->
         <div class="row mt-4">
           <div class="col-12">
