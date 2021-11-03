@@ -16,7 +16,6 @@
             <li *ngIf="role.indexOf('ROLE_USER') != -1"><a [routerLink]="['teacher', 'scheduleTeacher']">Thời khóa biểu lớp đang dạy</a></li>
             <li *ngIf="role.indexOf('ROLE_USER') != -1"><a [routerLink]="['teacher', 'listStudentByTeacher']">Học Sinh trong lớp</a></li>
             <li class="nav-item dropdown" *ngIf="role.indexOf('ROLE_ADMIN') != -1">
-
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" data-toggle="dropdown"
                  aria-haspopup="true" aria-expanded="false">
                 Quản lý
@@ -25,6 +24,7 @@
                 <a class="dropdown-item" routerLink="/students">Quản lý học sinh</a>
                 <a class="dropdown-item" routerLink="/teacher/list">Quản lý giáo viên</a>
                 <a class="dropdown-item" routerLink="/classroom">Quản lý lớp</a>
+                <a class="dropdown-item" routerLink="/students/mark">Quản lý điểm</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -34,19 +34,19 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" routerLink="/students/search">Tìm kiếm học sinh</a>
-                <a class="dropdown-item" [routerLink]="['']">Tìm kiếm giáo viên</a>
+                <a class="dropdown-item" [routerLink]="['teacher', 'search']">Tìm kiếm giáo viên</a>
               </div>
             </li>
-            <li *ngIf="this.username == null" >
+            <li *ngIf="!this.username" >
               <a [routerLink]="['/login']">Đăng nhập</a>
             </li>
             <li *ngIf="this.username" class="nav-item dropdown" >
-              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown"
                  aria-haspopup="true" aria-expanded="false">
                 Chào {{this.username}}
               </a>
               <div class="dropdown-menu" >
-                <a class="dropdown-item" (click)="getOut()"  > Đăng xuất </a>
+                <a class="dropdown-item" data-toggle="modal"  data-target="#exampleModal" > Đăng xuất </a>
                 <a  class="dropdown-item" [routerLink]="['account','editPass', this.username]">Đổi mật khẩu</a>
                 <a *ngIf="role.indexOf('ROLE_USER') != -1" class="dropdown-item" [routerLink]="['teacher', 'update']" >Thông tin cá nhân</a>
               </div>
@@ -55,5 +55,30 @@
         </nav>
       </div>
     </header>
+  </div>
+</div>
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade bg-dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Đăng xuất</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       Bạn có muốn đăng xuất khỏi hệ thống.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="getOut">Close</button>
+        <button type="button" class="btn btn-primary" (click)="getOut()" >Yes</button>
+      </div>
+    </div>
   </div>
 </div>

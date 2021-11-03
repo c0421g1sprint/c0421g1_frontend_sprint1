@@ -1,0 +1,100 @@
+<div class="container-fluid">
+  <h1>Quản lý điểm học sinh</h1>
+  <div class="row d-flex justify-content-center">
+    <form class="mt-4 w-50 d-flex justify-content-center" >
+      <input type="text"  class="form-control m-2" placeholder="Tìm tên học sinh" aria-describedby="basic-addon1" (change)="getName($event)" >
+      <select class="form-control m-2" (change)="getIdSubject($event)">
+        <option selected [value]="0">--Chọn môn--</option>
+        <option *ngFor="let item of subject" [value]="item.subjectId">
+          {{item.subjectName}}
+        </option>
+      </select>
+      <div class="w-100">
+        <button type="submit" class="btn m-2" style="color: white; background-color: #1BB1DC;" (click)="search()"  >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg> Chọn
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <table class="table table-hover">
+        <thead style="background-color: #1BB1DC">
+        <tr>
+          <th>STT</th>
+          <th>Họ và tên</th>
+          <th>Ngày sinh</th>
+          <th>Lớp</th>
+          <th style="width: 10%">Điểm hệ số 1</th>
+          <th style="width: 10%">Điểm hệ số 2</th>
+          <th style="width: 10%">Điểm hệ số 3</th>
+          <th style="width: 10%">Điểm trung bình</th>
+          <th style="width: 10%">Sửa điểm</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let item of marks">
+        <td>{{item.markId}}</td>
+        <td>{{item.student.studentName}}</td>
+        <td>{{item.student.studentDateOfBirth}}</td>
+        <td>{{item.student.classroom.classroomName}}</td>
+        <td style="text-align: center">{{item.markPointNumber1}}</td>
+        <td style="text-align: center">{{item.markPointNumber2}}</td>
+        <td style="text-align: center">{{item.markPointNumber3}}</td>
+        <td
+          style="text-align: center">{{(item.markPointNumber1 + item.markPointNumber2 * 2 + item.markPointNumber3 * 3) / 6 | number: '1.1-2'}}</td>
+        <td>
+          <button class="btn btn-warning" (click)="openDialog(item)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path
+                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </button>
+        </td>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-end">
+      <nav aria-label="Pagination" class="d-flex justify-content-center">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" aria-label="Previous" (click)="previousPage()">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <p class="page-link">{{currentPage + 1}}/{{totalPage}}</p>
+          </li>
+          <li class="page-item">
+            <a class="page-link" aria-label="Next" (click)="nextPage()">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          <li class="page-item ml-2">
+            <div class="input-group">
+              <input type="number" min="1" class="form-control" placeholder="Trang" id="presentPage"
+                     style="width: 100px;" #presentPage onkeydown="return event.keyCode !== 69">
+              <div class="input-group-append">
+                <button class="btn input-group-text" style="background-color: #1BB1DC; color: white;"
+                        (click)="forwardTo(presentPage.value)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                       class="bi bi-arrow-right-square" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4.5 5.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

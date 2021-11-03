@@ -1,0 +1,12 @@
+.bg-color {
+  background-color: #1BB1DC;
+  color: white;
+}
+table{
+  min-width: 1000px;
+}
+
+.table-classroom th{
+  vertical-align: middle;
+  font-size: 16px;
+}

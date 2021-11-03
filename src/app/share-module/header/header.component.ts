@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Router} from "@angular/router";
 import {StorageService} from "../../core-module/account/storage.service";
 import {LinkService} from "../../core-module/account/link.service";
@@ -8,7 +8,7 @@ import {LinkService} from "../../core-module/account/link.service";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit{
   username: string;
   role: string[] = [];
 
@@ -20,6 +20,9 @@ export class HeaderComponent implements OnInit {
       if (this.storage.getToken()) {
         this.username = this.storage.getUsernameFromSession();
         this.role = this.storage.getRole();
+      } else {
+        this.username = '';
+        this.role = [];
       }
     })
   }
@@ -28,6 +31,8 @@ export class HeaderComponent implements OnInit {
     window.sessionStorage.clear();
     this.username = '';
     this.role = [];
-   this.router.navigateByUrl("/login");
+    let ref = document.getElementById("getOut");
+    ref.click();
+    this.router.navigateByUrl("");
   }
 }

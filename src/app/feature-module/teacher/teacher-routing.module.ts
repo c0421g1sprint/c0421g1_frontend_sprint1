@@ -8,6 +8,8 @@ import {ListStudentByTeacherComponent} from "./list-student-by-teacher/list-stud
 import {StudentDetailInListComponent} from "./student-detail-in-list/student-detail-in-list.component";
 import {ScheduleTeacherComponent} from "./schedule-teacher/schedule-teacher.component";
 import {EditInforTeacherComponent} from "./edit-infor-teacher/edit-infor-teacher.component";
+import {UserGuard} from "../../core-module/account/user.guard";
+import {SearchTeacherComponent} from "./search-teacher/search-teacher.component";
 
 
 
@@ -24,14 +26,17 @@ const routes: Routes = [
       {path: 'list', component: ListTeacherComponent},
 
       //Phuc router
-      {path: "scheduleTeacher", component:ScheduleTeacherComponent},
-      {path: "listStudentByTeacher", component: ListStudentByTeacherComponent},
+      {path: "scheduleTeacher", component:ScheduleTeacherComponent , canActivateChild: [UserGuard]},
+      {path: "listStudentByTeacher", component: ListStudentByTeacherComponent, canActivateChild: [UserGuard]},
 
       //Minh router
       {path: 'update', component: EditInforTeacherComponent},
 
       //Phuc router
       {path: "detail-Teacher/:idStudent",component:StudentDetailInListComponent},
+      // Diep router
+      {path: "search",component:SearchTeacherComponent}
+
     ]},
 ];
 

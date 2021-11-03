@@ -1,84 +1,87 @@
 <div class="container">
   <div class="row justify-content-center">
-  <div class="card " style="width: 60%">
+    <div class="card " style="width: 60%">
       <h3 style=" background-color: #1BB1DC ; color: white" class=" card-header text-center "> Thông tin học viên </h3>
-    <div style="background-color: #f5f8fd" class="card-body">
-      <div class="row">
-        <div class="col-3">
-          <div class="card">
-            <img [src]="student?.studentImage" class="img-fluid">
+      <div style="background-color: #f5f8fd" class="card-body">
+        <div class="row">
+          <div class="col-3">
+            <div class="card">
+              <img *ngIf="student?.studentImage ; else elseBlock" [src]="student?.studentImage" class="img-fluid" >
+            </div>
+            <ng-template #elseBlock [ngSwitch]="student.studentGender" >
+              <img *ngSwitchCase="1" src="data:image/png;base64,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" class="img-fluid">
+              <img *ngSwitchCase="0" src="data:image/png;base64,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" class="img-fluid">
+            </ng-template>
           </div>
-        </div>
-        <div class="col-9">
-          <div class="card">
-            <div class="card-body">
-              <table class="table-borderless table-hover" width="100%">
-                <tr>
-                  <th style="width: 40%">Mã số</th>
-                  <td>:</td>
-                  <td>{{student?.studentId}}</td>
-                </tr>
-                <tr>
-                  <th>Họ và tên</th>
-                  <td>:</td>
-                  <td>{{student?.studentName}}</td>
-                </tr>
-                <tr>
-                  <th>Giới tính</th>
-                  <td>:</td>
-                  <div [ngSwitch]="student.studentGender">
-                    <td *ngSwitchCase="1">Nam</td>
-                    <td *ngSwitchCase="0">Nữ</td>
-                  </div>
-                </tr>
-                <tr>
-                  <th>Họ và tên cha</th>
-                  <td>:</td>
-                  <td>{{student?.studentFatherName}}</td>
-                </tr>
-                <tr>
-                  <th>Họ và tên mẹ</th>
-                  <td>:</td>
-                  <td>{{student?.studentMotherName}}</td>
-                </tr>
-                <tr>
-                  <th>Ngày sinh</th>
-                  <td>:</td>
-                  <td>{{student?.studentDateOfBirth}}</td>
-                </tr>
-                <tr>
-                  <th>Dân tộc</th>
-                  <td> :</td>
-                  <td>{{student?.studentEthnicity}}</td>
-                </tr>
-                <tr>
-                  <th>Địa chỉ</th>
-                  <td>:</td>
-                  <td>{{student?.studentAddress}}</td>
-                </tr>
-                <tr>
-                  <th>Số điện thoại bố mẹ</th>
-                  <td>:</td>
-                  <td>{{student?.studentParentPhone}}</td>
-                </tr>
-                <tr>
-                  <th>Tình trạng</th>
-                  <td>:</td>
-                  <td>{{student?.studentStatus}}</td>
-                </tr>
-              </table>
+          <div class="col-9">
+            <div class="card">
+              <div class="card-body">
+                <table class="table-borderless table-hover" width="100%">
+                  <tr>
+                    <th style="width: 40%">Mã số</th>
+                    <td>:</td>
+                    <td>{{student?.studentId}}</td>
+                  </tr>
+                  <tr>
+                    <th>Họ và tên</th>
+                    <td>:</td>
+                    <td>{{student?.studentName}}</td>
+                  </tr>
+                  <tr>
+                    <th>Giới tính</th>
+                    <td>:</td>
+                    <div [ngSwitch]="student.studentGender">
+                      <td *ngSwitchCase="1">Nam</td>
+                      <td *ngSwitchCase="0">Nữ</td>
+                    </div>
+                  </tr>
+                  <tr>
+                    <th>Họ và tên cha</th>
+                    <td>:</td>
+                    <td>{{student?.studentFatherName}}</td>
+                  </tr>
+                  <tr>
+                    <th>Họ và tên mẹ</th>
+                    <td>:</td>
+                    <td>{{student?.studentMotherName}}</td>
+                  </tr>
+                  <tr>
+                    <th>Ngày sinh</th>
+                    <td>:</td>
+                    <td>{{student?.studentDateOfBirth}}</td>
+                  </tr>
+                  <tr>
+                    <th>Dân tộc</th>
+                    <td> :</td>
+                    <td>{{student?.studentEthnicity}}</td>
+                  </tr>
+                  <tr>
+                    <th>Địa chỉ</th>
+                    <td>:</td>
+                    <td>{{student?.studentAddress}}</td>
+                  </tr>
+                  <tr>
+                    <th>Số điện thoại bố mẹ</th>
+                    <td>:</td>
+                    <td>{{student?.studentParentPhone}}</td>
+                  </tr>
+                  <tr>
+                    <th>Tình trạng</th>
+                    <td>:</td>
+                    <td>{{student?.studentStatus}}</td>
+                  </tr>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div style="background-color: #f5f8fd" class="card-footer text-center" (click)="quayLai()">
-      <button style="background-color: #1bb1dc; color: white" class="btn btn-primary"  role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
-      </svg> Quay lại</button>
+      <div style="background-color: #f5f8fd" class="card-footer text-center" (click)="quayLai()">
+        <button style="background-color: #1bb1dc; color: white" class="btn btn-primary"  role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
+        </svg> Quay lại</button>
+      </div>
     </div>
-  </div>
   </div>
 </div>
-

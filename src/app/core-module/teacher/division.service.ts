@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {StorageService} from "../account/storage.service";
 import {Observable} from "rxjs";
-import {IDivision} from "../../entity/IDivision";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DivisionService {
 
-  private baseURL = 'http://localhost:8080/api/teachers/listDivision';
-  constructor(
-    private http: HttpClient
-  ) {}
 
-  findAll(): Observable<IDivision[]>{
-    return this.http.get<IDivision[]>(this.baseURL);
+  private baseURL = 'http://localhost:8080/api/teachers/listDivision';
+  private httpOptions;
+  constructor(private http: HttpClient, private storageService: StorageService) {
+    this.httpOptions ={
+      headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'KIET ' + `${this.storageService.getToken()}`}),
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+    }
+  }
+
+  findAll(): Observable<any>{
+    return this.http.get(this.baseURL, this.httpOptions);
   }
 }

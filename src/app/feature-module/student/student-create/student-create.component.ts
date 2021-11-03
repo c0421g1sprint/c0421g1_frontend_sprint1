@@ -7,6 +7,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {filter, finalize} from 'rxjs/operators';
 import {ClassroomService} from "../../../core-module/classroom/classroom.service";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-student-create',
@@ -15,7 +16,7 @@ import {ClassroomService} from "../../../core-module/classroom/classroom.service
 })
 export class StudentCreateComponent implements OnInit {
 
-  imgSrc: string = '/assets/img/img_placeholder.png';
+  imgSrc: string = './assets/img/img_placeholder1.png';
   selectedImage: any = null;
   isSubmitted: boolean = false;
   newStudent: IStudent;
@@ -29,7 +30,7 @@ export class StudentCreateComponent implements OnInit {
       this.customPatternValid(
         {pattern: /^\s?\S+(?: \S+)*\s?$/, msg: 'Không thể nhập nhiều khoảng trắng.'})
     ]),
-    studentGender: new FormControl('', [Validators.required]),
+    studentGender: new FormControl('0', [Validators.required]),
     studentFatherName: new FormControl('', [Validators.required,
       Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀẾỂưạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/),
       Validators.minLength(5), Validators.maxLength(50),
@@ -77,7 +78,8 @@ export class StudentCreateComponent implements OnInit {
               private router: Router,
               private snackBar: MatSnackBar,
               private classroomService: ClassroomService,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+              private dialogRef: MatDialogRef<any>) {
   }
 
   ngOnInit(): void {
@@ -141,6 +143,7 @@ export class StudentCreateComponent implements OnInit {
               this.classroomService.changeStudentId(id);
               setTimeout(() => {
                 this.showSpinner = false;
+                this.dialogRef.close();
                 this.snackBar.open('Tạo mới học sinh thành công', null, {duration: 3000});
               });
             });
@@ -165,7 +168,7 @@ export class StudentCreateComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       this.selectedImage = event.target.files[0];
     } else {
-      this.imgSrc = '/assets/img/img_placeholder.png';
+      this.imgSrc = './assets/img/img_placeholder1.png';
       this.selectedImage = null;
     }
   }

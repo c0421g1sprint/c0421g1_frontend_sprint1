@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {IClassroom} from "../../../entity/IClassroom";
 import {ClassroomService} from "../../../core-module/classroom/classroom.service";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
+import {PromoteConfirmComponent} from "../promote-confirm/promote-confirm.component";
+import {MatDialog} from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-classroom-list',
@@ -21,7 +24,9 @@ export class ClassroomListComponent implements OnInit {
   classroom: IClassroom;
 
   constructor(private classroomService: ClassroomService,
-              private snackBar: SnackbarService) {
+              private snackBar: SnackbarService,
+              private matDialog: MatDialog,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -78,5 +83,30 @@ export class ClassroomListComponent implements OnInit {
     this.classroomService.findClassroomById(classroomId).subscribe(obj => {
       this.doPromote(obj);
     });
+  }
+
+  openPromoteConfirm(classroom: IClassroom) {
+    let dialog = this.matDialog.open(PromoteConfirmComponent,
+      {
+        width: '500px',
+        data: {
+          name: classroom.classroomName,
+          schoolYear: classroom.classroomSchoolYear,
+          teacher: classroom.teacher.teacherName
+        }
+      });
+    dialog.afterClosed().subscribe(next => {
+        if (next == 'true') {
+          this.promote(classroom.classroomId);
+        }
+      }
+    )
+  }
+
+
+  detailClassroom(classroomId: number) {
+    this.router.navigate(['/students', {
+      "idClassroom": classroomId
+    }])
   }
 }

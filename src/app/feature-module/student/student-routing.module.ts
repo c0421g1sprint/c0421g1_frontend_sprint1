@@ -6,6 +6,7 @@ import {StudentSearchComponent} from "./student-search/student-search.component"
 import {StudentComponent} from "./student.component";
 import {StudentEditComponent} from "./student-edit/student-edit.component";
 import {StudentDetailComponent} from "./student-detail/student-detail.component";
+import {ListMarkComponent} from "./list-mark/list-mark.component";
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
       {path: "", component: StudentListComponent},
       {path: "search", component: StudentSearchComponent},
       {path: "edit/:id", component: StudentEditComponent},
-      {path: "detail/:id", component: StudentDetailComponent}
+      {path: "detail/:id", component: StudentDetailComponent},
+      {path: "mark", component: ListMarkComponent}
     ],
   },
 

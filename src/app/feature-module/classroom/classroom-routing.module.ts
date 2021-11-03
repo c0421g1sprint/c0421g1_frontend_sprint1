@@ -5,11 +5,12 @@ import {ClassroomComponent} from "./classroom.component";
 import {ClassroomEditComponent} from "./classroom-edit/classroom-edit.component";
 import {ClassroomCreateComponent} from "./classroom-create/classroom-create.component";
 import {ClassroomInputInforComponent} from "./classroom-input-infor/classroom-input-infor.component";
+import {AdminGuard} from "../../core-module/account/admin.guard";
 
 
 const routes: Routes = [
   {
-    path: "classroom", component: ClassroomComponent, children: [
+    path: "classroom", component: ClassroomComponent, canActivate: [AdminGuard], children: [
       {
         path: "", component: ClassroomListComponent
       },
@@ -21,7 +22,9 @@ const routes: Routes = [
       },
       {
         path: "inputInfo",component: ClassroomInputInforComponent
-      }
+      },
+
+
     ]
   }
 ];
