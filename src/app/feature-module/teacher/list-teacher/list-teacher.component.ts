@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ITeacher} from "../../../entity/ITeacher";
 import {IDivision} from "../../../entity/IDivision";
 import {TeacherService} from "../../../core-module/teacher/teacher.service";
@@ -17,13 +17,16 @@ import {CreateTeacherComponent} from "../create-teacher/create-teacher.component
 export class ListTeacherComponent implements OnInit {
 
   teacher: ITeacher; // tạo đối tượng teacher
-  teachers: ITeacher [] =[]; //tạo danh sách teacher
+  teachers: ITeacher [] = []; //tạo danh sách teacher
   division: IDivision [] | any = []; //tạo danh sách phòng ban(tao select -option ch)
   totalElement: number = 0; //khởi tạo số phần tử của danh sách giáo viên
   pageObj: any = {page: 0, size: 10} //khởi tạo 1 trang bao gồm thuộc tính : trang hiện tại, số phần tử/trang
   name: string | any = ''; //tạo biến tìm kiếm theo tên
-  divisionId: number | any= ''; //tạo biến tìm kiếm theo phòng ban
+  divisionId: number | any = ''; //tạo biến tìm kiếm theo phòng ban
   responsePage: any; //tạo biến để nhận giá trị Observable
+  totalPages: number = 0;
+  oldName: string = "";
+  oldDivisionId: number = -1;
 
   constructor(private teacherService: TeacherService,
               private router: Router,
@@ -40,41 +43,40 @@ export class ListTeacherComponent implements OnInit {
   }
 
   //gọi ra danh sách phòng ban theo api - LinhDN
-  getAllDivision(){
-    this.divisionService.findAll().subscribe(division=>{
+  getAllDivision() {
+    this.divisionService.findAll().subscribe(division => {
       this.division = division;
       console.log(this.division)
     })
   }
 
+//
+
   //hien thi danh sach theo tu khoa tim kiem && phong ban - LinhDN
   getAllAndSearchByKeywordAndDivision(page: any) {
-    console.log(this.name);
-    console.log(this.divisionId);
-    console.log(page)
-    if ((this.name||this.divisionId)!="") {  //fix lỗi: đứng ở trang 2,3..: không tìm được infor object trang 0/1 --> khi tìm kiếm --> cho về page = 0
-      this.pageObj.page = 0;
+    if ((this.name || this.divisionId) != "") {  //fix lỗi: đứng ở trang 2,3..: không tìm được infor object trang 0/1 --> khi tìm kiếm --> cho về page = 0
+      if(!(this.name == this.oldName && this.divisionId == this.oldDivisionId)){
+        this.pageObj.page = 0;
+        this.oldName = this.name;
+        this.oldDivisionId = this.divisionId;
+      }
     }
     let name = this.name.trim(); //bỏ ký tự trắng ở đầu khi nhập keyword tìm kiếm
     this.teacherService.findAllbyAllField(page, name, this.divisionId).subscribe(data => {
       this.responsePage = data;
-      console.log('response page: ')
-      console.log(data)
       this.teachers = this.responsePage['content'];   //mảng chứa các phần tử (per page)
-      this.totalElement = this.responsePage['totalElement']; //tổng số phần tử
-    },error => {
-      if (this.divisionId==0){ //neu nguoi dung chon option"Chon phong ban - ~ value = 0 thi chi tim kiem theo ten
+      this.totalElement = this.responsePage['totalElements']; //tổng số phần tử
+      this.totalPages = this.responsePage['totalPages']
+    }, error => {
+      if (this.divisionId == 0) { //neu nguoi dung chon option"Chon phong ban - ~ value = 0 thi chi tim kiem theo ten
         this.teacherService.findAllbyName(page, name).subscribe(data => {
           this.responsePage = data;
-          console.log('response page: ')
-          console.log(data)
           this.teachers = this.responsePage['content'];   //mảng chứa các phần tử (per page)
-          this.totalElement = this.responsePage['totalElement']; //tổng số phần tử
-        },error => {
+          this.totalElement = this.responsePage['totalElements']; //tổng số phần tử
+        }, error => {
           this.snackBar.showSnackbar("Không tìm thấy dữ liệu giáo viên", 'error');
         })
-      }else {
-        console.log("error")
+      } else {
         this.snackBar.showSnackbar("Không tìm thấy dữ liệu giáo viên", 'error');
       }
 
@@ -83,7 +85,7 @@ export class ListTeacherComponent implements OnInit {
   }
 
   // mo ra dialog xoa giao vien - LinhDN
-  openDeleteDialog(id: number, nameTeacher: String){
+  openDeleteDialog(id: number, nameTeacher: String) {
     let dialog = this.dialog.open(DialogDeleteComponent, {
       data: {
         id: id,
@@ -93,7 +95,7 @@ export class ListTeacherComponent implements OnInit {
     });
     dialog.afterClosed().subscribe(nextClose => {
       if (nextClose == `true`) {
-        this.teacherService.delete(id,this.teacher).subscribe(data => {
+        this.teacherService.delete(id, this.teacher).subscribe(data => {
           console.log(data);
           this.snackBar.showSnackbar("Xoá giáo viên " + name + " thành công", "success");
           this.ngOnInit();
@@ -111,6 +113,7 @@ export class ListTeacherComponent implements OnInit {
   //trang tiep theo - LinhDN
   nextPage() {
     this.pageObj['page']++;
+    console.log(this.pageObj['page'])
     this.getAllAndSearchByKeywordAndDivision(this.pageObj);
   }
 
@@ -119,14 +122,14 @@ export class ListTeacherComponent implements OnInit {
     console.log("page")
     console.log(this.responsePage.totalPages)
     console.log(value);
-    if (value == null){
+    if (value == null) {
       this.snackBar.showSnackbar("Vui lòng nhập số trang cần tìm", 'error');
     }
-    if (Number(value)<=this.responsePage.totalPages&&Number(value)>0&&Number(value)%1==0){
-      this.pageObj['page'] = Number(value)-1
-      console.log(this.pageObj['page'] )
+    if (Number(value) <= this.responsePage.totalPages && Number(value) > 0 && Number(value) % 1 == 0) {
+      this.pageObj['page'] = Number(value) - 1
+      console.log(this.pageObj['page'])
       this.getAllAndSearchByKeywordAndDivision(this.pageObj);
-    }else {
+    } else {
       this.snackBar.showSnackbar("Trang cần tìm không hợp lệ", 'error');
     }
   }
@@ -144,12 +147,12 @@ export class ListTeacherComponent implements OnInit {
   }
 
   // router sang chức năng tạo mới - LinhDN
-  movePageCreateTeacher(){
+  movePageCreateTeacher() {
     this.router.navigateByUrl("/teacher/create");
   }
 
   openDialogCreate() {
-    let dialog = this.dialog.open(CreateTeacherComponent,{
+    let dialog = this.dialog.open(CreateTeacherComponent, {
       // maxHeight:'250px',
       // backdropClass:'red',
       maxWidth: '650px',
@@ -159,6 +162,7 @@ export class ListTeacherComponent implements OnInit {
   movePageCreateAccount() {
     this.router.navigateByUrl("/teacher/account/create")
   }
+
   movePageDetailAccount() {
     this.router.navigateByUrl("/teacher/detail/create")
   }
