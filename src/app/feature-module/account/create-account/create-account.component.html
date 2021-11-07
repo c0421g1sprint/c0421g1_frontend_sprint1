@@ -1,1 +1,95 @@
-<p>create-account works!</p>
+
+<form class="w-75 mx-auto mt-3" [formGroup]="formAddNewAccount">
+  <div class="container-fluid" style="padding-top: 10px; padding-bottom: 20px">
+    <div class="form-group">
+      <label for="name" style="color: #1BB1DC" class="font-weight-bold">
+        Tài Khoản<span
+        style="color: red">*</span> :
+      </label>
+      <input type="text" class="form-control" id="name" formControlName="accountUsername">
+      <small
+        *ngIf="formAddNewAccount.controls.accountUsername.errors?.required && formAddNewAccount.controls.accountUsername.touched"
+        class="text-danger">Vui lòng nhập thông tin
+      </small>
+      <small
+        *ngIf="formAddNewAccount.controls.accountUsername.errors?.pattern && formAddNewAccount.controls.accountUsername.touched"
+        class="text-danger">Tài khoản lớn hơn 8 và nhở hơn 30 ký tự và không có ký tự đặc biệt
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="accountPassword" style="color: #1BB1DC" class="font-weight-bold">Mật Khẩu<span
+        style="color: red">*</span> :
+      </label>
+      <input type="password" class="form-control" id="accountPassword" formControlName="accountPassword">
+      <small
+        *ngIf="formAddNewAccount.controls.accountPassword.errors?.required && formAddNewAccount.controls.accountPassword.touched"
+        class="text-danger">Vui lòng nhập thông tin
+      </small>
+      <small
+        *ngIf="formAddNewAccount.controls.accountPassword.errors?.pattern && formAddNewAccount.controls.accountPassword.touched"
+        class="text-danger">Mật Khẩu lớn hơn 8 và nhở hơn 30 ký tự và không có ký tự đặc biệt(Mật khẩu phải có cả chữ và
+        số)
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="email" style="color: #1BB1DC" class="font-weight-bold">Nhập Lại Mật Khẩu:<span
+        style="color: red">*</span> :
+      </label>
+      <input type="password" class="form-control" id="email" formControlName="confirmPassword">
+      <small
+        *ngIf="formAddNewAccount.controls.confirmPassword.errors?.required && formAddNewAccount.controls.confirmPassword.touched"
+        class="text-danger">Vui lòng nhập thông tin
+      </small>
+      <small
+        *ngIf="formAddNewAccount.controls.confirmPassword.errors?.confirmedValidator" class="text-danger">Mật Khẩu
+        không trùng khớp
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="email" style="color: #1BB1DC" class="font-weight-bold">Email:<span
+        style="color: red">*</span> :
+      </label>
+      <input type="email" class="form-control" formControlName="email">
+      <small
+        *ngIf="formAddNewAccount.controls.email.errors?.required && formAddNewAccount.controls.email.touched"
+        class="text-danger">Vui lòng nhập thông tin
+      </small>
+      <!--      <small-->
+      <!--        *ngIf="formAddNewAccount.controls.email.errors?.pattern && formAddNewAccount.controls.email.touched"-->
+      <!--        class="text-danger">email k đúng định dạng-->
+      <!--      </small>-->
+    </div>
+    <div class="modal-footer">
+      <button mat-dialog-close  type="button" class="btn btn-danger" data-dismiss="modal" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+             fill="currentColor"
+             class="bi bi-x-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path
+            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+        Huỷ
+      </button>
+      <button type="reset" class="btn btn-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+             fill="currentColor"
+             class="bi bi-eraser" viewBox="0 0 16 16">
+          <path
+            d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414l-3.879-3.879zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+        </svg>
+        Xoá biểu mẫu
+      </button>
+      <button type="submit" class="btn btn-info"
+              (click)="addWewAccount()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+             fill="currentColor"
+             class="bi bi-plus-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path
+            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+        </svg>
+        Thêm mới tài khoản
+      </button>
+    </div>
+  </div>
+</form>

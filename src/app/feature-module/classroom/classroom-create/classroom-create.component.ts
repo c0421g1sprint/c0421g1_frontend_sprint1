@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ClassroomService} from "../../../core-module/classroom/classroom.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 
 @Component({
   selector: 'app-classroom-create',
@@ -15,7 +15,7 @@ export class ClassroomCreateComponent implements OnInit {
   constructor(private classroomService: ClassroomService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private snackBar: MatSnackBar) {
+              private snackBar: SnackbarService) {
   }
 
   ngOnInit(): void {
@@ -24,24 +24,18 @@ export class ClassroomCreateComponent implements OnInit {
   //HaNTT 27/10 - 1:45
   checkClassroomDuplicated(inputClassName: string) {
     this.className = inputClassName;
-    console.log(inputClassName);
     this.classroomService.isClassDuplicated(inputClassName, this.schoolYear).subscribe(data => { //trùng - invalid
-        this.snackBar.open("Lớp " + this.className + " niên khóa " +
-          this.schoolYear + " đã tồn tại! Vui lòng nhập tên khác.", null, {duration: 4000});
-        console.log(data);
+        this.snackBar.showSnackbar("Lớp " + this.className + " niên khóa " +
+          this.schoolYear + " đã tồn tại!", "error");
       }, error => {
-        console.log("create component-checkDupplicate-không trùng: ")
         this.classroomService.changeClassName(inputClassName);
         //chuyển trang:
-        if (this.className != '' && this.className.match('^(1A)[1-9]$')) {
+        if (this.className != '' && this.className.match('^1A(([1-9])|(1[0-9]))$')) {
           this.router.navigateByUrl('/classroom/inputInfo');
         }
       }
     );
   }
-
-  //
-
 
   //validate className:
   checkPattern: boolean = true;
@@ -49,7 +43,7 @@ export class ClassroomCreateComponent implements OnInit {
 
   checkName(className: string) {
     //checkPattern;
-    const regex = '^(1A)[1-9]$';
+    const regex = '^1A(([1-9])|(1[0-9]))$';
     this.checkPattern = !!className.match(regex);
     //check name blank:
     this.checkRequired = className != '';

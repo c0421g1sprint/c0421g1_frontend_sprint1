@@ -2,11 +2,9 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {IMark} from "../../../entity/IMark";
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {MarkService} from "../../../core-module/student/mark.service";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
-
 
 @Component({
   selector: 'app-mark-edit',
@@ -17,25 +15,23 @@ export class MarkEditComponent implements OnInit {
 
   //MinhNN update 02/11
   editMarkForm: FormGroup = new FormGroup({
+    markId: new FormControl(''),
     markPointNumber1: new FormControl('', [Validators.required,Validators.min(0),Validators.max(10),Validators.pattern("^[0-9]*-?\\d*[.,]?\\d{0,2}$"),]),
     markPointNumber2: new FormControl('',[Validators.required,Validators.min(0),Validators.max(10),Validators.pattern("^[0-9]*-?\\d*[.,]?\\d{0,2}$")]),
     markPointNumber3: new FormControl('',[Validators.required,Validators.min(0),Validators.max(10),Validators.pattern("^[0-9]*-?\\d*[.,]?\\d{0,2}$")]),
-    markId: new FormControl(''),
     student: new FormControl(''),
     subject: new FormControl('')
   })
- ;
+  ;
   iMark: IMark;
 
   constructor(private markService: MarkService,private route: Router, private snackBar: SnackbarService,
               @Inject(MAT_DIALOG_DATA) private data : any) {
-
   }
 
   ngOnInit(): void {
     this.getMark(this.data.obj.markId);
   }
-
   getMark(id: number){
     this.markService.findById(id).subscribe(next=> {
       this.iMark = next;
@@ -46,7 +42,7 @@ export class MarkEditComponent implements OnInit {
   updateMark() {
     this.markService.update(this.editMarkForm.value).subscribe(next => {
       console.log(next);
-      this.route.navigateByUrl("/mark")
+      this.route.navigateByUrl("/students/mark")
       this.snackBar.showSnackbar("Cập nhật thành công!", "success")
     })
   }

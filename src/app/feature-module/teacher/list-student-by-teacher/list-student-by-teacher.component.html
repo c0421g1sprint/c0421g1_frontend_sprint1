@@ -1,4 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 150px">
 
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" routerLink="/abc" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Lịch dạy
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/listStudentByTeacher">Lớp chủ nhiệm</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
 
 <div *ngIf="students; else test" >
   <div class="container-fluid" >
@@ -6,7 +26,7 @@
     <!--TIÊU ĐỀ-->
     <div class="row mt-3 mb-3">
       <div class="col-md-12 text-center">
-        <h1 style="color: #1BB1DC;">Danh sách học sinh lớp {{students[0].classroom.classroomName}}</h1>
+        <h1 style="color: #1BB1DC;">Danh sách học sinh lớp {{students[0].classroomName}}</h1>
       </div>
     </div>
     <!--BẢNG DỮ LIỆU-->
@@ -14,14 +34,12 @@
       <div class="row">
         <div class="col-md-12 d-flex justify-content-center">
           <table class="table table-striped w-100 mt-2 mb-2">
-            <thead class="te" style="background-color: #1bb1dc">
+            <thead class="te" style="background-color: #1bb1dc;color: white">
 
             <th scope="col">Số Thứ Tự</th>
             <th scope="col">Họ và tên</th>
             <th scope="col">Ngày sinh</th>
             <th scope="col">Địa chỉ</th>
-            <th scope="col">Số điện thoại </th>
-            <th scope="col">Dân tộc</th>
 
             <th scope="col">Chi Tiết</th>
 
@@ -34,9 +52,6 @@
 
               <td>{{student.studentDateOfBirth}}</td>
               <td>{{student.studentAddress}}</td>
-              <td>{{student.studentParentPhone}}</td>
-              <td>{{student.studentEthnicity}}</td>
-
 
               <td>
                 <a [routerLink]="['/teacher/detail-Teacher',student.studentId]">
@@ -107,8 +122,3 @@
 <ng-template #test>
   <h1 style="color: red;text-align: center">Giaó viên này chưa dạy lớp nào</h1>
 </ng-template>
-
-
-
-
-

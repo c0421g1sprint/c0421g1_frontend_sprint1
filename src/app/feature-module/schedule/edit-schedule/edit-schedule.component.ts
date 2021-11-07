@@ -10,6 +10,7 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {ScheduleDetailService} from "../../../core-module/schedule/schedule-detail.service";
 import {HttpHeaders} from "@angular/common/http";
 import {DialogScheduleComponent} from "../dialog-schedule/dialog-schedule.component";
+import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 
 @Component({
   selector: 'app-edit-schedule',
@@ -31,7 +32,7 @@ export class EditScheduleComponent implements OnInit {
   constructor(private scheduleService: ScheduleDetailService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private snackBar: MatSnackBar,
+              private snackBar: SnackbarService,
               private dialog: MatDialog) {
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -114,11 +115,11 @@ export class EditScheduleComponent implements OnInit {
       console.log(next);
       if (next == 'true') {
         this.scheduleService.updateSchedule(this.scheduleSubject).subscribe(next => {
-          this.snackBar.open("Cập nhật thời khóa biểu thành công", null, {duration: 3000,horizontalPosition: "center",verticalPosition: "top"});
-      });
+          this.snackBar.showSnackbar('Cập nhật thời khóa biểu thành công','success');
+        });
       }
     },error => {
-      this.snackBar.open("Cập nhật thời khóa biểu thất bại",null,{duration: 3000,horizontalPosition: "center",verticalPosition: "top"})
+      this.snackBar.showSnackbar('Cập nhật thời khóa biểu thất bại','error')
     });
   }
 

@@ -19,9 +19,6 @@ import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
-
-
-
 @NgModule({
   declarations: [
     DialogDeleteComponent,
@@ -60,6 +57,6 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
   ]
 
 })
-export class ShareModule { }
+export class ShareModule {
 
-
+}

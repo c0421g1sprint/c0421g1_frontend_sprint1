@@ -6,11 +6,13 @@ import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/form
 import {TeacherService} from "../../../core-module/teacher/teacher.service";
 import {DegreeService} from "../../../core-module/teacher/degree.service";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 import {AngularFireStorage} from "@angular/fire/storage";
 import {DivisionService} from "../../../core-module/teacher/division.service";
 import {ITeacher} from "../../../entity/ITeacher";
 import {finalize} from "rxjs/operators";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
+import {ListTeacherComponent} from "../list-teacher/list-teacher.component";
 @Component({
   selector: 'app-create-teacher',
   templateUrl: './create-teacher.component.html',
@@ -22,7 +24,7 @@ export class CreateTeacherComponent implements OnInit {
   selectedFile: File = null;
   image;
   downloadURL: Observable<string>;
-  imgSrc: string = "/assets/img/avartar.png";
+  imgSrc: string = '/assets/img/avt.png';
   selectedImage: any = null;
   teacherForm: FormGroup = new FormGroup({
     teacherName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]),

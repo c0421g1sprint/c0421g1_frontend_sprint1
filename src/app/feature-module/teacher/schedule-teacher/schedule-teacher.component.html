@@ -1,9 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 100px">
 
-<h3 style="text-align: center">Lịch dạy </h3>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" routerLink="/abc" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Lịch dạy
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/listStudentByTeacher">Lớp chủ nhiệm</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<h1  style="color: #1BB1DC;text-align: center">Lịch dạy lớp {{nameClass}}</h1>
 
 <div class="table-responsive" style="margin-top: 10px">
-  <table class="table  table-striped" style="width: 800px;margin: 0px auto">
-    <thead style="background-color: #1BB1DC">
+  <table class="table  table-striped">
+    <thead style="background-color: #1BB1DC; color: white">
     <tr>
       <th>Tiết</th>
       <th>Thứ Hai</th>
@@ -14,18 +33,16 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let time of times">
-      <td>{{time}}</td>
-      <td *ngFor="let day of days">
+    <tr *ngFor="let day of days">
+      <th>{{day}}</th>
+      <td *ngFor="let time of times">
         <ng-container *ngFor="let schedule of scheduleDetails">
-
-          <p *ngIf="schedule.studyDayTime.studyDayTimeStudyTime == time && schedule.studyDayTime.studyDayTimeStudyDay == day">
-            {{schedule.subject.subjectName}}
-          </p>
+          <span *ngIf="schedule.studyTime == time && schedule.studyDay == day">
+            {{schedule.subjectName}}
+          </span>
         </ng-container>
       </td>
     </tr>
-
     </tbody>
   </table>
 </div>

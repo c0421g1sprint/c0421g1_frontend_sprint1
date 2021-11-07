@@ -19,7 +19,8 @@ export class ListStudentByTeacherService {
     }
   }
 
-  getListStudentByIdTeacher(nameTeacher: string, page: number): Observable<any>{
-    return this.httpClient.get<any>(this.API +  '/?userName=' + nameTeacher + '&page=' + page, this.httpOptions);
+  getListStudentByIdTeacher(userName: any, page: any): Observable<any>{
+    return this.httpClient.get<any>(this.API +  '/?userName=' + userName + '&page=' + page, this.httpOptions);
   }
+
 }

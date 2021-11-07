@@ -20,6 +20,6 @@ export class DivisionService {
   }
 
   findAll(): Observable<any>{
-    return this.http.get(this.baseURL, this.httpOptions);
+    return this.http.get(this.baseURL);
   }
 }

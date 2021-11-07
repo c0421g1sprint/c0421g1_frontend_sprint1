@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import { SnackbarService } from 'src/app/core-module/snackbar/snackbar.service';
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TeacherService} from "../../../core-module/teacher/teacher.service";
+import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
+import {IDivision} from "../../../entity/IDivision";
+import {DivisionService} from "../../../core-module/teacher/division.service";
 
 
 @Component({
@@ -12,19 +13,23 @@ import {TeacherService} from "../../../core-module/teacher/teacher.service";
 })
 export class SearchTeacherComponent implements OnInit {
 
-
-
   page = 0;
   totalPage: number;
+  divisionList: IDivision [];
+  division: number | any = ''; //tạo biến tìm kiếm theo phòng ban
+  pageObj: any = {page: 0, size: 10} //khởi tạo 1 trang bao gồm thuộc tính : trang hiện tại, số phần tử/trang
+
 
   listTeacher;
   search = '';
   formSearch: FormGroup;
   pageNumberInput: any;
+  oldName: string = "";
+  oldDivisionId: number = -1;
 
 
-  constructor(private teacherService: TeacherService,  private snackbarService: SnackbarService,
-              private snackBar: MatSnackBar) {
+  constructor(private teacherService: TeacherService, private snackbarService: SnackbarService,
+              private divisionService: DivisionService) {
     this.formSearch = new FormGroup(
       {searchInput: new FormControl('', Validators.maxLength(20))}
     )
@@ -36,21 +41,42 @@ export class SearchTeacherComponent implements OnInit {
     ]
   }
 
+  getAllDivision() {
+    this.divisionService.findAll().subscribe(division => {
+      this.divisionList = division;
+      console.log(this.divisionList);
+    })
+  }
+
   ngOnInit(): void {
+    this.getAllDivision();
     this.getListTeacher(0);
     console.log(this.getListTeacher(0));
   }
 
 
   getListTeacher(pageable) {
-    this.search = '';
-    this.teacherService.getAllTeacherBySearch(this.search, pageable).subscribe(data => {
+    if ((this.search || this.division) != "") {  //fix lỗi: đứng ở trang 2,3..: không tìm được infor object trang 0/1 --> khi tìm kiếm --> cho về page = 0
+      if (!(this.search == this.oldName && this.division == this.oldDivisionId)) {
+        this.pageObj.page = 0;
+        this.oldName = this.search;
+        this.oldDivisionId = this.division;
+      }
+    }
+    this.search = this.search.trim(); //bỏ ký tự trắng ở đầu khi nhập keyword tìm kiếm
+    this.teacherService.getAllTeacherBySearch(this.search, this.division, pageable).subscribe(data => {
       this.listTeacher = data.content;
       this.totalPage = data.totalPages;
       console.log(this.totalPage);
       console.log(this.listTeacher);
     }, error => console.log(error));
   }
+
+  getDivision($event: any) {
+    this.division = $event.target.value;
+    console.log(this.division)
+  }
+
 
   searchTeacher(pageable) {
     this.search = this.search.replace('GV-', '');
@@ -66,14 +92,14 @@ export class SearchTeacherComponent implements OnInit {
 
   getSearchTeacher(pageable) {
 
-    this.teacherService.getAllTeacherBySearch(this.search, pageable).subscribe(data => {
+    this.teacherService.getAllTeacherBySearch(this.search, this.division, pageable).subscribe(data => {
         this.listTeacher = data.content;
         this.totalPage = data.totalPages;
         console.log(this.listTeacher);
         this.page = 0;
       },
       error => {
-        console.log("error " + error + " etgsdgsfgdgdsg" );
+        console.log("error " + error + " etgsdgsfgdgdsg");
         this.snackbarService.showSnackbar("Không tìm thấy giáo viên cần tìm", "error");
       });
   }
@@ -100,6 +126,8 @@ export class SearchTeacherComponent implements OnInit {
   nextPage() {
     if (this.page < this.totalPage - 1) {
       this.page = this.page + 1;
+      this.pageObj['page']++;
+
     }
     console.log(this.page);
     this.getListTeacher(this.page);
@@ -137,7 +165,5 @@ export class SearchTeacherComponent implements OnInit {
     }
     this.getListTeacher(this.pageNumberInput)
   }
-
-
 
 }

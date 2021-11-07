@@ -78,4 +78,8 @@ export class EditPasswordComponent implements OnInit {
         this.matSnackBar.showSnackbar("Mật khẩu cũ chưa đúng. Vui lòng nhập lại.", "error");
       });
   }
+
+  backHome() {
+    this.router.navigateByUrl("");
+  }
 }

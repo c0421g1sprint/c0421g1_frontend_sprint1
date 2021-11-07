@@ -27,13 +27,12 @@ import {TeacherModule} from "./feature-module/teacher/teacher.module";
     ClassroomModule,
     StudentModule,
     ScheduleModule,
-    ShareModule,
     NewsModule,
-    TeacherModule
+    TeacherModule,
+    ShareModule
   ],
 
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule{}

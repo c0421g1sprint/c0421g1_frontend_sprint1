@@ -10,7 +10,6 @@ import {StorageService} from "../account/storage.service";
 export class TeacherService {
 
   private url = 'http://localhost:8080/api/teachers';
-
   private baseUrlTeacherCreate = 'http://localhost:8080/api/teachers/new';
   private baseUrlTeacherUpdate = 'http://localhost:8080/api/teachers/update';
   private httpOptions;
@@ -22,12 +21,14 @@ export class TeacherService {
       'Access-Control-Allow-Origin': 'http://localhost:4200',
       'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
     }
-
   }
 
   // diep search teacher 00h25 ngày 3/11
-  getAllTeacherBySearch(search: any, pageable: any): Observable<any> {
-    return this.http.get<any>(this.url + '/search?search=' + search + '&page=' + pageable, this.httpOptions);
+  // getAllTeacherBySearch(search: any, pageable: any): Observable<any> {
+  //   return this.http.get<any>(this.url + '/search?search=' + search + '&page=' + pageable, this.httpOptions);
+  // }
+  getAllTeacherBySearch(search: any, division: any, pageable: any): Observable<ITeacher | any> {
+    return this.http.get<any>(this.url + '/search?search=' + search + '&division=' + division + '&page=' + pageable);
   }
 
   //HaNTT, 26/20/2021 - 11:00 AM (list teacher chưa có lớp chủ nhiệm)

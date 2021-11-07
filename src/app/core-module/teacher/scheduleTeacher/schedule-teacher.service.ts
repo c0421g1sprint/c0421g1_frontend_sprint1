@@ -19,7 +19,8 @@ export class ScheduleTeacherService {
       'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
     }
   }
-  getScheduleDetail(username: string): Observable<any> {
-    return this.httpClient.get<any>(this.API+ '?userName=' + username, this.httpOptions);
+
+  getScheduleDetail(userName: any): Observable<any> {
+    return this.httpClient.get<any>(this.API+ '/?userName=' + userName, this.httpOptions);
   }
 }

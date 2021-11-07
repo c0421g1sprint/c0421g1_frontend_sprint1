@@ -56,10 +56,10 @@ export class AccountComponent implements OnInit {
           this.router.navigateByUrl("");
         },
         error => {
-         this.snackBar.showSnackbar("Wrong password or username", "error")
+         this.snackBar.showSnackbar("Sai tên mật khẩu hoặc tài khoản", "error")
         })
     }else {
-      this.snackBar.showSnackbar("Username and password must enter", "error");
+      this.snackBar.showSnackbar("Mời bạn nhập tên đăng nhập và mật khẩu", "error");
     }
   }
 

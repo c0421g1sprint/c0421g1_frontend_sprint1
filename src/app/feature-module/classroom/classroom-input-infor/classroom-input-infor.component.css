@@ -8,22 +8,27 @@ h1 {
   background-color: #1BB1DC !important;
   color: white !important;
 }
+
 #tableClassInfo thead th {
   align-items: center;
   padding: 0;
 }
 
-#tableClassInfo{
+#tableClassInfo {
   width: 25%;
   min-width: 300px;
 }
-#tableContentThead {
+
+#tableContentThead th {
+  vertical-align: middle;
   background-color: #1BB1DC;
   color: white;
 }
 
 #tableContent {
-  min-width: 1000px;
+  min-width: 1200px;
+  background-color: white;
+
 }
 
 .phone {
@@ -41,32 +46,24 @@ p {
   text-align: center;
 }
 
-.container-fluid {
-  padding: 0 15px 0 15px;
-  font-size: 18px;
-  /*border-color: #000;;*/
-}
-
 ul {
   margin-top: 1rem;
   margin-bottom: 1rem;
   margin-left: 42%;
 }
 
-#setWidthPhone {
-  width: 300px;
+#setWidth200{
+  width: 250px;
 }
 .setWidthParent {
   width: 300px;
 }
+
 #phoneTd {
   padding-left: 40px;
 }
 
 .setBackground {
   font-size: 18px;
-  background-color: white;
-}
-#tableContentThead th {
-  vertical-align: middle;
+  padding: 0 15px 0 15px;
 }

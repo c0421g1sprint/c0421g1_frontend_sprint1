@@ -6,12 +6,12 @@ import {StudentService} from "../../../core-module/student/student.service";
 import {TeacherService} from "../../../core-module/teacher/teacher.service";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {DialogConfirmCreateComponent} from "../dialog-confirm-create/dialog-confirm-create.component";
 import {SnackbarComponent} from "../../../share-module/snackbar/snackbar.component";
 import {DialogDeleteComponent} from "../../../share-module/dialog-delete/dialog-delete.component";
 import {StudentCreateComponent} from "../../student/student-create/student-create.component";
 import {DialogStudentListComponent} from "../dialog-student-list/dialog-student-list.component";
+import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 
 @Component({
   selector: 'app-classroom-input-infor',
@@ -39,7 +39,7 @@ export class ClassroomInputInforComponent implements OnInit {
     console.log(typeof inputPage);
     console.log(totalPage)
     if (inputPage < 1 || inputPage > totalPage) {
-      this.snackBar.open("Vui lòng nhập số trang hợp lệ! (Tổng số trang: " + totalPage + ")", "error", {duration: 4000})
+      this.snackBar.showSnackbar("Vui lòng nhập số trang hợp lệ! (Tổng số trang: " + totalPage + ")", "error")
     } else {
       this.page = inputPage
     }
@@ -50,7 +50,7 @@ export class ClassroomInputInforComponent implements OnInit {
               private teacherService: TeacherService,
               private dialog: MatDialog,
               private router: Router,
-              private snackBar: MatSnackBar) {
+              private snackBar: SnackbarService) {
   }
 
   //HaNTT:
@@ -125,9 +125,7 @@ export class ClassroomInputInforComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result == 'true'){
-        this.getStudentListChecked(); // để đây???
-        console.log('list học sinh sau cập nhật từ dialog: ');
-        console.log(this.studentListSelected);
+        this.getStudentListChecked();
       }
     });
   }
@@ -137,11 +135,11 @@ export class ClassroomInputInforComponent implements OnInit {
     console.log("-------vao event---------")
 
     if (this.className == '') {
-      this.snackBar.open("Vui lòng nhập tên lớp.", null, {duration: 2000})
+      this.snackBar.showSnackbar("Vui lòng nhập tên lớp.", "error")
     } else if (this.teacherSelected == undefined) {
-      this.snackBar.open("Vui lòng thêm chọn giáo viên chủ nhiệm.", null, {duration: 2000})
+      this.snackBar.showSnackbar("Vui lòng thêm chọn giáo viên chủ nhiệm.", "error")
     } else if (this.studentListSelected.length == 0) {
-      this.snackBar.open("Bạn chưa tạo học sinh nào. Vui lòng thêm học sinh cho lớp.", null, {duration: 2000})
+      this.snackBar.showSnackbar("Bạn chưa tạo học sinh nào. Vui lòng thêm học sinh cho lớp.", "error")
     } else {
       let dialogRef = this.dialog.open(DialogConfirmCreateComponent, {
         width: '600px',
@@ -156,28 +154,13 @@ export class ClassroomInputInforComponent implements OnInit {
         console.log(next);
         if (next == 'true') {
           if (this.studentListSelected.length != 0 && this.className != '') {
-            this.openSnackBar();
+            this.snackBar.showSnackbar("Tạo Lớp" + this.className + ", GVCN: " + this.teacherSelected.teacherName, "success")
             this.router.navigateByUrl("/classroom");
           } else {
-            this.snackBar.open("Vui lòng nhập đầy đủ tên lớp và đảm bảo danh sách lớp không rỗng", null, {duration: 4000})
-          }
+            this.snackBar.showSnackbar("Vui lòng nhập đầy đủ tên lớp và đảm bảo danh sách lớp không rỗng", "error")}
         }
       });
     }
-  }
-
-  //HaNTT: Create message - snackBar báo đã tạo lớp....
-  private openSnackBar() {
-    this.snackBar.openFromComponent(SnackbarComponent, {
-      data: {
-        // classroomName: this.className,
-        // teacher: this.teacherSelected,
-        // studentAmount: this.studentListSelected.length,
-        // schoolYear: this.schoolYear
-        message: "Tạo lớp thành công!"
-      },
-      duration: 6000
-    });
   }
 
   //HaNTT: Dialog xóa học sinh khỏi lớp:
@@ -202,7 +185,7 @@ export class ClassroomInputInforComponent implements OnInit {
     this.studentListSelected.splice(this.studentListSelected.indexOf(student), 1);
     console.log(student.studentName);
     console.log(this.className);
-    this.snackBar.open("Xoá thành công học sinh " + student.studentName + " khỏi lớp " + this.className, null, {duration: 4000});
+    this.snackBar.showSnackbar("Xoá thành công học sinh " + student.studentName + " khỏi lớp " + this.className, "success");
   }
 
   //HaNTT: mở dialog create

@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {DialogDeleteComponent} from "../../../share-module/dialog-delete/dialog-delete.component";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 import {CreateTeacherComponent} from "../create-teacher/create-teacher.component";
+import {CreateAccountComponent} from "../../account/create-account/create-account.component";
 
 @Component({
   selector: 'app-list-teacher',
@@ -159,11 +160,19 @@ export class ListTeacherComponent implements OnInit {
     });
   }
 
-  movePageCreateAccount() {
-    this.router.navigateByUrl("/teacher/account/create")
-  }
 
   movePageDetailAccount() {
     this.router.navigateByUrl("/teacher/detail/create")
+  }
+
+  movePageCreateAccount(id: number, email: string) {
+    let dialog = this.dialog.open(CreateAccountComponent, {
+        maxWidth: '650px',
+        data: {
+          id: id,
+          email: email
+        }
+      }
+    );
   }
 }

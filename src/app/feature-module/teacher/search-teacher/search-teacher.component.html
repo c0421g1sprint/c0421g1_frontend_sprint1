@@ -1,5 +1,3 @@
-
-
 <div class="container-fluid" style="margin: 0">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -7,9 +5,15 @@
         <form [formGroup]="formSearch">
           <div class="d-flex">
             <!--        <input class="form-control me-2" type="search" placeholder="Tìm kiếm giáo viên" aria-label="Search"&ensp>-->
-            <input [(ngModel)]="search" class="form-control" type="search" formControlName="searchInput"
-                   placeholder="Tìm kiếm giáo viên" aria-label="Search" style = "margin-left: -30px">
-            <button (click)="getSearchTeacher(0)" class="btn btn-primary" style="margin-left: 10px">
+            <input [(ngModel)]="search" class="form-control m-2" type="search" formControlName="searchInput"
+                   placeholder="Họ tên giáo viên" aria-label="Search" style="margin-left: -30px">
+            <select class="form-control m-2" (change)="getDivision($event)">
+              <option selected [value]="">--Chọn phòng ban--</option>
+              <option *ngFor="let obj of divisionList" [value]="obj.divisionName">
+                {{obj.divisionName}}
+              </option>
+            </select>
+            <button (click)="getSearchTeacher(0)" class="btn btn-primary m-2" style="margin-left: 20px; height: 39px">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" fill="currentColor"
                    class="bi bi-search"
                    viewBox="0 0 16 16">
@@ -17,9 +21,11 @@
                   d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
               </svg>
             </button>
+
           </div>
           <p *ngFor="let msg of validMsg.searchInput">
-            <span *ngIf="formSearch.get('searchInput').hasError(msg.type) && formSearch.get('searchInput').dirty" style="color: red">{{msg.message}}</span>
+            <span *ngIf="formSearch.get('searchInput').hasError(msg.type) && formSearch.get('searchInput').dirty"
+                  style="color: red">{{msg.message}}</span>
           </p>
         </form>
       </div>
@@ -42,21 +48,21 @@
 
     </tr>
     </thead>
-    <tbody style="text-align: center; vertical-align: middle">
+    <tbody style="text-align: center">
     <tr *ngFor="let element of listTeacher,index as i  ">
-      <td>{{getCode(element.teacherId, 2)}}</td>
-      <td>{{element.teacherName}}</td>
-      <td [ngSwitch]="element.teacherGender">
+      <td style = "vertical-align: middle">{{getCode(element.teacherId, 2)}}</td>
+      <td style = "vertical-align: middle">{{element.teacherName}}</td>
+      <td style = "vertical-align: middle" [ngSwitch]="element.teacherGender">
         <span *ngSwitchCase="1">Nam</span>
         <span *ngSwitchCase="0">Nữ</span>
       </td>
-      <td>{{element.teacherDateOfBirth | date: 'dd/MM/yyyy'}}</td>
-      <td>{{element.teacherPhone}}</td>
-      <td>{{element.teacherAddress}}</td>
-      <td>{{element.division.divisionName}}</td>
-      <td>{{element.degree.degreeName}}</td>
+      <td style = "vertical-align: middle">{{element.teacherDateOfBirth | date: 'dd/MM/yyyy'}}</td>
+      <td style = "vertical-align: middle">{{element.teacherPhone}}</td>
+      <td style = "vertical-align: middle">{{element.teacherAddress}}</td>
+      <td style = "vertical-align: middle">{{element.division.divisionName}}</td>
+      <td style = "vertical-align: middle">{{element.degree.degreeName}}</td>
       <!--      <td>{{element.classroom.classroomName}}</td>-->
-      <td><img src ="{{element.teacherImage}}" style="width: 70px ; height: 70px"> </td>
+      <td><img src="{{element.teacherImage}}" style="width: 70px ; height: 70px"></td>
 
     </tr>
 
@@ -85,7 +91,7 @@
       </li>
       <input type="number" min="1" max="{{this.totalPage}}"
              class="page-link bg-light text-dark rounded" placeholder="Nhập số trang"
-             style="width: 140px; height: 38px" [(ngModel)]="pageNumberInput"
+             style="width: 145px; height: 36px" [(ngModel)]="pageNumberInput"
              (change)="searchPage()">
       <!--      <li class="page-item"><p class="btn btn-primary mr-2" style="color: black">/</p></li>-->
       <!--      <li class="page-item"><a class="btn btn-primary mr-2" style="color: black">{{totalPage}}</a></li>-->
@@ -114,5 +120,3 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
-

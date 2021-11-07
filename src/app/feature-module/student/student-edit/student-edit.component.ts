@@ -19,6 +19,7 @@ export class StudentEditComponent implements OnInit {
   showSpinner = false;
 
   editForm = new FormGroup({
+    classroom: new FormControl(''),
     studentId: new FormControl(''),
     studentName: new FormControl('', [Validators.required,
       Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéếẾêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/),

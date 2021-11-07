@@ -7,10 +7,11 @@ import {ShareModule} from '../../share-module/share.module';
 import {NgxLoadingModule} from "ngx-loading";
 import {EditPasswordComponent} from "./edit-password/edit-password.component";
 import {ForgetComponent} from "./forget/forget.component";
+import {CreateAccountComponent} from "./create-account/create-account.component";
 
 
 @NgModule({
-  declarations: [AccountComponent,EditPasswordComponent, ForgetComponent],
+  declarations: [AccountComponent,EditPasswordComponent, ForgetComponent, CreateAccountComponent],
   imports: [
     CommonModule,
     AccountRoutingModule,
