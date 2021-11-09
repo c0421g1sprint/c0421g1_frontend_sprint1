@@ -152,11 +152,12 @@ export class ListTeacherComponent implements OnInit {
     this.router.navigateByUrl("/teacher/create");
   }
 
+
   openDialogCreate() {
-    let dialog = this.dialog.open(CreateTeacherComponent, {
-      // maxHeight:'250px',
-      // backdropClass:'red',
-      maxWidth: '650px',
+    let dialog = this.dialog.open(CreateTeacherComponent,{
+      width:'1100px',
+      autoFocus:false,
+      maxHeight:'100vh'
     });
   }
 
@@ -175,4 +176,5 @@ export class ListTeacherComponent implements OnInit {
       }
     );
   }
+
 }

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {NewsService} from "../../../core-module/news/news.service";
+import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 import {INewsType} from "../../../core-module/news/INewsType";
 import {INews} from "../../../core-module/news/INews";
-import {NewsService} from "../../../core-module/news/news.service";
-import {ActivatedRoute} from "@angular/router";
-import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-news-list',
@@ -49,6 +48,7 @@ export class NewsListComponent implements OnInit {
   nextPage() {
     if (this.page < this.totalPage - 1) {
       this.page = this.page + 1;
+      this.pageNumberInput = this.page + 1;
     }
     this.ngOnInit();
   }
@@ -59,18 +59,10 @@ export class NewsListComponent implements OnInit {
     } else {
       this.page = 0;
     }
+    this.pageNumberInput = this.page + 1;
     this.ngOnInit();
   }
 
-  lastPage() {
-    this.page = this.totalPage - 1;
-    this.ngOnInit();
-  }
-
-  firstPage() {
-    this.page = 0;
-    this.ngOnInit();
-  }
 
   searchPage() {
     if (this.pageNumberInput - 1 < this.totalPage && this.pageNumberInput - 1 >= 0) {

@@ -1,34 +1,16 @@
+
 <div class="container-fluid " style="padding-top: 150px; padding-bottom: 100px; background: #ebebfa">
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10 table-responsive">
       <div style="display: inline">
-        <button class="btn rounded-pill" style="float: right; background: #1BB1DC; color: white; width: 60px" title="Tạo mới"  [routerLink]="['/news/create']">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+        <button class="btn rounded-pill" style="float: right; background: #1BB1DC; color: white; width: 120px" title="Tạo mới"  [routerLink]="['/create']">
+          <svg style="margin-top: -4px" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
             <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
-          </svg>
+          </svg> Thêm tin
         </button>
-        <h1 class="thead" style="text-align: center; margin-left: 40px">DANH SÁCH TIN TỨC</h1>
+        <h1 class="thead" style="text-align: center; margin-left: 110px">DANH SÁCH TIN TỨC</h1>
       </div>
-<!--      <div class="row">-->
-<!--        <div class="col-12">-->
-<!--          <nav aria-label="Pagination" class="d-flex justify-content-center">-->
-<!--            <ul class="pagination">-->
-<!--              <li class="page-item p-1"><a class="btn text-light rounded-pill" style="background: #1BB1DC" (click)="firstPage()">Trang đầu</a></li>-->
-<!--              <li class="page-item p-1"><a class="btn text-light rounded-pill" style="background: #1BB1DC" (click)="previousPage()">Trang trước</a></li>-->
-<!--              <li class="page-item p-1"><a class="btn text-light rounded-pill" style="background: #1BB1DC">{{this.page + 1}}</a></li>-->
-<!--              <li class="page-item p-1"><p class="btn  text-light rounded-pill" style="background: #1BB1DC">/</p></li>-->
-<!--              <li class="page-item p-1"><a class="btn  text-light rounded-pill" style="background: #1BB1DC">{{this.totalPage}}</a></li>-->
-<!--              <li class="page-item p-1"><input type="number" min="1" max="{{this.totalPage}}"-->
-<!--                                               class="page-link bg-light text-dark rounded-pill" placeholder="Nhập số trang"-->
-<!--                                               style="width: 100px; height: 40px" [(ngModel)]="pageNumberInput"-->
-<!--                                               (change)="searchPage()"></li>-->
-<!--              <li class="page-item p-1"><a class="btn  text-light rounded-pill" style="background: #1BB1DC" (click)="nextPage()">Trang kế</a></li>-->
-<!--              <li class="page-item p-1"><a class="btn  text-light rounded-pill" style="background: #1BB1DC" (click)="lastPage()">Trang cuối</a></li>-->
-<!--            </ul>-->
-<!--          </nav>-->
-<!--        </div>-->
-<!--      </div>-->
       <div class="row">
         <div class="col-12">
           <nav aria-label="Pagination" class="d-flex justify-content-center">
@@ -58,11 +40,11 @@
 <!--                  <span aria-hidden="true">&raquo;&raquo;</span>-->
 <!--                </a>-->
 <!--              </li>-->
-              <li class="page-item ml-2">
+              <li class="page-item">
                 <div class="input-group">
                   <input type="number" min="1" max="{{this.totalPage}}"
                          class="page-link bg-light text-dark rounded" placeholder="Nhập số trang"
-                         style="width: 100px; height: 30px" [(ngModel)]="pageNumberInput"
+                         style="width: 100px; height: 38px" [(ngModel)]="pageNumberInput"
                          (change)="searchPage()">
                   <div class="input-group-append">
                     <button class="btn input-group-text"
@@ -85,7 +67,7 @@
 
         <div class="col-md-6 col-lg-4" data-wow-duration="1.0s" *ngFor="let n of newsList">
           <div class="box wow bounceIn">
-            <div class="img-fluid"><a href="/read/{{n.newsId}}"><img src="{{n.imageUrl}}" class="card-img rounded-pill" style="width: 300px; height: 200px"></a></div>
+            <div class="img-fluid"><a href="/read/{{n.newsId}}"><img src="{{n.imageUrl}}" class="card-img rounded-pill" style="width: 330px; height: 250px"></a></div>
             <h4 class="title" style="margin-top: 20px"><a href="/read/{{n.newsId}}" class="title" style="margin-top: 20px">{{n.newTitle}}</a></h4>
             <p class="description">{{n.newsBrief}}</p>
           </div>
@@ -95,3 +77,4 @@
     <div class="col-md-1"></div>
   </div>
 </div>
+

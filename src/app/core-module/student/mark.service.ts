@@ -4,8 +4,6 @@ import {Observable} from "rxjs";
 import {IMark} from "../../entity/IMark";
 import {StorageService} from "../account/storage.service";
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +18,6 @@ export class MarkService {
       'Access-Control-Allow-Origin': 'http://localhost:4200',
       'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
     }
-
   }
 
   getAll(currentPage: number): Observable<IMark | any> {
@@ -35,7 +32,7 @@ export class MarkService {
     return this.httpClient.patch(this.url + "/edit", iMark, this.httpOptions)
   }
 
-  searchMark(page: number, nameStudent: String | any, nameClass: String | any, subjectId: number | any): Observable<IMark[] | any> {
-    return this.httpClient.get(this.url + "/search" + "?nameStudent=" + nameStudent + "&nameClass=" + nameClass + "&subjectId=" + subjectId + "&page=" + page, this.httpOptions)
+  searchMark(page: number, nameStudent: String | any, subjectId: number | any, nameClass: String | any): Observable<IMark[] | any> {
+    return this.httpClient.get(this.url + "/search" + "?page=" + page + "&nameStudent=" + nameStudent + "&subjectId=" + subjectId + "&nameClass=" + nameClass, this.httpOptions)
   }
 }

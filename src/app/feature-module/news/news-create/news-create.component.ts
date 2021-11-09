@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {INews} from "../../../core-module/news/INews";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {INewsType} from "../../../core-module/news/INewsType";
 import {ActivatedRoute, Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
 import {NewsService} from "../../../core-module/news/news.service";
 import {NewsTypeService} from "../../../core-module/news/news-type.service";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
-import {HttpClient} from "@angular/common/http";
+import {INews} from "../../../core-module/news/INews";
+import {INewsType} from "../../../core-module/news/INewsType";
 
 @Component({
   selector: 'app-news-create',
@@ -76,7 +76,7 @@ export class NewsCreateComponent implements OnInit {
         this.snackBar.showSnackbar('Tạo thành công.', 'success'
         );
       });
-      this.router.navigateByUrl('/news/list');
+      this.router.navigateByUrl('/list');
     }
   }
 

@@ -1,4 +1,4 @@
-<div class="container" style="background: white">
+<div class="container" style="background: white;width: 900px">
   <form [formGroup]="teacherForm">
     <div class="container-fluid">
       <div class="row">
@@ -56,7 +56,7 @@
               <small
                 *ngIf="teacherForm.controls.teacherAddress.hasError('minlength') && teacherForm.controls.teacherAddress.touched"
                 class="validate">
-                Địa chỉ không được ít hơn 5 kí tự .</small><br/>
+                Địa chỉ không được ít hơn 5 kí tự .</small>
               <small
                 *ngIf="teacherForm.controls.teacherAddress.hasError('maxlength') && teacherForm.controls.teacherAddress.touched"
                 class="validate">
@@ -166,7 +166,7 @@
                        name="image"
                        autocomplete="off" (change)="showPreview($event)">
               </div>
-              <img [src]="imgSrc" alt="" width="auto" height="250px">
+              <img [src]="imgSrc" alt="" width="220px" height="250px">
             </div>
           </div>
         </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {INews} from "../../../core-module/news/INews";
 import {FormControl, FormGroup} from "@angular/forms";
-import {NewsService} from "../../../core-module/news/news.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {NewsService} from "../../../core-module/news/news.service";
+import {INews} from "../../../core-module/news/INews";
 
 @Component({
   selector: 'app-news-read',
