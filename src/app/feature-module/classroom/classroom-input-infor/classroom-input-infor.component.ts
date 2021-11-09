@@ -142,7 +142,7 @@ export class ClassroomInputInforComponent implements OnInit {
       this.snackBar.showSnackbar("Bạn chưa tạo học sinh nào. Vui lòng thêm học sinh cho lớp.", "error")
     } else {
       let dialogRef = this.dialog.open(DialogConfirmCreateComponent, {
-        width: '600px',
+        width: '400px',
         data: {
           name: this.className,
           classroomSchoolYear: this.schoolYear,
@@ -166,7 +166,6 @@ export class ClassroomInputInforComponent implements OnInit {
   //HaNTT: Dialog xóa học sinh khỏi lớp:
   openDialogDelete(student: IStudent) {
     let dialogRef = this.dialog.open(DialogDeleteComponent, {
-      width: '600px',
       data: {
         object: "học sinh",
         id: student.studentId,

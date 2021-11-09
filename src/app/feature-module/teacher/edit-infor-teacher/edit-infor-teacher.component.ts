@@ -6,15 +6,16 @@ import {ITeacher} from "../../../entity/ITeacher";
 import {TeacherService} from "../../../core-module/teacher/teacher.service";
 import {DivisionService} from "../../../core-module/teacher/division.service";
 import {StorageService} from "../../../core-module/account/storage.service";
-
-
+import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
+​
+​
 @Component({
   selector: 'app-teacher-edit-infor',
   templateUrl: './edit-infor-teacher.component.html',
   styleUrls: ['./edit-infor-teacher.component.css']
 })
 export class EditInforTeacherComponent implements OnInit {
-
+​
   editFormTeacher: FormGroup = new FormGroup({
     teacherId: new FormControl(""),
     teacherName: new FormControl(""),
@@ -30,17 +31,17 @@ export class EditInforTeacherComponent implements OnInit {
     deleteFlag: new FormControl(""),
     teacherImage: new FormControl("")
   });
-
+​
   editInforTeacher: ITeacher;
   constructor(private teacherService: TeacherService, private divisionService: DivisionService,
-              private snackBar: MatSnackBar,private route: Router, private storageService: StorageService) {
+              private snackBar: SnackbarService,private route: Router, private storageService: StorageService) {
     this.getTeacherByAccountName()
   }
-
+​
   ngOnInit(): void {
-
+  ​
   }
-
+​
   getTeacherByAccountName() {
     if (this.storageService.getToken()){
       return this.teacherService.findByAccountNameTeacher(this.storageService.getUsernameFromSession()).subscribe(next => {
@@ -51,17 +52,15 @@ export class EditInforTeacherComponent implements OnInit {
       });
     }
   }
-
+​
   updateInforTeacherByAccountName() {
     this.teacherService.updateInforByAccountName(this.editFormTeacher.value).subscribe(()=>{
       console.log(this.editFormTeacher.value)
       this.route.navigateByUrl("")
-      this.snackBar.open("Cập nhật thành công!", "", {
-        duration: 2000,
-      })
-    })
+      this.snackBar.showSnackbar("Cập nhật thành công!", "success")}
+    )
   }
-
+​
   validationMsg = {
     teacherAddress: [
       {type: "required", message: "Địa chỉ không được để trống."},
@@ -75,5 +74,5 @@ export class EditInforTeacherComponent implements OnInit {
       {type: "pattern", message: "Số điện thoại phải đúng định dạng. Ví dụ: 090xxxxxxx hoặc 091xxxxxxx hoặc (84)90xxxxxxx hoặc (84)91xxxxxxx."}
     ],
   }
-
+​
 }

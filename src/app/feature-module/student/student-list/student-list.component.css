@@ -1,7 +1,18 @@
-#studentList {
-  font-size: 18px;
+#studentListBody{
+  background-image: url('src/assets/img/background-nhat.jpg');
+  background-size: cover;
+  min-height: 130vh;
 }
+
+#studentList {
+  font-size: 14px;
+  min-width: 1000px;
+  background-color: white;
+}
+
 #studentList th {
   color: white;
   vertical-align: middle;
+  font-size: 16px;
 }
+

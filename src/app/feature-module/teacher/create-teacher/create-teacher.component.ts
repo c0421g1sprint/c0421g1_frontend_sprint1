@@ -24,7 +24,7 @@ export class CreateTeacherComponent implements OnInit {
   selectedFile: File = null;
   image;
   downloadURL: Observable<string>;
-  imgSrc: string = '/assets/img/avt.png';
+  imgSrc: string = '/assets/img/img_placeholder1.png';
   selectedImage: any = null;
   teacherForm: FormGroup = new FormGroup({
     teacherName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]),
@@ -74,9 +74,9 @@ export class CreateTeacherComponent implements OnInit {
     };
     this.teacherService.saveTeacher(teachers).subscribe(data => {
       console.log(data);
-      window.location.reload();
       console.log(this.teacherForm.value);
       this.snackBar.showSnackbar('Thêm mới thành công', 'success');
+      this.router.navigateByUrl("/teacher/list");
     }, error => {
       this.snackBar.showSnackbar('Thêm mới thất bại', 'error');
     });

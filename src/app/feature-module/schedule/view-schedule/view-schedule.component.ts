@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {IGrade} from "../../../entity/IGrade";
-import { IClassroom } from 'src/app/entity/IClassroom';
+import {Component, OnInit} from '@angular/core';
 import {IScheduleDetail} from "../../../entity/IScheduleDetail";
+import {IClassroom} from "../../../entity/IClassroom";
+import {IGrade} from "../../../entity/IGrade";
 import {ScheduleDetailService} from "../../../core-module/schedule/schedule-detail.service";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import {StorageService} from "../../../core-module/account/storage.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-view-schedule',
@@ -13,6 +13,7 @@ import {StorageService} from "../../../core-module/account/storage.service";
   styleUrls: ['./view-schedule.component.css']
 })
 export class ViewScheduleComponent implements OnInit {
+
   scheduleDetails: IScheduleDetail[];
   classrooms: IClassroom[];
   chidleClassroom: IClassroom[];
@@ -23,12 +24,9 @@ export class ViewScheduleComponent implements OnInit {
   days: string[] = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu'];
   times: string[] = ['Tiết 1', 'Tiết 2', 'Tiết 3', 'Tiết 4', 'Tiết 5'];
   message: string;
-  role: string[] = [];
 
-  constructor(private scheduleDetailService: ScheduleDetailService, private storageService: StorageService) {
-    if (this.storageService.getToken()){
-      this.role = this.storageService.getRole();
-    }
+  constructor(private scheduleDetailService: ScheduleDetailService,
+              public matSnackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -58,17 +56,16 @@ export class ViewScheduleComponent implements OnInit {
       console.log(value);
       this.message = null;
       console.log(this.scheduleDetails);
-      // console.log(this.scheduleDetails[0].schedule.classGrade.classroomName);
-      // @ts-ignore
-      this.classroomsName = this.scheduleDetails[0].schedule.classGrade.classroomName;
+      console.log(this.scheduleDetails[0].schedule.classroom.classroomName);
+      this.classroomsName = this.scheduleDetails[0].schedule.classroom.classroomName;
 
     }, error => {
-      if(this.classroomsId === ''){
-        this.message = "Vui lòng chọn lớp";
+      if (this.classroomsId === '') {
+        this.message = "Vui lòng chọn lớp!";
         this.classroomsName = "";
         this.scheduleDetails = null;
-      }else {
-        this.message = "Không có thời khoá biểu cho lớp này vui lòng chọn lớp khác";
+      } else {
+        this.message = "Không có thời khoá biểu cho lớp này vui lòng chọn lớp khác!";
         this.classroomsName = "";
         this.scheduleDetails = null;
       }
@@ -79,24 +76,26 @@ export class ViewScheduleComponent implements OnInit {
     const DATA = document.getElementById('dataSchedule');
     html2canvas(DATA).then(canvas => {
       const fileWidth = 208;
-      const fileHeight = canvas.height * fileWidth / canvas.width;
+      const fileHeight = (canvas.height * fileWidth / canvas.width);
       const FILEURI = canvas.toDataURL('image/png');
-      const PDF = new jsPDF('p', 'mm', 'a4');
-      const position = 0;
+      const PDF = new jsPDF('l', 'mm', 'a4');
+      PDF.canvas.height = 72 * 1;
+      PDF.canvas.width = 72 * 1;
+      const position = 15;
       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-      PDF.save('Schedule.pdf');
+      PDF.save('primary-school.pdf');
     });
   }
 
   splitClass() {
     this.chidleClassroom = [];
-    for (let i = 0; i < this.classrooms.length; i++){
-      if (this.classrooms[i].grade.gradeName === this.gradeName){
+    for (let i = 0; i < this.classrooms.length; i++) {
+      if (this.classrooms[i].grade.gradeName === this.gradeName) {
         this.chidleClassroom.push(this.classrooms[i]);
       }
     }
-    this.classroomsId = '';
-    if (this.chidleClassroom.length === 0){
+    this.classroomsId = "";
+    if (this.chidleClassroom.length === 0) {
       this.chidleClassroom = this.classrooms;
     }
   }

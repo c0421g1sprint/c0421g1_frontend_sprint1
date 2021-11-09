@@ -13,6 +13,7 @@ export class ListStudentByTeacherComponent implements OnInit {
   responsePage: any;
   totalElement: number = 0;
   students: StudentListFromTeacher[];
+  sizePage = 10;
 
   constructor(private studentService: ListStudentByTeacherService, private storageService: StorageService) {
   }

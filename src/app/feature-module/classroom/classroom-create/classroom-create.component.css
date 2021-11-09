@@ -1,38 +1,5 @@
-h1 {
-  color: #1BB1DC;
-  text-align: center;
-  padding-bottom: 25px;
-}
-i {
-  color: #1BB1DC;
-}
-button {
-  background-color: #1BB1DC !important;
-  color: white !important;
-  margin-left: 42%;
-}
-
-.cancel {
-  background-color: gold !important;
-}
-#tableInputClassName {
-  max-width: 50%;
-}
-
-.table th {
-  padding: 0;
-}
-
-.phone {
-  text-align: center;
-}
-p {
-  margin-top: 6px;
-  font-weight: normal !important;
-}
-
-#pricing {
-  background-repeat: no-repeat;
-  background-position: center ;
-  background-size: 55%;
+.forContent {
+  background-image: url("src/assets/img/background-nhat.jpg") !important;
+  background-size: cover !important;
+  min-height: 130vh !important;
 }

@@ -3,9 +3,10 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12">
+          <h1 style="text-align: center;margin-top: 16px">Thêm mới giáo viên</h1>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="name" style="color: #1BB1DC" class="font-weight-bold">
+              <label for="name" style="color: black" class="font-weight-bold">
                 Tên Giáo Viên<span
                 style="color: red">*</span> :
               </label>
@@ -26,13 +27,13 @@
               </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="date" style="color: #1BB1DC" class="font-weight-bold">Ngày
+              <label for="date" style="color: black" class="font-weight-bold">Ngày
                 Sinh<span
                   style="color: red">*</span> :</label>
               <input type="date" class="form-control" id="date" formControlName="teacherDateOfBirth">
               <!--            <input matInput [matDatepicker]="picker"  formControlName="teacherDateOfBirth" placeholder="dd/mm/yyyyy" class="form-control"id="date">-->
               <!--            <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>-->
-              <!--            <mat-datepicker #picker></mat-datepicker>-->
+              <!--            <mat-datepicker blackpicker></mat-datepicker>-->
               <div *ngFor="let valid of validationMessage.teacherDateOfBirth">
                 <small style="color: red"
                        *ngIf="teacherForm.get('teacherDateOfBirth').hasError(valid.type) &&
@@ -44,7 +45,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="diachi" style="color: #1BB1DC" class="font-weight-bold">Địa
+              <label for="diachi" style="color: black" class="font-weight-bold">Địa
                 Chỉ<span
                   style="color: red">*</span> :
               </label>
@@ -63,7 +64,7 @@
                 Địa chỉ không được quá 50 kí tự .</small><br/>
             </div>
             <div class="form-group col-md-6">
-              <label for="email" style="color: #1BB1DC" class="font-weight-bold">Email<span
+              <label for="email" style="color: black" class="font-weight-bold">Email<span
                 style="color: red">*</span> :
               </label>
               <input type="email" class="form-control" id="email" formControlName="teacherEmail">
@@ -79,7 +80,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="" style="color: #1BB1DC" class="font-weight-bold">
+              <label for="" style="color: black" class="font-weight-bold">
                 Đại Học<span
                 style="color: red">*</span> : </label>
               <input type="text" formControlName="teacherUniversity" class="form-control">
@@ -97,7 +98,7 @@
                 không được quá 30 kí tự .</small>
             </div>
             <div class="form-group col-md-6">
-              <label for="religion" style="color: #1BB1DC" class="font-weight-bold">
+              <label for="religion" style="color: black" class="font-weight-bold">
                 Số Điện Thoại<span
                 style="color: red">*</span> : </label>
               <input type="text" class="form-control" id="religion" formControlName="teacherPhone">
@@ -113,7 +114,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="degree" class="form-label font-weight-bold" style="color: #1BB1DC">Bằng Cấp
+              <label for="degree" class="form-label font-weight-bold" style="color: black">Bằng Cấp
                 <span style="color: red">*</span> :</label>
               <select name="" id="degree" class="form-control" formControlName="degree">
                 <option selected [value]="null" disabled>Choose...</option>
@@ -125,7 +126,7 @@
                 Phòng Ban không được để trống .</small><br/>
             </div>
             <div class="form-group col-md-6">
-              <label style="padding-right: 10px; color: #1BB1DC"
+              <label style="padding-right: 10px; color: black"
                      class="font-weight-bold">Giới Tính<span
                 style="color: red">*</span> :</label>
               <select name="" id="gender" class="form-control" formControlName="teacherGender">
@@ -142,7 +143,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label style="padding-right: 10px; color: #1BB1DC"
+              <label style="padding-right: 10px; color: black"
                      class="font-weight-bold">Phòng Ban<span
                 style="color: red">*</span> :</label>
               <select name="" id="division" class="form-control" formControlName="division">
@@ -153,15 +154,18 @@
                 *ngIf="teacherForm.controls.division.hasError('required') && teacherForm.controls.division.touched"
                 class="validate">
                 Phòng Ban không được để trống .</small><br/>
+              <div>
+                <img src="https://media.tenor.com/images/bc958f636a9ccce4e27fe1f908e0c6e5/tenor.gif" alt="" style="width:250px;">
+              </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="" style="color: #1BB1DC"
+              <label for="" style="color: black"
                      class="font-weight-bold">Ảnh Cán Bộ<span
                 style="color: red">*</span> : </label>
               <div class="form-group col-12">
                 <input type="file"
                        id="file"
-                       #userPhoto
+                       blackuserPhoto
                        (change)="onFileSelected($event)"
                        name="image"
                        autocomplete="off" (change)="showPreview($event)">
@@ -192,7 +196,7 @@
         </svg>
         Nhập lại
       </button>
-      <button type="submit" class="btn btn-info"
+      <button type="submit" class="btn btn-info" mat-dialog-close=""
               (click)="saveTeacher()">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
              fill="currentColor"

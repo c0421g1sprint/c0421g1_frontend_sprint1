@@ -4,10 +4,12 @@
 .bg-color {
   background-color: #1BB1DC;
   color: white;
+  font-size: 16px;
 }
 
 table{
   min-width: 1000px;
+  background-color: white;
 }
 
 .action-list{
@@ -25,4 +27,9 @@ table{
 
 .for-number{
   padding-left: 45px;
+}
+.bg-img{
+  background-image: url("src/assets/img/background-nhat.jpg");
+  background-size: cover;
+  min-height: 130vh;
 }

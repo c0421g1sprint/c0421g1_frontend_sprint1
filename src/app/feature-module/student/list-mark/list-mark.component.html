@@ -1,5 +1,6 @@
-<div class="container-fluid">
-  <h1>Quản lý điểm học sinh</h1>
+<div class="container-fluid" style="background-image: url('/assets/img/background-nhat.jpg');
+background-size: cover; min-height: 120vh; padding-top: 32px">
+  <h1 style="color: #1BB1DC; text-align: center">Quản lý điểm học sinh</h1>
   <div class="row d-flex justify-content-center">
     <form class="mt-4 w-50 d-flex justify-content-center">
       <input type="text" class="form-control m-2" placeholder="Tìm tên học sinh" aria-describedby="basic-addon1"
@@ -23,9 +24,10 @@
     </form>
   </div>
   <div class="row mt-3">
-    <div class="col-md-12">
-      <table class="table table-striped mark-table">
-        <thead style="background-color: #1BB1DC">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <table class="table table-striped" style="background-color: white" id="listMarkTable">
+        <thead style="background-color: #1BB1DC; font-size: 16px;">
         <tr>
           <th>STT</th>
           <th>Họ và tên</th>
@@ -39,7 +41,7 @@
           <th style="width: 10%">Sửa điểm</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody style="font-size: 14px">
         <tr *ngFor="let item of marks">
           <td>{{item.markId}}</td>
           <td>{{item.student.studentName}}</td>
@@ -66,9 +68,10 @@
         </tbody>
       </table>
     </div>
+    <div class="col-md-1"></div>
   </div>
   <div class="row">
-    <div class="col-md-12 d-flex justify-content-end">
+    <div class="col-md-12 d-flex justify-content-center">
       <nav aria-label="Pagination" class="d-flex justify-content-center">
         <ul class="pagination">
           <li class="page-item">
@@ -86,8 +89,8 @@
           </li>
           <li class="page-item ml-2">
             <div class="input-group">
-              <input type="number" min="1" class="form-control" placeholder="Trang" id="presentPage"
-                     style="width: 100px;" #Page onkeydown="return event.keyCode !== 69">
+              <input type="number" min="1" class="form-control" placeholder="Tới trang..." id="presentPage"
+                     style="width: 110px;" #Page onkeydown="return event.keyCode !== 69">
               <div class="input-group-append">
                 <button class="btn input-group-text" style="background-color: #1BB1DC; color: white;"
                         (click)="forwardTo(Page.value)">

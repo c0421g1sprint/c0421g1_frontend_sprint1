@@ -1,69 +1,27 @@
-h1 {
-  color: #1BB1DC;
-  text-align: center;
-  padding-bottom: 25px;
+.forImageBackground {
+  background-image: url("/assets/img/background-nhat.jpg") !important;
+  background-size: cover !important;
+  min-height: 130vh !important;
 }
 
-#buttonGroup button {
-  background-color: #1BB1DC !important;
-  color: white !important;
-}
-
-#tableClassInfo thead th {
-  align-items: center;
-  padding: 0;
-}
-
-#tableClassInfo {
-  width: 25%;
-  min-width: 300px;
-}
-
-#tableContentThead th {
-  vertical-align: middle;
-  background-color: #1BB1DC;
+#classInputForTable th {
+  font-size: 16px;
   color: white;
+  vertical-align: middle;
 }
 
-#tableContent {
-  min-width: 1200px;
-  background-color: white;
-
+#newStudentForClass th {
+  font-size: 16px;
+  color: white;
+  vertical-align: middle;
 }
 
-.phone {
-  text-align: center;
+#newStudentForClass td {
+  font-size: 14px;
+  vertical-align: middle;
 }
 
-h5, h6 {
-  text-align: center;
-  color: red;
-}
-
-p {
-  margin-bottom: 5px;
-  color: red;
-  text-align: center;
-}
-
-ul {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  margin-left: 42%;
-}
-
-#setWidth200{
-  width: 250px;
-}
-.setWidthParent {
-  width: 300px;
-}
-
-#phoneTd {
-  padding-left: 40px;
-}
-
-.setBackground {
-  font-size: 18px;
-  padding: 0 15px 0 15px;
+#classInputForTable td {
+  font-size: 14px;
+  vertical-align: middle;
 }

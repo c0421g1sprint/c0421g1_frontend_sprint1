@@ -2,6 +2,9 @@ tbody tr th {
   border-right-style:  solid;
   border-right-width: 0.01rem;
 }
-table {
+#viewScheduleTable {
   border-collapse: collapse;
+}
+ p{
+  vertical-align: middle;
 }

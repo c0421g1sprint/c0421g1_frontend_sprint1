@@ -1,5 +1,5 @@
 
-  <div class="container" style="background: white; margin: -22px;width: 450px">
+  <div class="container" style="background: white; margin: -22px;width: 450px; background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThER-ETooZmww4d_p1Sk3ZJoYjnZXJH_Z7nw&usqp=CAU'); background-size: contain">
     <h1>Chỉnh sửa điểm</h1>
     <form [formGroup]="editMarkForm" (ngSubmit)="updateMark()" style="align-items: center">
       <div class="container-fluid" style="padding-top: 10px; padding-bottom: 20px">
@@ -8,7 +8,7 @@
           <div class="col-lg-6">
             <div class="form-row">
               <div class="form-group">
-                <label for="markPointNumber1" style="color: #1BB1DC" class="font-weight-bold">
+                <label for="markPointNumber1" class="font-weight-bold">
                   Điểm hệ số 1<span
                   style="color: red">*</span> :
                 </label>
@@ -18,7 +18,7 @@
                 <p style="color: red; font-size: 13px" *ngIf="editMarkForm.get('markPointNumber1').hasError(validation.type) && (editMarkForm.get('markPointNumber1').dirty || editMarkForm.get('markPointNumber1').touched)">{{validation.message}}</p>
               </div>
               <div class="form-group">
-                <label for="markPointNumber2" style="color: #1BB1DC" class="font-weight-bold">Điểm hệ số 2<span
+                <label for="markPointNumber2" class="font-weight-bold">Điểm hệ số 2<span
                   style="color: red">*</span> :</label>
                 <input type="text" class="form-control" id="markPointNumber2" formControlName="markPointNumber2">
               </div>
@@ -26,7 +26,7 @@
                 <p style="color: red; font-size: 13px" *ngIf="editMarkForm.get('markPointNumber2').hasError(validation.type) && (editMarkForm.get('markPointNumber2').dirty || editMarkForm.get('markPointNumber2').touched)">{{validation.message}}</p>
               </div>
               <div class="form-group">
-                <label for="markPointNumber3" style="color: #1BB1DC" class="font-weight-bold">Điểm hệ số 3<span
+                <label for="markPointNumber3" class="font-weight-bold">Điểm hệ số 3<span
                   style="color: red">*</span> :</label>
                 <input type="text" class="form-control" id="markPointNumber3" formControlName="markPointNumber3">
               </div>

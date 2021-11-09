@@ -39,8 +39,6 @@ export class ListTeacherComponent implements OnInit {
   ngOnInit(): void {
     this.getAllDivision();
     this.getAllAndSearchByKeywordAndDivision(this.pageObj);
-    console.log("abc")
-
   }
 
   //gọi ra danh sách phòng ban theo api - LinhDN
@@ -154,11 +152,14 @@ export class ListTeacherComponent implements OnInit {
 
 
   openDialogCreate() {
-    let dialog = this.dialog.open(CreateTeacherComponent,{
+    let dialogRef = this.dialog.open(CreateTeacherComponent,{
       width:'1100px',
       autoFocus:false,
       maxHeight:'100vh'
     });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   this.ngOnInit();
+    // })
   }
 
 

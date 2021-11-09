@@ -8,6 +8,7 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {filter, finalize} from 'rxjs/operators';
 import {ClassroomService} from "../../../core-module/classroom/classroom.service";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 
 @Component({
   selector: 'app-student-create',
@@ -79,7 +80,8 @@ export class StudentCreateComponent implements OnInit {
               private snackBar: MatSnackBar,
               private classroomService: ClassroomService,
               private storage: AngularFireStorage,
-              private dialogRef: MatDialogRef<any>) {
+              private dialogRef: MatDialogRef<any>,
+              private snackbarService: SnackbarService) {
   }
 
   ngOnInit(): void {
@@ -144,7 +146,7 @@ export class StudentCreateComponent implements OnInit {
               setTimeout(() => {
                 this.showSpinner = false;
                 this.dialogRef.close();
-                this.snackBar.open('Tạo mới học sinh thành công', null, {duration: 3000});
+                this.snackbarService.showSnackbar('Tạo mới học sinh thành công', "success");
               });
             });
           }));
@@ -153,7 +155,7 @@ export class StudentCreateComponent implements OnInit {
     } else {
       const dateOfBirth = new Date(createForm.value.studentDateOfBirth);
       console.log(dateOfBirth);
-      this.snackBar.open('Biễu mẫu sai, vui lòng nhập chính xác', null, {duration: 3000});
+      this.snackbarService.showSnackbar('Biễu mẫu sai, vui lòng nhập chính xác', "error");
     }
   }
 

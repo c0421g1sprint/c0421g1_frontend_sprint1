@@ -1,21 +1,26 @@
-<div class="container-fluid" style="background: url('https://thumbs.dreamstime.com/b/seamless-pattern-theme-school-education-background-118604207.jpg')">
+<div class="container-fluid back-gr">
   <div class="rom">
     <div class="col-lg-12">
-      <h2 align="center" style="color: #1BB1DC">
-        Thời khóa biểu
-      </h2>
+      <h1 align="center">
+        <strong>
+          <span style="color: #1BB1DC;">Thời khóa biểu</span>
+        </strong>
+      </h1>
     </div>
+    <div class="col-lg-1"></div>
   </div>
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
       <div>
         <button class="btn btn-primary" [routerLink]="['/schedule/list']">Quay về</button>
       </div>
       <div>
-        <table class="table" style="border-collapse: collapse;">
+        <table class="table" style="border-collapse: collapse;
+        background-image: url('https://i.pinimg.com/originals/4d/c1/63/4dc163edaa1c16624dec0e74e06d797e.jpg')">
           <thead>
           <tr>
-            <th></th>
+            <th>Tiết</th>
             <th *ngFor="let day of day">{{day}}</th>
           </tr>
           </thead>
@@ -49,5 +54,6 @@
           Thay đổi</button>
       </div>
     </div>
+    <div class="col-lg-1"></div>
   </div>
 </div>

@@ -1,3 +1,20 @@
-.validate{
+.container-fluid {
+  background-image: url("/assets/img/background.jpg");
+  min-height: 75vh;
+
+}
+
+.container {
+  /*border-radius: 25px;*/
+  /*border: solid #1BB1DC 1px;*/
+}
+.form-edit{
+  background: white;
+  border-radius: 25px;
+  border: solid #1BB1DC 2px;
+}
+
+
+.validate {
   color: red;
 }

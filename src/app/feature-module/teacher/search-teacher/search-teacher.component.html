@@ -1,116 +1,113 @@
-<div class="container-fluid" style="margin: 0">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form [formGroup]="formSearch">
-          <div class="d-flex">
-            <!--        <input class="form-control me-2" type="search" placeholder="Tìm kiếm giáo viên" aria-label="Search"&ensp>-->
-            <input [(ngModel)]="search" class="form-control m-2" type="search" formControlName="searchInput"
-                   placeholder="Họ tên giáo viên" aria-label="Search" style="margin-left: -30px">
-            <select class="form-control m-2" (change)="getDivision($event)">
-              <option selected [value]="">--Chọn phòng ban--</option>
-              <option *ngFor="let obj of divisionList" [value]="obj.divisionName">
-                {{obj.divisionName}}
-              </option>
-            </select>
-            <button (click)="getSearchTeacher(0)" class="btn btn-primary m-2" style="margin-left: 20px; height: 39px">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" fill="currentColor"
-                   class="bi bi-search"
-                   viewBox="0 0 16 16">
-                <path
-                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-              </svg>
-            </button>
+<div class="container-fluid" style="background-image: url('/assets/img/background-nhat.jpg');
+background-size: cover; min-height: 130vh; padding-top: 32px">
+  <form [formGroup]="formSearch">
+    <div class="d-flex" style="margin-left: 30%">
+      <!--        <input class="form-control me-2" type="search" placeholder="Tìm kiếm giáo viên" aria-label="Search"&ensp>-->
+      <input [(ngModel)]="search" class="form-control m-2" type="search" formControlName="searchInput"
+             placeholder="Họ tên giáo viên" aria-label="Search" style=" width: 185px; height: 40px">
+      <select class="form-control m-2" (change)="getDivision($event)" style="width: 185px; height: 40px">
+        <option selected value="">--Chọn phòng ban--</option>
+        <option *ngFor="let obj of divisionList" [value]="obj.divisionName">
+          {{obj.divisionName}}
+        </option>
+      </select>
+      <button (click)="getSearchTeacher(0)" class="btn btn-primary m-2" style="margin-left: 20px; height: 40px">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" fill="currentColor"
+             class="bi bi-search"
+             viewBox="0 0 16 16">
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+      </button>
 
-          </div>
-          <p *ngFor="let msg of validMsg.searchInput">
+    </div>
+    <p *ngFor="let msg of validMsg.searchInput">
             <span *ngIf="formSearch.get('searchInput').hasError(msg.type) && formSearch.get('searchInput').dirty"
                   style="color: red">{{msg.message}}</span>
-          </p>
-        </form>
-      </div>
-    </div>
-  </nav>
-  <table class="table table-striped w-120" style="margin: 0 auto">
-    <thead class="" style="background-color: #1bb1dc;margin: 0;color: whitesmoke">
+    </p>
+  </form>
+  <div class="table-responsive px-2">
+  <table class="table table-striped w-120 col-10" style="margin: 0 auto; background-color: white;
+      overflow-x: scroll; min-width: 1100px;">
+    <thead class="" style="background-color: #1bb1dc;margin: 0;color: white">
     <tr style="text-align: center">
-      <th style="width: 8% ">Mã giáo viên</th>
-      <th style="width: 10%;">Họ tên giáo viên</th>
-      <th style="width:10%">Giới tính</th>
-      <th style="width: 10%;">Ngày sinh</th>
-      <th style="width: 10%;">Số điện thoại</th>
-      <th style="width: 19%;">Địa chỉ</th>
-      <th style="width: 13%;">Chuyên ngành</th>
-      <th style="width: 10%;">Bằng cấp</th>
+      <th style="width: 8%;font-size: 16px; vertical-align:middle">Mã giáo viên</th>
+      <th style="width: 10%;font-size: 16px; vertical-align:middle">Họ tên giáo viên</th>
+      <th style="width:10%;font-size: 16px;  vertical-align:middle">Giới tính</th>
+      <th style="width: 10%;font-size: 16px;  vertical-align:middle">Ngày sinh</th>
+      <th style="width: 10%;font-size: 16px; vertical-align:middle">Số điện thoại</th>
+      <th style="width: 19%;font-size: 16px; vertical-align:middle">Địa chỉ</th>
+      <th style="width: 13%;font-size: 16px; vertical-align:middle">Phòng ban</th>
+      <th style="width: 10%;font-size: 16px; vertical-align:middle">Bằng cấp</th>
       <!--    <th style="width: 10%;">Chủ nhiệm lớp</th>-->
-      <th style="width: 10%;">Ảnh</th>
+      <th style="width: 10%;font-size: 16px; vertical-align:middle">Ảnh</th>
 
 
     </tr>
     </thead>
     <tbody style="text-align: center">
     <tr *ngFor="let element of listTeacher,index as i  ">
-      <td style = "vertical-align: middle">{{getCode(element.teacherId, 2)}}</td>
-      <td style = "vertical-align: middle">{{element.teacherName}}</td>
-      <td style = "vertical-align: middle" [ngSwitch]="element.teacherGender">
+      <td style="vertical-align: middle;font-size: 14px">{{getCode(element.teacherId, 2)}}</td>
+      <td style="vertical-align: middle;font-size: 14px">{{element.teacherName}}</td>
+      <td style="vertical-align: middle;font-size: 14px" [ngSwitch]="element.teacherGender">
         <span *ngSwitchCase="1">Nam</span>
         <span *ngSwitchCase="0">Nữ</span>
       </td>
-      <td style = "vertical-align: middle">{{element.teacherDateOfBirth | date: 'dd/MM/yyyy'}}</td>
-      <td style = "vertical-align: middle">{{element.teacherPhone}}</td>
-      <td style = "vertical-align: middle">{{element.teacherAddress}}</td>
-      <td style = "vertical-align: middle">{{element.division.divisionName}}</td>
-      <td style = "vertical-align: middle">{{element.degree.degreeName}}</td>
+      <td style="vertical-align: middle;font-size: 14px">{{element.teacherDateOfBirth | date: 'dd/MM/yyyy'}}</td>
+      <td style="vertical-align: middle;font-size: 14px">{{element.teacherPhone}}</td>
+      <td style="vertical-align: middle;font-size: 14px">{{element.teacherAddress}}</td>
+      <td style="vertical-align: middle;font-size: 14px">{{element.division.divisionName}}</td>
+      <td style="vertical-align: middle;font-size: 14px">{{element.degree.degreeName}}</td>
       <!--      <td>{{element.classroom.classroomName}}</td>-->
-      <td><img src="{{element.teacherImage}}" style="width: 70px ; height: 70px"></td>
+      <!--      <td><img src="{{element.teacherImage}}" style="width: 70px ; height: 70px"></td>-->
+
+      <td><img *ngIf="element?.teacherImage ; else elseBlock"
+               [src]="element?.teacherImage" class="img-fluid">
+        <ng-template #elseBlock>
+          <img src="assets/img/img_placeholder1.png" class="img-fluid">
+        </ng-template>
+      </td>
 
     </tr>
 
     </tbody>
   </table>
-  <div style="margin-left: 530px; margin-top: 10px">
+  </div>
+  <!--PHÂN TRANG-->
+  <div style=" margin-top: 10px; margin-left: 40%">
     <ul class="pagination ">
-      <!--      <li class="page-item ">-->
-      <!--        <a class="btn btn-primary mr-2" (click)="firstPage()">First</a>-->
-      <!--      </li>-->
       <li class="page-item">
-        <button class="page-link" aria-label="Previous" (click)="firstPage()">
+        <button class="page-link" aria-label="Previous" (click)="previousPage()" style="height: 35px">
           <span aria-hidden="true">&laquo;</span>
         </button>
-      </li>
-      <!--      <li class="page-item "><a class="btn btn-primary mr-2" (click)="previousPage()">Previous</a>-->
-      <!--      </li>-->
       <li class="page-item">
-        <button class="page-link" aria-label="Previous" (click)="previousPage()">
-          <span aria-hidden="true">&laquo;</span>
-        </button>
-        <!--      </li>-->
-        <!--      <li class="page-item"><a class="btn btn-primary mr-2" style="color: black">{{page + 1}}</a></li>-->
-      <li class="page-item">
-        <p class="page-link">{{page + 1}}/{{totalPage}}</p>
+        <p class="page-link" style="height: 35px">{{page + 1}}/{{totalPage}}</p>
       </li>
-      <input type="number" min="1" max="{{this.totalPage}}"
-             class="page-link bg-light text-dark rounded" placeholder="Nhập số trang"
-             style="width: 145px; height: 36px" [(ngModel)]="pageNumberInput"
-             (change)="searchPage()">
-      <!--      <li class="page-item"><p class="btn btn-primary mr-2" style="color: black">/</p></li>-->
-      <!--      <li class="page-item"><a class="btn btn-primary mr-2" style="color: black">{{totalPage}}</a></li>-->
-      <!--      <li class="page-item"><a class="btn btn-primary mr-2" style="color: black" (click)="nextPage()">Next</a></li>-->
       <li class="page-item" (click)="nextPage()">
-        <button class="page-link" aria-label="Next">
+        <button class="page-link" aria-label="Next" style="height: 35px">
           <span aria-hidden="true">&raquo;</span>
         </button>
       </li>
-      <!--      <li class="page-item "><a class="btn btn-primary mr-2" style="color: black" (click)="lastPage()">Last</a></li>-->
-      <li class="page-item">
-        <button class="page-link" aria-label="Previous" (click)="lastPage()">
-          <span aria-hidden="true">&raquo;</span>
-        </button>
-      </li>
+      <div class="input-group" style="margin-left: 10px">
+        <input type="number" min="1" max="{{this.totalPage}}"
+               class="page-link bg-light text-dark rounded" placeholder="Tới trang .."
+               style="width: 105px; height: 35px" [(ngModel)]="pageNumberInput"
+               (change)="searchPage()">
+        <div class="input-group-append">
+          <button type="submit" class="btn input-group-text"
+                  style="background-color: #1BB1DC; height: 35px; color: white;" (click)="(pageNumberInput.value)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                 class="bi bi-arrow-right-square" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                    d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4.5 5.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </ul>
   </div>
-
 </div>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

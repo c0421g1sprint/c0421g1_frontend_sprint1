@@ -5,14 +5,12 @@ import {ITeacher} from "../../../entity/ITeacher";
 import {TeacherService} from "../../../core-module/teacher/teacher.service";
 import {DegreeService} from "../../../core-module/teacher/degree.service";
 import {DivisionService} from "../../../core-module/teacher/division.service";
-
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable, Subscription} from "rxjs";
 import {IDivision} from "../../../entity/IDivision";
 import {IDegree} from "../../../entity/IDegree";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 import {AngularFireStorage} from "@angular/fire/storage";
-
 @Component({
   selector: 'app-edit-teacher',
   templateUrl: './edit-teacher.component.html',
@@ -26,14 +24,10 @@ export class EditTeacherComponent implements OnInit {
   id: number;
   image;
   downloadURL: Observable<string>;
-
   imgSrc: string = '';
   selectedImage: any = null;
-
-
   public subcription: Subscription | undefined;
   public subcriptionParam: Subscription | undefined;
-
   teacherForm: FormGroup = new FormGroup({
     teacherId: new FormControl(''),
     teacherName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]),
@@ -47,19 +41,12 @@ export class EditTeacherComponent implements OnInit {
     degree: new FormControl('', [Validators.required]),
     division: new FormControl('', [Validators.required]),
   });
-
   constructor(private teacherService: TeacherService, private router: Router, private activeRouter: ActivatedRoute,
               private degreeService: DegreeService, private divisionService: DivisionService, private storage: AngularFireStorage, private snackBar: SnackbarService) {
-
-
   }
-
   ngOnInit(): void {
-
     this.getAllDegree();
-
   }
-
   getAllDegree() {
     this.degreeService.findAll().subscribe(
       next => {
@@ -72,7 +59,6 @@ export class EditTeacherComponent implements OnInit {
       }
     );
   }
-
   getAllDivision() {
     this.divisionService.findAll().subscribe(dataDivision => {
       this.divisionList = dataDivision;
@@ -81,17 +67,15 @@ export class EditTeacherComponent implements OnInit {
     }, () => {
       console.log('2');
       this.loadData();
-
     });
   }
-
   loadData() {
     this.subcriptionParam = this.activeRouter.params.subscribe((data: Params) => {
       this.id = data['id'];
       console.log(this.id);
       this.teacherService.findByIdTeacher(this.id).subscribe((teacherData: ITeacher) => {
-
         this.teacher = teacherData;
+        this.imgSrc = this.teacher.teacherImage;
         console.log(this.teacher);
         this.teacherForm.patchValue({
           teacherId: this.teacher.teacherId,
@@ -107,17 +91,14 @@ export class EditTeacherComponent implements OnInit {
           division: this.teacher.division.divisionId,
         });
         console.log(this.teacherForm.value);
-
       });
     });
   }
-
   check18(check: AbstractControl) {
     let birthday = new Date(check.value);
     let age = Date.now() - birthday.getTime() - 86400000;
     const ageDate = new Date(age);
     age = ageDate.getUTCFullYear() - 1970;
-
     console.log(age);
     if (age < 18) {
       return {'invalidAge': true};
@@ -126,9 +107,6 @@ export class EditTeacherComponent implements OnInit {
     }
     return null;
   }
-
-
-
   update(): void {
     for (let degree of this.degreeList) {
       if (degree.degreeId == this.teacherForm.value.degree) {
@@ -136,37 +114,31 @@ export class EditTeacherComponent implements OnInit {
         console.log(this.teacherForm);
       }
     }
-
     for (let division of this.divisionList) {
       if (division.divisionId == this.teacherForm.value.division) {
         this.teacherForm.value.division = division;
         console.log(this.teacherForm);
       }
     }
-
     if (this.teacherForm.valid) {
       const value = this.teacherForm.value;
-
       var filePath = `images/${this.teacherForm.value.teacherName}_${this.teacherForm.value.id}`;
       const fileRef = this.storage.ref(filePath);
       this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url => {
             this.teacherForm.value.teacherImage = url;
-            console.log(url);
             this.teacherService.update(value).subscribe(() => {
-              // this.ngOnInit();
-              this.snackBar.showSnackbar('Sửa thông tin học sinh thành công', 'success');
+              this.snackBar.showSnackbar('Sửa thông tin giáo viên thành công', 'success');
               this.router.navigateByUrl("teacher/list");
             });
           }));
         })
       ).subscribe();
     } else {
-      this.snackBar.showSnackbar('Biễu mẫu sai, vui lòng nhập lại', 'success');
+      this.snackBar.showSnackbar('Biễu mẫu sai, vui lòng nhập lại', 'error');
     }
   }
-
   onFileSelected(event) {
     var n = Date.now();
     const file = event.target.files[0];
@@ -183,6 +155,7 @@ export class EditTeacherComponent implements OnInit {
               this.image = url;
             }
             console.log(this.image);
+            this.teacherForm.value.teacherImage = this.image;
           });
         })
       )
@@ -192,20 +165,17 @@ export class EditTeacherComponent implements OnInit {
         }
       });
   }
-
   showPreview(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e: any) => this.imgSrc = e.target.result;
       reader.readAsDataURL(event.target.files[0]);
       this.selectedImage = event.target.files[0];
-
     } else {
       this.imgSrc = '';
       this.selectedImage = null;
     }
   }
-
   validationMessage = {
     teacherDateOfBirth: [
       {type: 'required', message: 'Ngày sinh không được để trống.'},
@@ -213,5 +183,4 @@ export class EditTeacherComponent implements OnInit {
       {type: 'overAge', message: 'Tuổi không được lớn hơn 100 tuổi '}
     ]
   }
-
 }

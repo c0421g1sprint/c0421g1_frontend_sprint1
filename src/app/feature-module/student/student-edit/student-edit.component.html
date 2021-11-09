@@ -10,7 +10,7 @@
   <!--  </div>-->
   <div class="row">
     <div class="col-lg-3"></div>
-    <div class="col-lg-6 mt-5" style="background: white; border: solid #1BB1DC 1px; border-radius: 25px">
+    <div class="col-lg-6 mt-5" style="background: white; border: solid black 2px; border-radius: 25px">
       <br>
       <h3 align="center">Chỉnh sửa thông tin học sinh</h3>
       <br>
@@ -225,11 +225,15 @@
             </label>
             <div class="card" style="width: 200px;">
               <img class="card-img-top" [src]="editForm.value.studentImage" alt="Student Image"
-                   (click)="fileUploader.click()">
+                   (click)="fileUploader.click()" *ngIf="student?.studentImage; else elseBlock">
+              <ng-template #elseBlock>
+                <img src="/assets/img/img_placeholder1.png" alt="">
+              </ng-template>
               <input type="file" accept="image/*" #fileUploader class="form-control-file"
                      id="file"
                      (change)="showPreview($event)">
             </div>
+
             <div *ngFor="let valid of validationMessage.studentImage">
               <small style="color: red"
                      *ngIf="editForm.get('studentImage').hasError(valid.type) &&

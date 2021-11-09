@@ -1,2 +1,14 @@
-.error.mat-snack-bar-container{  min-width: 250px;  background-color: red;  color: white;}
-.success.mat-snack-bar-container{  min-width: 250px;  background-color: #35A028;  color: white;}
+#studentSearchTable {
+  background-color: white;
+  min-width: 1100px;
+}
+
+#studentSearchTable th, td{
+  vertical-align: middle;
+}
+
+#back-ground {
+  background-image: url('/assets/img/background-nhat.jpg');
+  background-size: cover;
+  min-height: 130vh
+}

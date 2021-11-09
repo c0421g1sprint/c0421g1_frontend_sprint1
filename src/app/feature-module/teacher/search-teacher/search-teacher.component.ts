@@ -84,7 +84,7 @@ export class SearchTeacherComponent implements OnInit {
     this.search = this.search.replace('G', '');
     this.search = this.search.replace('V-', '');
     this.search = this.search.replace('V', '');
-    if (this.search === '') {
+    if (this.search == '') {
       this.getListTeacher(pageable);
     }
     this.getSearchTeacher(pageable);
@@ -131,6 +131,7 @@ export class SearchTeacherComponent implements OnInit {
     }
     console.log(this.page);
     this.getListTeacher(this.page);
+    this.pageNumberInput = this.page +1;
   }
 
   previousPage() {
@@ -141,21 +142,24 @@ export class SearchTeacherComponent implements OnInit {
     }
     console.log(this.page);
     this.getListTeacher(this.page);
+    this.pageNumberInput = this.page +1;
   }
 
-  firstPage() {
-    this.page = 0;
-    this.getListTeacher(this.page);
-  }
-
-  lastPage() {
-    if (this.page == this.totalPage - 1) {
-      this.snackbarService.showSnackbar("Bạn đã ở trang cuối cùng của danh sách", "error");
-    } else {
-      this.page = this.totalPage - 1;
-      this.getListTeacher(this.page);
-    }
-  }
+  // firstPage() {
+  //   this.page = 0;
+  //   this.getListTeacher(this.page);
+  //   this.pageNumberInput = this.page +1;
+  // }
+  //
+  // lastPage() {
+  //   if (this.page == this.totalPage - 1) {
+  //     this.snackbarService.showSnackbar("Bạn đã ở trang cuối cùng của danh sách", "error");
+  //   } else {
+  //     this.page = this.totalPage - 1;
+  //     this.getListTeacher(this.page);
+  //     this.pageNumberInput = this.page +1;
+  //   }
+  // }
 
   searchPage() {
     if (this.pageNumberInput - 1 < this.totalPage && this.pageNumberInput - 1 >= 0) {
@@ -165,5 +169,4 @@ export class SearchTeacherComponent implements OnInit {
     }
     this.getListTeacher(this.pageNumberInput)
   }
-
 }

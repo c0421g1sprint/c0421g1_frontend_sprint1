@@ -3,6 +3,7 @@ import {IMark} from "../../../entity/IMark";
 import {ISubject} from "../../../entity/ISubject";
 import {FormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
+
 import {MatDialog} from "@angular/material/dialog";
 import {MarkEditComponent} from "../mark-edit/mark-edit.component";
 import {MarkService} from "../../../core-module/student/mark.service";
@@ -44,25 +45,22 @@ export class ListMarkComponent implements OnInit {
     })
     this.search(this.currentPage);
   }
-  // getAllMark(page: number) {
-  //   this.markService.getAll(page).subscribe(next => {
-  //     this.marks = next.content;
-  //     console.log(next);
-  //     this.totalPage = next.totalPages;
-  //   });
-  // }
+
+
   nextPage() {
+    // this.search(this.currentPage);
     if (this.currentPage < this.totalPage - 1) {
       this.currentPage++;
-      this.search(this.currentPage);
     }
+    this.search(this.currentPage);
   }
 
   previousPage() {
+    // this.search(this.currentPage);
     if (this.currentPage > 0) {
       this.currentPage--;
-      this.search(this.currentPage);
     }
+    this.search(this.currentPage);
   }
 
   getName($event: any) {
@@ -109,14 +107,16 @@ export class ListMarkComponent implements OnInit {
         console.log("error")
         this.snackbarService.showSnackbar("Không tìm thấy dữ liệu", 'error');
       }
+
     }
 
   )
+
   }
 
   openDialog(mark: IMark) {
     let dialog = this.dialog.open(MarkEditComponent, {
-      width: "500px",
+      width: "455px",
       data: {
         obj: mark
       }
