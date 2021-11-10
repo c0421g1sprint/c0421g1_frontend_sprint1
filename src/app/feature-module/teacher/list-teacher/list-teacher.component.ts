@@ -176,6 +176,7 @@ export class ListTeacherComponent implements OnInit {
         }
       }
     );
+    dialog.afterClosed().subscribe(()=> this.ngOnInit())
   }
 
 }

@@ -58,9 +58,9 @@
           <tr *ngFor = "let obj of teachers, let i = index" style="font-size: 14px">
             <td>{{responsePage.pageable['pageNumber']*pageObj.size+i+1}}</td>
             <td>{{obj.teacherName}}</td>
-            <td [ngSwitch]="obj.teacherGender">
-              <span *ngSwitchCase="1">Nam</span>
-              <span *ngSwitchCase="0">Nữ</span>
+            <td style="vertical-align: middle"
+                [style.color]="obj.teacherGender == 1 ? '#156d8b' : (obj.teacherGender == 0 ? 'red' : '#17A2B8')">
+              {{obj.teacherGender == 1 ? 'Nam' : (obj.teacherGender == 0 ? 'Nữ' : 'Khác')}}
             </td>
             <td>{{obj.teacherDateOfBirth | date:"dd/MM/yyyy"}}</td>
             <td>{{obj.teacherAddress}}</td>

@@ -50,7 +50,7 @@ export class CreateAccountComponent implements OnInit {
   addWewAccount() {
     this.accountService.addNewAccount(this.formAddNewAccount.value,this.data.id).subscribe(data => {
       this.snackBar.showSnackbar('Thêm mới thành công', 'success');
-      window.location.reload();
+      document.getElementById("close").click();
     }, error => {
       this.snackBar.showSnackbar('Thêm mới thất bại tài khoản đã tồn tại', 'error');
     })

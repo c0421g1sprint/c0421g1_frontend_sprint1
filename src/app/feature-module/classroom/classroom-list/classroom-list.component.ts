@@ -88,7 +88,7 @@ export class ClassroomListComponent implements OnInit {
   openPromoteConfirm(classroom: IClassroom) {
     let dialog = this.matDialog.open(PromoteConfirmComponent,
       {
-        width: '500px',
+        // width: '500px',
         data: {
           name: classroom.classroomName,
           schoolYear: classroom.classroomSchoolYear,

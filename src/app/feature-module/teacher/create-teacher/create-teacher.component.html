@@ -108,8 +108,7 @@
                 Số điện thoại không được để trống .</small>
               <small
                 *ngIf="teacherForm.controls.teacherPhone.hasError('pattern') && teacherForm.controls.teacherPhone.touched"
-                class="validate">
-                Số điện thoại không đúng định dạng .</small>
+                class="validate">Số điện thoại phải bắt đầu từ 0 hoặc +84. Ví dụ: +849xxxxxxxx hoặc 0xxxxxxxxxx.</small>
             </div>
           </div>
           <div class="form-row">
@@ -160,8 +159,7 @@
             </div>
             <div class="form-group col-md-6">
               <label for="" style="color: black"
-                     class="font-weight-bold">Ảnh Cán Bộ<span
-                style="color: red">*</span> : </label>
+                     class="font-weight-bold">Ảnh Cán Bộ : </label>
               <div class="form-group col-12">
                 <input type="file"
                        id="file"
@@ -170,7 +168,11 @@
                        name="image"
                        autocomplete="off" (change)="showPreview($event)">
               </div>
-              <img [src]="imgSrc" alt="" width="220px" height="250px">
+<!--              <img [src]="imgSrc" alt="" width="220px" height="250px">-->
+              <img src="/assets/img/img_placeholder1.png" alt="" width="220px" height="220px" *ngIf="teacherForm.value.teacherImage == null; else elseBlock" value="null">
+              <ng-template #elseBlock>
+                <img [src]="imgSrc" alt="" width="220px" height="220px">
+              </ng-template>
             </div>
           </div>
         </div>

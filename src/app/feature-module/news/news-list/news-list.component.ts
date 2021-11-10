@@ -4,6 +4,7 @@ import {NewsService} from "../../../core-module/news/news.service";
 import {SnackbarService} from "../../../core-module/snackbar/snackbar.service";
 import {INewsType} from "../../../core-module/news/INewsType";
 import {INews} from "../../../core-module/news/INews";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-news-list',
@@ -11,20 +12,26 @@ import {INews} from "../../../core-module/news/INews";
   styleUrls: ['./news-list.component.css']
 })
 export class NewsListComponent implements OnInit {
-
   newsType: INewsType[];
   newsList: INews[] = [];
   totalPage: number;
   page = 0;
   pageNumberInput: any;
-
-
+  httpOptions: any;
   newsFather: INews;
 
   constructor(private newsService: NewsService,
               private activatedRoute: ActivatedRoute,
               private matSnackBar: SnackbarService) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+    };
   }
+
 
   getAll() {
     this.newsService.findAll(this.page).subscribe(value => {

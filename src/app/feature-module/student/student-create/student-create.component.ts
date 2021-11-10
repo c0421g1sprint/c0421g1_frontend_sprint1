@@ -58,7 +58,7 @@ export class StudentCreateComponent implements OnInit {
         pattern: /^(\+84|0)[0-9]{9}$/, msg: 'Số điện thoại phải bắt đầu từ 0 hoặc +84. Ví dụ: +849xxxxxxxx hoặc 0xxxxxxxxxx.'
       }),
     ]),
-    studentReligion: new FormControl('',
+    studentReligion: new FormControl('Không',
       Validators.pattern(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀẾỂưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s ]*$/))
   });
 

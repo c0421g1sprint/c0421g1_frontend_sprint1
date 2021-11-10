@@ -2,19 +2,16 @@
   <div class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
-      <h3 style="color: #1BB1DC; margin-bottom: 20px" align="center">Thêm mới học sinh</h3>
+      <h3 style="color: black; margin-bottom: 20px" align="center">Thêm mới học sinh</h3>
     </div>
     <div class="col-lg-1">
-      <button type="button" class="close" mat-dialog-close="true" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
     </div>
   </div>
 </div>
 <form [formGroup]="createForm" (ngSubmit)="createStudent(createForm)" class="p-3">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="name" style="color: #1BB1DC" class="font-weight">Họ và tên học sinh <span
+      <label for="name" style="color: black" class="font-weight">Họ và tên học sinh <span
         style="color: red">*</span>
         :
       </label>
@@ -47,7 +44,7 @@
       </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="date" style="color: #1BB1DC" class="font-weight">Ngày sinh <span style="color: red">*</span>
+      <label for="date" style="color: black" class="font-weight">Ngày sinh <span style="color: red">*</span>
         :
       </label>
       <input type="date" class="form-control" id="date" min="2000-01-01" max="2021-11-30"
@@ -63,7 +60,7 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="father" style="color: #1BB1DC" class="font-weight">Họ và tên cha<span
+      <label for="father" style="color: black" class="font-weight">Họ và tên cha<span
         style="color: red"> *</span>
         :
       </label>
@@ -95,7 +92,7 @@
       </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="mother" style="color: #1BB1DC" class="font-weight">Họ và tên mẹ<span
+      <label for="mother" style="color: black" class="font-weight">Họ và tên mẹ<span
         style="color: red"> *</span> :
       </label>
       <input type="text" class="form-control" id="mother"
@@ -128,7 +125,7 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="phone" style="color: #1BB1DC" class="font-weight">Số điện thoại của phụ huynh<span
+      <label for="phone" style="color: black" class="font-weight">Số điện thoại của phụ huynh<span
         style="color: red"> *</span>
         :
       </label>
@@ -150,7 +147,7 @@
       </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="religion" style="color: #1BB1DC" class="font-weight">Tôn giáo : </label>
+      <label for="religion" style="color: black" class="font-weight">Tôn giáo : </label>
       <input type="text" class="form-control" id="religion" placeholder="Phật giáo"
              formControlName="studentReligion" value="Không">
       <div *ngFor="let valid of validationMessage.studentReligion">
@@ -164,7 +161,7 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="address" style="color: #1BB1DC" class="font-weight">Quê quán<span style="color: red"> *</span>
+      <label for="address" style="color: black" class="font-weight">Quê quán<span style="color: red"> *</span>
         :
       </label>
       <input type="text" class="form-control" id="address" placeholder="Đà Nẵng"
@@ -178,7 +175,7 @@
       </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="ethnicity" style="color: #1BB1DC" class="font-weight">Dân tộc<span
+      <label for="ethnicity" style="color: black" class="font-weight">Dân tộc<span
         style="color: red"> *</span> : </label>
       <input type="text" class="form-control" id="ethnicity" placeholder="Kinh"
              formControlName="studentEthnicity">
@@ -193,7 +190,7 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label style="padding-right: 10px; color: #1BB1DC"
+      <label style="padding-right: 10px; color: black"
              class="font-weight">Giới tính<span
         style="color: red"> *</span> :</label>
       <div class="custom-control custom-radio custom-control-inline">
@@ -226,7 +223,7 @@
       </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="file" style="color: #1BB1DC"
+      <label for="file" style="color: black"
              class="font-weight">Ảnh học sinh<span style="color: red"> *</span> :
       </label>
       <div class="card" style="width: 200px">
@@ -243,25 +240,6 @@
         </small>
       </div>
     </div>
-    <!--    <div class="form-group col-md-6">-->
-    <!--      <label for="file"-->
-    <!--             class="font-weight">Ảnh học sinh<span style="color: red"> *</span> :-->
-    <!--      </label>-->
-    <!--      <div class="card" style="width: 200px;">-->
-    <!--        <img class="card-img-top" [src]="editForm.value.studentImage" alt="Student Image"-->
-    <!--             (click)="fileUploader.click()">-->
-    <!--        <input type="file" accept="image/*" #fileUploader class="form-control-file"-->
-    <!--               id="file"-->
-    <!--               (change)="showPreview($event)">-->
-    <!--      </div>-->
-    <!--      <div *ngFor="let valid of validationMessage.studentImage">-->
-    <!--        <small style="color: red"-->
-    <!--               *ngIf="editForm.get('studentImage').hasError(valid.type) &&-->
-    <!--                     (editForm.get('studentImage').dirty || editForm.get('studentImage').touched)">-->
-    <!--          {{valid.message}}-->
-    <!--        </small>-->
-    <!--      </div>-->
-    <!--    </div>-->
   </div>
   <div class="form-row mt-2 float-right pb-4">
     <div class="spinner-border text-info mt-1" *ngIf="showSpinner">

@@ -209,8 +209,12 @@ export class StudentEditComponent implements OnInit {
   }
 
   quayLai() {
-    this.router.navigate(['students', {
-      "idClassroom": this.student.classroom.classroomId
-    }]);
+    if(this.student.classroom) {
+      this.router.navigate(['/students', {
+        "idClassroom": this.student.classroom.classroomId
+      }]);
+    }else {
+      this.router.navigateByUrl('/students/search');
+    }
   }
 }

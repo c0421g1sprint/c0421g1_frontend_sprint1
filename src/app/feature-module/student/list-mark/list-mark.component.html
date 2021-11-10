@@ -12,7 +12,7 @@ background-size: cover; min-height: 120vh; padding-top: 32px">
         </option>
       </select>
       <div class="w-100">
-        <button type="submit" class="btn m-2" style="color: white; background-color: #1BB1DC;" (click)="search(currentPage)">
+        <button type="submit" class="btn m-2" style="color: white; background-color: #1BB1DC;" (click)="search()">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
                viewBox="0 0 16 16">
             <path
@@ -46,7 +46,7 @@ background-size: cover; min-height: 120vh; padding-top: 32px">
           <td>{{item.markId}}</td>
           <td>{{item.student.studentName}}</td>
           <td>{{item.student.studentDateOfBirth | date:"dd/MM/yyyy"}}</td>
-          <td>{{item.student.classroom.classroomName}}</td>
+          <td>{{item.student.classroom == null ? 'N/A' : item.student.classroom.classroomName}}</td>
           <td>{{item.subject.subjectName}}</td>
           <td style="text-align: center">{{item.markPointNumber1}}</td>
           <td style="text-align: center">{{item.markPointNumber2}}</td>

@@ -38,7 +38,7 @@
         <div class="col-lg-10">
           <div class="row">
             <div class="col-lg-12 table-responsive">
-              <table class="table table-striped" style="min-width: 1100px" id="studentSearchTable">
+              <table class="table table-striped" style="min-width: 700px" id="studentSearchTable">
                 <thead>
                 <tr style="background-color: dodgerblue;text-align: center; color: white;font-size: 16px">
                   <th scope="col">Số thứ tự</th>
@@ -48,16 +48,16 @@
                   <th scope="col">Khóa học</th>
                   <th scope="col">Địa chỉ</th>
                   <th scope="col">Trạng thái</th>
-                  <th scope="col" style="width: 100px; text-align: center;">Chức năng</th>
+                  <th scope="col" style="width: 105px; text-align: center;">Chức năng</th>
                 </tr>
                 </thead>
                 <tbody *ngIf="students.content.length > 0">
                 <tr *ngFor="let item of students.content ;let i = index" style="text-align: center">
                   <td>{{i + 1 + sizePagination * indexPagination}}</td>
                   <td>{{item.studentName}}</td>
-                  <td>{{item.classroom.classroomName}}</td>
+                  <td>{{item.classroom == null ? 'N/A' : item.classroom.classroomName}}</td>
                   <td>{{item.studentDateOfBirth | date: "dd/MM/yyyy"}}</td>
-                  <td>{{item.classroom.classroomSchoolYear}}</td>
+                  <td>{{item.classroom == null ? 'N/A' : item.classroom.classroomSchoolYear}}</td>
                   <td>{{item.studentAddress}}</td>
                   <td>{{item.studentStatus}}</td>
                   <td class="text-center" style="vertical-align: middle;">
@@ -75,7 +75,8 @@
                     </button>
                     <!--BUTTON XOÁ-->
                     <button class="btn p-0 m-1" style="background-color:red; width: 32px; height: 32px;"
-                            data-toggle="tooltip" data-placement="top" title="Xoá học sinh">
+                            data-toggle="tooltip" data-placement="top" title="Xoá học sinh"
+                            (click)="deleteStudent(item.studentId, item.studentName)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                            class="bi bi-trash text-white mb-1" viewBox="0 0 16 16">
                         <path

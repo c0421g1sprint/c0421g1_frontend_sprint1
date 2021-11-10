@@ -127,16 +127,23 @@ export class EditTeacherComponent implements OnInit {
       this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url => {
-            this.teacherForm.value.teacherImage = url;
+            if (this.teacherForm.value.teacherImage == null) {
+              this.teacherForm.value.teacherImage = this.teacher.teacherImage;
+              console.log(this.teacher.teacherImage + " demo moemoeemo");
+            } else {
+              this.teacherForm.value.teacherImage = this.imgSrc;
+              console.log(this.imgSrc);
+            }
+            // this.teacherForm.value.teacherImage = url;
             this.teacherService.update(value).subscribe(() => {
-              this.snackBar.showSnackbar('Sửa thông tin giáo viên thành công', 'success');
+              this.snackBar.showSnackbar('Sửa thông tin học sinh thành công', 'success');
               this.router.navigateByUrl("teacher/list");
             });
           }));
         })
       ).subscribe();
     } else {
-      this.snackBar.showSnackbar('Biễu mẫu sai, vui lòng nhập lại', 'error');
+      this.snackBar.showSnackbar('Biễu mẫu sai, vui lòng nhập lại', 'success');
     }
   }
   onFileSelected(event) {

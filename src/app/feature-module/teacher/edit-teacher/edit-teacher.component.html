@@ -142,8 +142,7 @@
 
                 <small
                   *ngIf="teacherForm.controls.teacherPhone.hasError('pattern') && teacherForm.controls.teacherPhone.touched"
-                  class="validate">
-                  Số điện thoại không đúng định dạng</small>
+                  class="validate">Số điện thoại phải bắt đầu từ 0 hoặc +84. Ví dụ: +849xxxxxxxx hoặc 0xxxxxxxxxx.</small>
 
 
               </div>
@@ -208,8 +207,7 @@
 
               <div class="form-group col-md-6">
                 <label for="file" style="color: black"
-                       class="font-weight-bold">Ảnh Cán Bộ<span
-                  style="color: red">*</span> : </label>
+                       class="font-weight-bold">Ảnh Cán Bộ: </label>
 
 
                 <div class="form-group col-12">

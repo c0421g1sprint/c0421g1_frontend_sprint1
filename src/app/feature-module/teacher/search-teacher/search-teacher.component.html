@@ -49,9 +49,9 @@ background-size: cover; min-height: 130vh; padding-top: 32px">
     <tr *ngFor="let element of listTeacher,index as i  ">
       <td style="vertical-align: middle;font-size: 14px">{{getCode(element.teacherId, 2)}}</td>
       <td style="vertical-align: middle;font-size: 14px">{{element.teacherName}}</td>
-      <td style="vertical-align: middle;font-size: 14px" [ngSwitch]="element.teacherGender">
-        <span *ngSwitchCase="1">Nam</span>
-        <span *ngSwitchCase="0">Nữ</span>
+      <td style="vertical-align: middle"
+          [style.color]="element.teacherGender == 1 ? '#156d8b' : (element.teacherGender == 0 ? 'red' : '#17A2B8')">
+        {{element.teacherGender == 1 ? 'Nam' : (element.teacherGender == 0 ? 'Nữ' : 'Khác')}}
       </td>
       <td style="vertical-align: middle;font-size: 14px">{{element.teacherDateOfBirth | date: 'dd/MM/yyyy'}}</td>
       <td style="vertical-align: middle;font-size: 14px">{{element.teacherPhone}}</td>
@@ -62,7 +62,7 @@ background-size: cover; min-height: 130vh; padding-top: 32px">
       <!--      <td><img src="{{element.teacherImage}}" style="width: 70px ; height: 70px"></td>-->
 
       <td><img *ngIf="element?.teacherImage ; else elseBlock"
-               [src]="element?.teacherImage" class="img-fluid">
+               [src]="element?.teacherImage" class="img-fluid" style="width: 86px; height: 86px">
         <ng-template #elseBlock>
           <img src="assets/img/img_placeholder1.png" class="img-fluid">
         </ng-template>

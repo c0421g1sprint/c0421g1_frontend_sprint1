@@ -82,7 +82,7 @@
           </thead>
           <tbody>
           <tr *ngFor="let item of studentListSelected | paginate: { itemsPerPage: 10, currentPage: page }, index as i" style="font-size: 14px; text-align: center">
-            <th scope="row">{{i + 1}}</th>
+            <th scope="row" style="color: black">{{i + 1}}</th>
             <td>{{item.studentName}}</td>
             <td>{{item.studentDateOfBirth | date: "dd/MM/yyyy"}}</td>
             <td>{{item.studentFatherName}}</td>

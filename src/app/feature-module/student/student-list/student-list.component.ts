@@ -56,27 +56,27 @@ export class StudentListComponent implements OnInit {
       //id của màn hình edit + detail truyền qua
       let idClassroom = Number.parseInt(this.activatedRoute.snapshot.paramMap.get("idClassroom"));
       if (idClassroom != null && idClassroom.toString() != "null" && !Number.isNaN(idClassroom)) {
-        for (let value of this.classroomList) {
-          if (value.classroomId == idClassroom) {
-            this.classroomToShow = value;
-            this.classroomSelect = this.classroomList.filter(value => {
-              return value.grade.gradeId == this.classroomToShow.grade.gradeId
-                && value.classroomSchoolYear == this.classroomToShow.classroomSchoolYear;
-            })
-            this.studentService.getStudentsByClassroomId(idClassroom, 0, this.sizePagination).subscribe(n3 => {
-              this.studentListToShow = n3.content;
-              console.log(this.studentListToShow)
-              this.indexPagination = 0;
-              this.totalPagination = n3.totalPages;
-              this.studentListForm.patchValue({
-                "year": this.classroomToShow.classroomSchoolYear,
-                "grade": this.classroomToShow.grade.gradeId,
-                "classroom": this.classroomToShow
-              });
-              return;
-            })
-          }
-        }
+        this.studentService.getStudentsByClassroomId(idClassroom, 0, this.sizePagination).subscribe(next => {
+            this.studentListToShow = next.content;
+            for (let value of this.classroomList) {
+              if (value.classroomId == idClassroom) {
+                this.classroomToShow = value;
+                this.classroomSelect = this.classroomList.filter(value => {
+                  return value.grade.gradeId == this.classroomToShow.grade.gradeId
+                    && value.classroomSchoolYear == this.classroomToShow.classroomSchoolYear;
+                })
+              }
+            }
+            this.indexPagination = 0;
+            this.totalPagination = next.totalPages;
+            this.studentListForm.patchValue({
+              "year": this.classroomToShow.classroomSchoolYear,
+              "grade": this.classroomToShow.grade.gradeId,
+              "classroom": this.classroomToShow
+            });
+        }, error => {
+          this.snackbarService.showSnackbar("Không tìm thấy dữ liệu lớp", "error");
+        })
       }
     }, error => {
       this.snackbarService.showSnackbar("Không tìm thấy dữ liệu lớp", "error");
@@ -247,7 +247,7 @@ export class StudentListComponent implements OnInit {
   //LamNT Open dialog create student
   openDialogCreate() {
     // this.dialog.open(StudentCreateComponent, {width: '1100px', autoFocus: false, maxHeight: '90vh'});
-    this.router.navigateByUrl("/classroom/edit/"+this.classroomToShow.classroomId);
-    console.log("/classroom/edit/"+this.classroomToShow.classroomId);
+    this.router.navigateByUrl("/classroom/edit/" + this.classroomToShow.classroomId);
+    console.log("/classroom/edit/" + this.classroomToShow.classroomId);
   }
 }

@@ -164,9 +164,12 @@ export class SearchTeacherComponent implements OnInit {
   searchPage() {
     if (this.pageNumberInput - 1 < this.totalPage && this.pageNumberInput - 1 >= 0) {
       this.page = this.pageNumberInput - 1;
+      this.getListTeacher(this.page);
+    } else if (this.pageNumberInput == null) {
+      this.snackbarService.showSnackbar('Mời nhập số!', 'error');
     } else {
       this.snackbarService.showSnackbar('Nhập sai số!', 'error');
     }
-    this.getListTeacher(this.pageNumberInput)
+    // this.getListTeacher(this.pageNumberInput)
   }
 }
