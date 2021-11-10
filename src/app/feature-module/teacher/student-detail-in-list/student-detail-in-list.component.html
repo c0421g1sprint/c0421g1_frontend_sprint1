@@ -1,91 +1,105 @@
 
 
 
+
+<!--nhờ dũng chèn cái url hình ảnh của lâm cho đúng-->
+
+<div style="background-image: url(https://lh3.googleusercontent.com/proxy/MnGL4t2ve8c9sIvYQx9nRlZe94qleg1Ft1GbgLy9fMnDJjr771MvsUonBMT01q695f2kpH-SKaipbmhV8OYkrcbwXU0RT1_fi4O2ppO9E46rwF6zANbOomlkzB-1ZVOOZ2-GntRtYrxgOpGVCK_DCjLk2anjnfiQeqZ0JSEU2FkVERcvY4JdJcMalBaVTi0sgmwT_G4EbTLCQ_7Imk7SJWrzrA)">
+
 <div class="container" style="margin-top: 150px">
   <div class="card">
     <div style=" background-color: #1BB1DC ; color: white" class="card-header ">
-      <h3 class="text-center"> Thông tin học viên </h3>
+      <h3 class="text-center" style="padding-top: 15px"> Thông tin học viên </h3>
     </div>
     <div style="background-color: #f5f8fd" class="card-body">
       <div class="row">
-        <div class="col-2">
-          <div class="card">
-            <img [src]="student.studentImage" class="img-fluid">
+        <div class="col-lg-4">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card card-imgg">
+                <img [src]="student.studentImage" class="img-fluid">
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-10">
+        <div class="col-lg-8">
           <div class="card">
             <div class="card-body">
-              <table class="table-borderless table-hover" width="100%">
+              <table class="table-borderless table-hover" style="margin: 0 auto; align-items: center;">
                 <tr>
                   <th>Tên</th>
-                  <td>:</td>
+                  <td style="text-align: center; min-width: 200px;">:</td>
                   <td>{{student?.studentName}}</td>
                 </tr>
                 <tr>
                   <th>Ngày sinh</th>
-                  <td>:</td>
+                  <td style="text-align: center">:</td>
                   <td>{{student?.studentDateOfBirth}}</td>
                 </tr>
                 <tr>
                   <th>Quê quán</th>
-                  <td> :</td>
+                  <td style="text-align: center"> :</td>
                   <td>{{student?.studentAddress}}</td>
                 </tr>
                 <tr>
                   <th>Giới tính</th>
-                  <td>:</td>
-                  <div [ngSwitch]="student.studentGender">
-                    <td *ngSwitchCase="1">Nam</td>
-                    <td *ngSwitchCase="0">Nữ</td>
-                  </div>
+                  <td style="text-align: center">:</td>
+                  <td>
+                    <div [ngSwitch]="student.studentGender">
+                      <span *ngSwitchCase="1">Nam</span>
+                      <span *ngSwitchCase="0">Nữ</span>
+                    </div>
+                  </td>
                 </tr>
                 <tr>
                   <th>Tình trạng</th>
-                  <td>:</td>
+                  <td style="text-align: center">:</td>
                   <td>{{student?.studentStatus}}</td>
                 </tr>
 
                 <tr>
                   <th>Dân tộc</th>
-                  <td> :</td>
+                  <td style="text-align: center"> :</td>
                   <td>{{student?.studentEthnicity}}</td>
                 </tr>
 
                 <tr>
                   <th>Họ và tên cha</th>
-                  <td>:</td>
+                  <td style="text-align: center">:</td>
                   <td>{{student?.studentFatherName}}</td>
                 </tr>
 
                 <tr>
                   <th>Họ và tên mẹ</th>
-                  <td>:</td>
+                  <td style="text-align: center">:</td>
                   <td>{{student?.studentMotherName}}</td>
                 </tr>
 
                 <tr>
                   <th>Tôn giáo</th>
-                  <td>:</td>
+                  <td style="text-align: center">:</td>
                   <td>{{student?.studentEthnicity}}</td>
                 </tr>
 
                 <tr>
                   <th>Số điện thoại phụ huynh</th>
-                  <td>:</td>
+                  <td style="text-align: center">:</td>
                   <td>{{student?.studentParentPhone}}</td>
                 </tr>
-
-
               </table>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div style="background-color: #f5f8fd" class="card-footer" >
-      <a style="background-color: #1bb1dc" class="btn btn-primary btn-lg btn-block" [routerLink]="'/teacher/listStudentByTeacher'" role="button">Quay lại</a>
+    <div style="background-color: white; margin: 0 auto" class="card-footer" >
+      <a style="background-color: #1bb1dc" class="btn btn-primary btn-lg" [routerLink]="'/teacher/listStudentByTeacher'" role="button">Quay lại</a>
     </div>
   </div>
 </div>
+
+
+
+</div>
+
 

@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {ScheduleTeacherService} from "../../../core-module/teacher/scheduleTeacher/schedule-teacher.service";
 import {IScheduleDetail} from "../../../entity/IScheduleDetail";
+import {IClassroom} from "../../../entity/IClassroom";
+import {ITeacher} from "../../../entity/ITeacher";
+
+import {IScheduleTeacher} from "../../../entity/IScheduleTeacher";
 
 @Component({
   selector: 'app-schedule-teacher',
@@ -10,10 +14,8 @@ import {IScheduleDetail} from "../../../entity/IScheduleDetail";
   styleUrls: ['./schedule-teacher.component.css']
 })
 export class ScheduleTeacherComponent implements OnInit {
-
-  scheduleDetails: IScheduleDetail[];
+  scheduleDetails: IScheduleTeacher[];
   message: string;
-
 
   times = ['Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu'];
   days =  ['Tiết 1','Tiết 2', 'Tiết 3', 'Tiết 4', 'Tiết 5'];
@@ -21,14 +23,18 @@ export class ScheduleTeacherComponent implements OnInit {
               private router: Router,
   ) { }
 
+
+
+
   ngOnInit(): void {
     this.listScheduleDetail();
   }
 
   listScheduleDetail() {
-    this.scheduleDetailService.getScheduleDetail(1).subscribe(value => {
+    this.scheduleDetailService.getScheduleDetail('a').subscribe(value => {
       this.scheduleDetails = value;
       console.log(value);
+
     }
     ,
         error => {

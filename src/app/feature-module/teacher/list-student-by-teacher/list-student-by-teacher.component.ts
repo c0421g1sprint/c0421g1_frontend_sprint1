@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {IStudent} from "../../../../entity/IStudent";
 import {ListStudentByTeacherService} from "../../../core-module/student/studentByTeacher/list-student-by-teacher.service";
+import {IClassroom} from "../../../entity/IClassroom";
+import {StudentListFromTeacher} from "../../../entity/StudentListFromTeacher";
 
 
 @Component({
@@ -10,11 +12,9 @@ import {ListStudentByTeacherService} from "../../../core-module/student/studentB
 })
 export class ListStudentByTeacherComponent implements OnInit {
   page: number = 0;
-
   responsePage: any;
   totalElement: number = 0;
-
-  students: IStudent[];
+  students: StudentListFromTeacher[];
 
   constructor(private studentService: ListStudentByTeacherService) {
   }
@@ -24,17 +24,14 @@ export class ListStudentByTeacherComponent implements OnInit {
   }
 
   listStudent(page: any) {
-    this.studentService.getListStudentByIdTeacher(1, page).subscribe(value => {
+    this.studentService.getListStudentByIdTeacher('a', page).subscribe(value => {
       this.responsePage = value;
       this.students = value.content;
       this.totalElement = value.totalElement;
       console.log(value.content);
-      console.log(this.students[0]);
-      console.log(this.students[0].classroom.classroomName);
     });
     console.log(this.students);
   }
-
 
   previousPage() {
 
@@ -43,18 +40,13 @@ export class ListStudentByTeacherComponent implements OnInit {
     this.listStudent(this.page);
   }
 
-
   nextPage() {
-
     this.page = this.page + 1;
-
     this.listStudent(this.page);
   }
 
   getPage(value: number) {
-
     this.page = Number(value-1)
     this.listStudent(this.page);
   }
-
 }
