@@ -45,7 +45,8 @@ background-size: cover;background-repeat: no-repeat; min-height: 800px">
           <div class="col-md-1"></div>
           <div class="col-md-10">
             <div *ngIf="scheduleDetails">
-            <button [routerLink]="['/schedule/edit', classroomsId]" class="btn btn-warning" style="margin-left: 15px; color: white; width: auto">
+            <button [routerLink]="['/schedule/edit', classroomsId]" class="btn btn-warning" style="margin-left: 15px; color: white; width: auto"
+                    *ngIf="role.indexOf('ROLE_ADMIN') != -1">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                    class="bi bi-person-plus mb-1" viewBox="0 0 16 16">
                 <path
