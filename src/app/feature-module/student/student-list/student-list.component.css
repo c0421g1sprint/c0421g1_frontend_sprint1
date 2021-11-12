@@ -1,7 +1,7 @@
 #studentListBody{
   background-image: url('src/assets/img/background-nhat.jpg');
   background-size: cover;
-  min-height: 130vh;
+  min-height: 95vh;
 }
 
 #studentList {

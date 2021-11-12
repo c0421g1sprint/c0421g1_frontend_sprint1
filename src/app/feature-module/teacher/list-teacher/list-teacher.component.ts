@@ -90,7 +90,8 @@ export class ListTeacherComponent implements OnInit {
         id: id,
         name: nameTeacher,
         object: "giáo viên"
-      }
+      },
+      width: '400px'
     });
     dialog.afterClosed().subscribe(nextClose => {
       if (nextClose == `yes`) {
