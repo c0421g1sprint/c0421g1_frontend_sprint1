@@ -6,6 +6,7 @@ import {ScheduleDetailService} from "../../../core-module/schedule/schedule-deta
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {StorageService} from "../../../core-module/account/storage.service";
 
 @Component({
   selector: 'app-view-schedule',
@@ -24,15 +25,17 @@ export class ViewScheduleComponent implements OnInit {
   days: string[] = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu'];
   times: string[] = ['Tiết 1', 'Tiết 2', 'Tiết 3', 'Tiết 4', 'Tiết 5'];
   message: string;
+  role: string;
 
   constructor(private scheduleDetailService: ScheduleDetailService,
-              public matSnackBar: MatSnackBar) {
+              public matSnackBar: MatSnackBar, private storageService: StorageService) {
   }
 
   ngOnInit(): void {
     this.getAllClass();
     this.getAllGrade();
     this.searchScheduleDetail();
+    this.role = this.storageService.getRole();
   }
 
   getAllClass() {
@@ -55,8 +58,6 @@ export class ViewScheduleComponent implements OnInit {
       this.scheduleDetails = value;
       console.log(value);
       this.message = null;
-      console.log(this.scheduleDetails);
-      console.log(this.scheduleDetails[0].schedule.classroom.classroomName);
       this.classroomsName = this.scheduleDetails[0].schedule.classroom.classroomName;
 
     }, error => {

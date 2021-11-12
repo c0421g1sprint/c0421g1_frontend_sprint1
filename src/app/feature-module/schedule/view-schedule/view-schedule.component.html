@@ -1,69 +1,71 @@
-<div class="content" style="background-image: url('assets/img/background-nhat.jpg');
+<div class = "content" style = "background-image: url('assets/img/background-nhat.jpg');
 background-size: cover;background-repeat: no-repeat; min-height: 800px">
-  <div class="container-fluid">
-    <div class="row" style="position: static">
-      <div class="col-md-3 mt-4"></div>
-      <div class="col-md-2 mt-4 ">
-        <select (change)="splitClass()" [(ngModel)]="gradeName" class="form-control" style="width: auto">
-          <option value="" selected>--Chọn khối--</option>
-          <option class="form-control" *ngFor="let grade of grades" [value]="grade.gradeName">
+  <div class = "container-fluid">
+    <div class = "row" style = "position: static">
+      <div class = "col-md-3 mt-4"></div>
+      <div class = "col-md-2 mt-4 ">
+        <select (change) = "splitClass()" [(ngModel)] = "gradeName" class = "form-control" style = "width: auto">
+          <option value = "" selected>--Chọn khối--</option>
+          <option class = "form-control" *ngFor = "let grade of grades" [value] = "grade.gradeName">
             {{grade.gradeName}}
           </option>
         </select>
       </div>
-      <div class="col-md-2 mt-4">
-        <select class="form-control" [(ngModel)]="classroomsId" style="width: auto">
-          <option value="" selected>--Chọn lớp--</option>
-          <option class="form-control" *ngFor="let classroom of chidleClassroom" [value]="classroom.classroomId">
+      <div class = "col-md-2 mt-4">
+        <select class = "form-control" [(ngModel)] = "classroomsId" style = "width: auto">
+          <option value = "" selected>--Chọn lớp--</option>
+          <option class = "form-control" *ngFor = "let classroom of chidleClassroom" [value] = "classroom.classroomId">
             {{classroom.classroomName}}
           </option>
         </select>
       </div>
-      <div class="col-md-3 mt-4 ">
-          <button (click)="searchScheduleDetail()" class="btn" style="color: white; background-color: #1BB1DC;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                 class="bi bi-person-plus mb-1" viewBox="0 0 16 16">
-              <path
-                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-            </svg>
-            Chọn
-          </button>
+      <div class = "col-md-3 mt-4 ">
+        <button (click) = "searchScheduleDetail()" class = "btn" style = "color: white; background-color: #1BB1DC;">
+          <svg xmlns = "http://www.w3.org/2000/svg" width = "16" height = "16" fill = "currentColor"
+               class = "bi bi-person-plus mb-1" viewBox = "0 0 16 16">
+            <path
+              d = "M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+          Chọn
+        </button>
       </div>
     </div>
-    <div id="dataSchedule" style="margin-top: 100px">
-      <div class="row mt-3 md-3" style="color: #1BB1DC">
-        <div class="col-md-12 text-center">
-          <h1 style="display: inline-block">Thời khoá biểu</h1>
+    <div id = "dataSchedule" style = "margin-top: 100px">
+      <div class = "row mt-3 md-3" style = "color: #1BB1DC">
+        <div class = "col-md-12 text-center">
+          <h1 style = "display: inline-block">Thời khoá biểu</h1>
         </div>
-        <div class="col-md-12 text-center">
-          <h1 style="color: red">{{message}}</h1>
+        <div class = "col-md-12 text-center">
+          <h1 style = "color: red">{{message}}</h1>
           <h1>{{ classroomsName}}</h1>
         </div>
       </div>
       <div>
-        <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-10">
-            <div *ngIf="scheduleDetails">
-            <button [routerLink]="['/schedule/edit', classroomsId]" class="btn btn-warning" style="margin-left: 15px; color: white; width: auto">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                   class="bi bi-person-plus mb-1" viewBox="0 0 16 16">
-                <path
-                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.50 0 0.196-.12l6.813-6.814z"/>
-                <path fill-rule="evenodd"
-                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-              </svg>
-              Chỉnh sửa
-            </button>
-            <button class="btn btn-success" style="margin-left: 15px; color: white; width: auto"
-                    (click)="openPDF()">
-              Download PDF
-            </button>
+        <div class = "row">
+          <div class = "col-md-1"></div>
+          <div class = "col-md-10">
+            <div *ngIf = "scheduleDetails">
+              <button *ngIf = "'ROLE_ADMIN'.indexOf(role) != -1" [routerLink] = "['/schedule/edit', classroomsId]"
+                      class = "btn btn-warning" style = "margin-left: 15px; color: white; width: auto">
+                <svg xmlns = "http://www.w3.org/2000/svg" width = "16" height = "16" fill = "currentColor"
+                     class = "bi bi-person-plus mb-1" viewBox = "0 0 16 16">
+                  <path
+                    d = "M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.50 0 0.196-.12l6.813-6.814z"/>
+                  <path fill-rule = "evenodd"
+                        d = "M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                </svg>
+                Chỉnh sửa
+              </button>
+              <button class = "btn btn-success" style = "margin-left: 15px; color: white; width: auto"
+                      (click) = "openPDF()">
+                Download PDF
+              </button>
             </div>
-            <div  *ngIf="scheduleDetails" class="col-md-12 d-flex justify-content-center">
-              <table style="min-width: 1000px; background-color: white" class="table table-striped w-100 mt-2 mb-2" id="viewScheduleTable">
-                <thead style="background-color: #1BB1DC; color: white">
-                <tr style="font-size: 16px">
+            <div *ngIf = "scheduleDetails" class = "col-md-12 d-flex justify-content-center">
+              <table style = "min-width: 1000px; background-color: white" class = "table table-striped w-100 mt-2 mb-2"
+                     id = "viewScheduleTable">
+                <thead style = "background-color: #1BB1DC; color: white">
+                <tr style = "font-size: 16px">
                   <th>Tiết</th>
                   <th>Thứ Hai</th>
                   <th>Thứ Ba</th>
@@ -73,13 +75,57 @@ background-size: cover;background-repeat: no-repeat; min-height: 800px">
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let time of times" style="font-size: 14px">
-                  <th style="border-right-width: 1.5px; border-right-color: black">{{time}}</th>
-                  <td *ngFor="let day of days">
-                    <ng-container *ngFor="let schedule of scheduleDetails">
-                      <p *ngIf="schedule.studyDayTime.studyDayTimeStudyDay == day && schedule.studyDayTime.studyDayTimeStudyTime == time">
-                        {{schedule.subject.subjectName}}
-                      </p>
+                <tr *ngFor = "let time of times" style = "font-size: 18px">
+                  <th style = " border-right-width: 1.5px; border-right-color: black">{{time}}</th>
+                  <td *ngFor = "let day of days">
+                    <ng-container *ngFor = "let schedule of scheduleDetails">
+                      <ng-container
+                        *ngIf = "schedule.studyDayTime.studyDayTimeStudyDay == day && schedule.studyDayTime.studyDayTimeStudyTime == time">
+                        <p style = "margin-top: 16px" *ngIf = "schedule.subject.subjectName  == 'Trống'"
+                           class = "badge badge-danger">
+                          {{schedule.subject.subjectName}}
+                        </p>
+                        <p style = "margin-top: 16px" *ngIf = "schedule.subject.subjectName  == 'Toán'"
+                           class = "badge badge-primary">
+                          {{schedule.subject.subjectName}}
+                        </p>
+                        <p style = "margin-top: 16px" *ngIf = "schedule.subject.subjectName  == 'Ngoại Ngữ'"
+                           class = "badge badge-success">
+                          {{schedule.subject.subjectName}}
+                        </p>
+                        <p style = "margin-top: 16px" *ngIf = "schedule.subject.subjectName  == 'Tiếng Việt'"
+                           class = "badge badge-secondary">
+                          {{schedule.subject.subjectName}}
+                        </p>
+                        <p style = "margin-top: 16px" *ngIf = "schedule.subject.subjectName  == 'Đạo Đức'"
+                           class = "badge badge-warning">
+                          {{schedule.subject.subjectName}}
+                        </p>
+                        <p style = "margin-top: 16px" *ngIf = "schedule.subject.subjectName  == 'TN & XH'"
+                           class = "badge badge-info">
+                          {{schedule.subject.subjectName}}
+                        </p>
+                        <p style = "margin-top: 16px" *ngIf = "schedule.subject.subjectName  == 'Thể Dục'"
+                           class = "badge badge-dark">
+                          {{schedule.subject.subjectName}}
+                        </p>
+                        <p style = "margin-top: 16px" *ngIf = "schedule.subject.subjectName  == 'Âm Nhạc '"
+                           class = "badge badge-secondary">
+                          {{schedule.subject.subjectName}}
+                        </p>
+                        <p style = "margin-top: 16px" *ngIf = "schedule.subject.subjectName  == 'Mỹ Thuật'"
+                           class = "badge badge-info">
+                          {{schedule.subject.subjectName}}
+                        </p>
+                        <p style = "margin-top: 16px" *ngIf = "schedule.subject.subjectName  == 'Địa Lý'"
+                           class = "badge badge-primary">
+                          {{schedule.subject.subjectName}}
+                        </p>
+                        <p style = "margin-top: 16px" *ngIf = "schedule.subject.subjectName  == 'Lịch Sử'"
+                           class = "badge badge-success">
+                          {{schedule.subject.subjectName}}
+                        </p>
+                      </ng-container>
                     </ng-container>
                   </td>
                 </tr>
@@ -88,7 +134,7 @@ background-size: cover;background-repeat: no-repeat; min-height: 800px">
             </div>
           </div>
         </div>
-        <div class="col-md-1"></div>
+        <div class = "col-md-1"></div>
       </div>
     </div>
   </div>
