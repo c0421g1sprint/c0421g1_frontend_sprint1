@@ -1,101 +1,85 @@
 <div
   style="background-image: url('assets/img/background-nhat.jpg');background-size: cover; min-height: 130vh">
-  <div class="container">
-    <h1 style="color: #1BB1DC; padding-top: 100px; padding-bottom: 100px" class="text-center"> Thông tin học viên </h1>
-    <div class="row justify-content-center" style="min-height: 350px">
-      <div class="card " style="width: 70%">
+  <div class="container-fluid">
+    <h1 class="text-center mb-5" style="color: #1bb1dc; padding-bottom: 50px; padding-top: 70px"> Thông tin học
+      viên </h1>
+    <div class="row justify-content-center">
+      <div class="card" style="width: 50%">
         <div class="row">
-          <div class="col-3">
-            <div class="card-text text-center">
-              <div class="card-header">
-                <p style="font-size: 16px ; font-weight: bold; margin: 0"> Hình ảnh</p>
-              </div>
-              <div class="card-img" style="min-height: 205px">
-                <img *ngIf="student?.studentImage ; else elseBlock" [src]="student?.studentImage" class="img-fluid">
-              </div>
-              <div class="card-text">
-                <h3 style="margin-top: 20px">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                  </svg>
-                  {{student?.studentId}}
-                </h3>
-              </div>
+          <div class="col-3 card justify-content-center"
+               style="background-image: url('assets/img/background.2.jpg');background-size: cover">
+            <div class="card-img">
+              <img *ngIf="student?.studentImage ; else elseBlock" [src]="student?.studentImage" class="img-fluid">
             </div>
             <ng-template #elseBlock>
-              <img src="/assets/img/img_placeholder1.png" class="img-fluid">
+              <img src="../../../../assets/img/img_placeholder1.png" class="img-fluid">
             </ng-template>
           </div>
-          <div class="col-9">
-            <div class="card-text" style="padding-top: 60px ">
-              <table class="table-borderless ml-5" width="100%">
-                <tr>
-                  <th style="width: 30%">Họ và tên</th>
-                  <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                  </svg></td>
-                  <td style="font-weight: bold" >{{student?.studentName}}</td>
-                </tr>
-                <tr>
-                  <th>Giới tính</th>
-                  <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                  </svg></td>
+          <div class="col-9 card" style="background-image: url('assets/img/background.2.jpg') ;background-size: contain">
+            <div class="row justify-content-center">
+              <div class="form-group pl-5 mb-0 mt-4 " style="width: 50%">
+                <h5>Mã số</h5>
+                <ul>
+                  <li style="font-weight: bold ; font-size: 18px"> {{student?.studentId}}</li>
+                </ul>
+              </div>
+              <div class="form-group mb-0 mt-4 " style="width: 50%">
+                <h5>Họ và tên</h5>
+                <ul>
+                  <li style="font-weight: bold ; font-size: 18px">{{student?.studentName}}</li>
+                </ul>
+              </div>
+              <div class="form-group pl-5 mb-0 " style="width: 50%">
+                <h5>Ngày sinh</h5>
+                <ul>
+                  <li style="font-weight: bold ; font-size: 18px">{{student?.studentDateOfBirth | date: 'dd/MM/yyyy'}}</li>
+                </ul>
+              </div>
+              <div class="form-group  mb-0" style="width: 50%">
+                <h5>Giới tính</h5>
+                <ul>
                   <div [ngSwitch]="student.studentGender">
-                    <td style="font-weight: bold" *ngSwitchCase="1">Nam</td>
-                    <td style="font-weight: bold" *ngSwitchCase="0">Nữ</td>
+                    <li style="font-weight: bold ; font-size: 18px" *ngSwitchCase="1">Nam</li>
+                    <li style="font-weight: bold ; font-size: 18px" *ngSwitchCase="0">Nữ</li>
                   </div>
-                </tr>
-                <tr>
-                  <th>Họ và tên cha</th>
-                  <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                  </svg></td>
-                  <td style="font-weight: bold">{{student?.studentFatherName}}</td>
-                </tr>
-                <tr>
-                  <th>Họ và tên mẹ</th>
-                  <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                  </svg></td>
-                  <td style="font-weight: bold">{{student?.studentMotherName}}</td>
-                </tr>
-                <tr>
-                  <th>Ngày sinh</th>
-                  <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                  </svg></td>
-                  <td style="font-weight: bold">{{student?.studentDateOfBirth | date: 'dd/MM/yyyy'}}</td>
-                </tr>
-                <tr>
-                  <th>Dân tộc</th>
-                  <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                  </svg></td>
-                  <td style="font-weight: bold">{{student?.studentEthnicity}}</td>
-                </tr>
-                <tr>
-                  <th>Địa chỉ</th>
-                  <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                  </svg></td>
-                  <td style="font-weight: bold">{{student?.studentAddress}}</td>
-                </tr>
-                <tr>
-                  <th>Số điện thoại bố mẹ</th>
-                  <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                  </svg></td>
-                  <td style="font-weight: bold">{{student?.studentParentPhone}}</td>
-                </tr>
-                <tr>
-                  <th>Tình trạng</th>
-                  <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                  </svg></td>
-                  <td style="font-weight: bold">{{student?.studentStatus}}</td>
-                </tr>
-              </table>
+                </ul>
+              </div>
+              <div class="form-group pl-5  mb-0" style="width: 50%">
+                <h5>Họ và tên bố</h5>
+                <ul>
+                  <li style="font-weight: bold ; font-size: 18px">{{student?.studentFatherName}}</li>
+                </ul>
+              </div>
+              <div class="form-group mb-0" style="width: 50%">
+                <h5>Họ và tên mẹ</h5>
+                <ul>
+                  <li style="font-weight: bold ; font-size: 18px">{{student?.studentMotherName}}</li>
+                </ul>
+              </div>
+              <div class="form-group pl-5 mb-0" style="width: 50%">
+                <h5>Địa chỉ</h5>
+                <ul>
+                  <li style="font-weight: bold ; font-size: 18px">{{student?.studentAddress}}</li>
+                </ul>
+              </div>
+              <div class="form-group mb-0" style="width: 50%">
+                <h5>Dân tộc</h5>
+                <ul>
+                  <li style="font-weight: bold ; font-size: 18px">{{student?.studentEthnicity}}</li>
+                </ul>
+              </div>
+              <div class="form-group pl-5 " style="width: 50%">
+                <h5>Tình trạng</h5>
+                <ul>
+                  <li style="font-weight: bold ; font-size: 18px">{{student?.studentStatus}}</li>
+                </ul>
+              </div>
+              <div class="form-group " style="width: 50%">
+                <h5>Số điện thoại bố mẹ</h5>
+                <ul>
+                  <li style="font-weight: bold ; font-size: 18px">{{student?.studentParentPhone}}</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

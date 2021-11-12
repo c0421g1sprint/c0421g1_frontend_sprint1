@@ -158,9 +158,9 @@ export class ListTeacherComponent implements OnInit {
       autoFocus:false,
       maxHeight:'100vh'
     });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   this.ngOnInit();
-    // })
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    })
   }
 
 

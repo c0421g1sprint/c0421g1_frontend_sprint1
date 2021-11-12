@@ -1,13 +1,12 @@
 <div
-  style="background-image: url('/assets/img/background-nhat.jpg');background-size: cover;
-  min-height: 100vh; padding-top: 32px">
+  style="background-image: url('https://meta.vn/Data/image/2021/10/01/hinh-nen-background-powerpoint-31.jpg');background-size: cover; min-height: 130vh;margin-top: 150px">
   <h1 style="color: #1BB1DC;text-align: center;margin-top: 100px;">Lịch dạy
     lớp {{scheduleDetails[0].classroomName}}</h1>
   <div class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
       <div class="table-responsive" style="margin-top: 10px">
-        <table class="table  table-striped" style="background-color: white" id="scheduleTeacher">
+        <table class="table  table-striped" style="background-color: white">
           <thead style="background-color: #1BB1DC; color: white">
           <tr style="font-size: 16px">
             <th>Tiết</th>
@@ -19,13 +18,45 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let day of days" style="font-size: 14px">
-            <th>{{day}}</th>
-            <td *ngFor="let time of times" >
+          <tr *ngFor="let time of times" style="font-size: 18px">
+            <th style=" border-right-width: 1.5px; border-right-color: black">{{time}}</th>
+            <td *ngFor="let day of days">
               <ng-container *ngFor="let schedule of scheduleDetails">
-                <p *ngIf="schedule.studyTime == time && schedule.studyDay == day">
-                  {{schedule.subjectName}}
-                </p>
+                <ng-container *ngIf="schedule.studyTime == time && schedule.studyDay == day">
+                  <p style="margin-top: 16px" *ngIf="schedule.subjectName  == 'Trống'" class="badge badge-danger">
+                    {{schedule.subjectName}}
+                  </p>
+                  <p style="margin-top: 16px" *ngIf="schedule.subjectName  == 'Toán'" class="badge badge-primary">
+                    {{schedule.subjectName}}
+                  </p>
+                  <p style="margin-top: 16px" *ngIf="schedule.subjectName  == 'Ngoại Ngữ'" class="badge badge-success">
+                    {{schedule.subjectName}}
+                  </p>
+                  <p style="margin-top: 16px" *ngIf="schedule.subjectName  == 'Tiếng Việt'" class="badge badge-secondary">
+                    {{schedule.subjectName}}
+                  </p>
+                  <p style="margin-top: 16px" *ngIf="schedule.subjectName  == 'Đạo Đức'" class="badge badge-warning">
+                    {{schedule.subjectName}}
+                  </p>
+                  <p style="margin-top: 16px" *ngIf="schedule.subjectName  == 'TN & XH'" class="badge badge-info">
+                    {{schedule.subjectName}}
+                  </p>
+                  <p style="margin-top: 16px" *ngIf="schedule.subjectName  == 'Thể Dục'" class="badge badge-dark">
+                    {{schedule.subjectName}}
+                  </p>
+                  <p style="margin-top: 16px" *ngIf="schedule.subjectName  == 'Âm Nhạc'" class="badge badge-secondary">
+                    {{schedule.subjectName}}
+                  </p>
+                  <p style="margin-top: 16px" *ngIf="schedule.subjectName  == 'Mỹ Thuật'" class="badge badge-info">
+                    {{schedule.subjectName}}
+                  </p>
+                  <p style="margin-top: 16px" *ngIf="schedule.subjectName  == 'Địa lý'" class="badge badge-primary">
+                    {{schedule.subjectName}}
+                  </p>
+                  <p style="margin-top: 16px" *ngIf="schedule.subjectName  == 'Lịch Sử'" class="badge badge-success">
+                    {{schedule.subjectName}}
+                  </p>
+                </ng-container>
               </ng-container>
             </td>
           </tr>

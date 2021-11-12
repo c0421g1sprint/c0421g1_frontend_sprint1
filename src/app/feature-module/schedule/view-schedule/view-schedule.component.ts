@@ -28,8 +28,7 @@ export class ViewScheduleComponent implements OnInit {
   role: string;
 
   constructor(private scheduleDetailService: ScheduleDetailService,
-              public matSnackBar: MatSnackBar,
-              private storageService: StorageService) {
+              public matSnackBar: MatSnackBar, private storageService: StorageService) {
   }
 
   ngOnInit(): void {
@@ -59,8 +58,6 @@ export class ViewScheduleComponent implements OnInit {
       this.scheduleDetails = value;
       console.log(value);
       this.message = null;
-      console.log(this.scheduleDetails);
-      console.log(this.scheduleDetails[0].schedule.classroom.classroomName);
       this.classroomsName = this.scheduleDetails[0].schedule.classroom.classroomName;
 
     }, error => {

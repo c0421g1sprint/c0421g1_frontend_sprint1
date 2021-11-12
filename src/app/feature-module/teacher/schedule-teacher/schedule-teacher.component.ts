@@ -14,7 +14,7 @@ export class ScheduleTeacherComponent implements OnInit {
   message: string;
   nameClass: string ='';
 
-  days = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu'];
+  days = ["Thứ Hai", 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu'];
   times =  ['Tiết 1','Tiết 2', 'Tiết 3', 'Tiết 4', 'Tiết 5'];
   constructor(private scheduleDetailService: ScheduleTeacherService,
               private router: Router,
@@ -28,7 +28,7 @@ export class ScheduleTeacherComponent implements OnInit {
   listScheduleDetail() {
     this.scheduleDetailService.getScheduleDetail(this.storageService.getUsernameFromSession()).subscribe(value => {
         this.scheduleDetails = value;
-        console.log(this.scheduleDetails[0]);
+        console.log(value);
         this.nameClass = value[0].classroomName;
       }
       ,
