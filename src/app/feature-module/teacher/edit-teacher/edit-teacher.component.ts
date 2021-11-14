@@ -143,7 +143,7 @@ export class EditTeacherComponent implements OnInit {
         })
       ).subscribe();
     } else {
-      this.snackBar.showSnackbar('Biễu mẫu sai, vui lòng nhập lại', 'success');
+      this.snackBar.showSnackbar('Biễu mẫu sai, vui lòng nhập lại', 'error');
     }
   }
   onFileSelected(event) {

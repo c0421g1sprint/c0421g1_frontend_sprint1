@@ -110,7 +110,9 @@ export class EditScheduleComponent implements OnInit {
 
 
   openDialog() {
-    let dialogRef = this.dialog.open(DialogScheduleComponent);
+    let dialogRef = this.dialog.open(DialogScheduleComponent, {
+      width: '400px'
+    }); 
     dialogRef.afterClosed().subscribe(next => {
       console.log(next);
       if (next == 'true') {
